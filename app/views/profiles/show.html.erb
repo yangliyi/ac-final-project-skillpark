@@ -1,0 +1,24 @@
+<table class="table">
+  <tr>
+    <td>
+        <%= @profile.username %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <% @profile.try(:photo) %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <% if @profile.try(:description) %>
+        <%= @profile.description %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%#= @profile.photo %>
+    </td>
+  </tr>
+</table>

@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
+  has_one :profile
+
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
     user = User.find_by_fb_uid( auth.uid )
@@ -33,6 +35,9 @@ class User < ActiveRecord::Base
     user.password = Devise.friendly_token[0,20]
     #user.fb_raw_data = auth
     user.save!
+    profile = user.create_profile
+    profile.username = auth.info.name
+    profile.save!
     return user
   end
 end
