@@ -5,3 +5,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+  locations = Location.create([{ city: '基隆市' }, { city: '台北市' }, { city: '新北市'}, { city: '桃園市' }, { city: '新竹市' }, { city: '新竹縣' }, { city: '苗栗縣' }, { city: '台中市' }, { city: '南投縣市' }, { city: '彰化縣市' }, { city: '雲林縣市' }, { city: '嘉義市' }, { city: '嘉義縣' }, { city: '台南市' }, { city: '高雄市' }, { city: '屏東縣市' }, { city: '台東縣市' }, { city: '花蓮縣市' }, { city: '宜蘭縣市' }, { city: '澎湖縣' }, { city: '金門縣' }, { city: '連江縣' }])

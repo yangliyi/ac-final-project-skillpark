@@ -10,7 +10,8 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    if @profile.update(profile_params)
+
+      if @profile.update(profile_params)
       flash[:notice] = "個人資料修改成功！"
       redirect_to profile_path(@profile)
     else
@@ -25,7 +26,7 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:username, :description, :photo)
+    params.require(:profile).permit(:username, :description, :photo, :location_id)
   end
 
 end
