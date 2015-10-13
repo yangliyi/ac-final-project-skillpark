@@ -1,24 +1,31 @@
-<table class="table">
+<table>
   <tr>
     <td>
-        <%= @profile.username %>
+      <h3><span class="label"><%= @profile.username %></span></h3>
     </td>
   </tr>
   <tr>
     <td>
-      <% @profile.try(:photo) %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <% if @profile.try(:description) %>
-        <%= @profile.description %>
+      <% if @profile.try(:photo) %>
+        <%= image_tag (@profile.photo.url(:medium)), class: "user-photo" %>
       <% end %>
     </td>
   </tr>
-  <tr>
-    <td>
-      <%#= @profile.photo %>
-    </td>
-  </tr>
 </table>
+
+
+
+  <div class="row">
+    <div class="col-sm-6" id="about-me">
+      <h3><span class="label">關於我</span></h3>
+      <h5><span class="label">出沒地：<%#= @profile.location %></span></h5>
+      <p>
+        <% if @profile.try(:description) %>
+          <%= @profile.description %>
+        <% end %>
+      </p>
+    </div>
+    <div class="col-sm-6" id="user-rating">
+      <h3><span class="label">別人怎麼說我</span></h3>
+    </div>
+  </div>
