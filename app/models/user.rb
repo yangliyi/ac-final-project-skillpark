@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook]
 
   has_one :profile
+  has_many :skills
 
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid

@@ -1,0 +1,23 @@
+<h2>更新技能</h2>
+<%= form_for @skill, method: :patch do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name, "技能名稱" %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :requirement, "需自備的工具或軟體" %>
+    <%= f.text_area :requirement, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, "詳細敘述自己的技能吧！" %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+
+  <p>
+    <%= f.submit '更新', class: "btn btn-default" %>
+  </p>
+
+<% end %>

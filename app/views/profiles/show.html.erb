@@ -39,7 +39,27 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12" id="skills-have">
-      <h3>我擅長</h3>
+    <div class="col-sm-12">
+      <div class="skills-have">
+        <h3>我擅長</h3>
+        <div class="row">
+          <% @profile.user.skills.each do |s| %>
+          <div class="col-sm-4">
+            <div class="skill-block">
+              <div class="skill-info">
+                <h5><%= link_to s.name, skill_path(s) %></h5>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6><%= link_to s.user.profile.username, profile_path(s.user.profile)%> </h6>
+                </div>
+                <div class="col-sm-6">
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
