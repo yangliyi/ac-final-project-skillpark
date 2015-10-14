@@ -3,22 +3,22 @@
 
   <div class="form-group">
     <%= f.label :name, "技能名稱" %><br>
-    <%= f.text_field :name, class: "form-control" %>
+    <%= f.text_field :name, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
     <%= f.label :category_id, "分類：" %>
-    <%= f.select :category_id, Category.all.map{ |x| [x.name, x.id] } %>
+    <%= f.select :category_id, Category.all.map{ |x| [x.name, x.id] }, required: true %>
   </div>
 
   <div class="form-group">
     <%= f.label :requirement, "需自備的工具或軟體" %>
-    <%= f.text_area :requirement, class: "form-control" %>
+    <%= f.text_area :requirement, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
     <%= f.label :description, "詳細敘述自己的技能吧！" %>
-    <%= f.text_area :description, class: "form-control" %>
+    <%= f.text_area :description, class: "form-control", required: true %>
   </div>
 
   <p>
