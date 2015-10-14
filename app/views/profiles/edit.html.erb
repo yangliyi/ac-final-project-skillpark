@@ -2,25 +2,23 @@
 <%= form_for @profile do |f| %>
 
   <div class="form-group">
-    <%= f.label :username, "顯示名稱" %><br>
+    <%= f.label :username, "顯示名稱：" %><br>
     <%= f.text_field :username, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :photo, "更新大頭照" %>
+    <%= f.label :photo, "更新大頭照：" %>
     <%= f.file_field :photo %>
 
-    <% if @profile.photo.exists? %>
-      <%= check_box_tag "destroy_photo", "1" %> 刪除原有大頭照
-    <% end %>
   </div>
 
   <div class="form-group">
+    <%= f.label :location_id, "出沒地：" %>
     <%= f.select :location_id, Location.all.map{ |x| [x.city, x.id] } %>
   </div>
 
   <div class="form-group">
-    <%= f.label :description, "介紹一下自己吧，越詳細越容易收到 Deal 邀請喔！" %>
+    <%= f.label :description, "介紹一下自己，越詳細越容易收到Deal邀請：" %>
     <%= f.text_area :description, class: "form-control" %>
   </div>
 
@@ -30,5 +28,37 @@
 
 <% end %>
 
-我有的技能：
-
+<%= link_to '新增技能', new_skill_path, class: "btn btn-default" %>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="skills-have">
+      <h3>我擅長</h3>
+      <div class="row">
+        <% @profile.user.skills.each do |s| %>
+        <div class="col-sm-4">
+          <div class="skill-block">
+            <div class="skill-info">
+              <h5><%= link_to s.name, skill_path(s) %></h5>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <h6><%= link_to s.user.profile.username, profile_path(s.user.profile)%> </h6>
+              </div>
+              <div class="col-sm-6">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="edit-btn">
+                  <%= link_to '更新', edit_skill_path(s), class: "glyphicon glyphicon-wrench" %>
+                  <%= link_to '刪除', skill_path(s), method: :delete, data: { confirm: "你確定要刪除這個技能?" }, class: "glyphicon glyphicon-trash" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
