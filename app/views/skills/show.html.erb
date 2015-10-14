@@ -2,6 +2,7 @@
   <div class="col-sm-12">
     <div class="skill-page">
       <h3><%= @skill.name %></h3>
+      <h4><span class="label label-info"><%= @skill.category.name %></span></h4>
       <h4>需自備的工具或軟體：<%= @skill.requirement %></h4>
       <p><%= @skill.description%></p>
     </div>

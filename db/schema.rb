@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013112346) do
+ActiveRecord::Schema.define(version: 20151014043740) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -56,8 +56,10 @@ ActiveRecord::Schema.define(version: 20151013112346) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "user_id",     limit: 4
+    t.integer  "category_id", limit: 4
   end
 
+  add_index "skills", ["category_id"], name: "index_skills_on_category_id", using: :btree
   add_index "skills", ["user_id"], name: "index_skills_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
