@@ -1,4 +1,4 @@
-class Picture < ActiveRecord::Base
+class Testpicture < ActiveRecord::Base
 
   belongs_to :skill
 
@@ -7,6 +7,5 @@ class Picture < ActiveRecord::Base
     :path => ":rails_root/public/images/:id/:filename",
     :url  => "/images/:id/:filename"
 
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-
+  do_not_validate_attachment_file_type :image
 end

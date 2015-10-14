@@ -27,11 +27,17 @@ ActiveRecord::Schema.define(version: 20151014043740) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "image",              limit: 255
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+    t.integer  "skill_id",           limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
+
+  add_index "pictures", ["skill_id"], name: "index_pictures_on_skill_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.string   "username",           limit: 255

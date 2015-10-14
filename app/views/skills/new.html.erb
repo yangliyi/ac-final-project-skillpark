@@ -1,5 +1,5 @@
 <h2>新增技能</h2>
-<%= form_for @skill do |f| %>
+<%= form_for @skill, :html => { :multipart => true } do |f| %>
 
   <div class="form-group">
     <%= f.label :name, "技能名稱" %><br>
@@ -19,6 +19,14 @@
   <div class="form-group">
     <%= f.label :description, "詳細敘述自己的技能吧！" %>
     <%= f.text_area :description, class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :pictures, '可選擇多個檔案上傳', :class => 'control-label' %>
+    <%= file_field_tag "images[]", type: :file, multiple: true %>
+      <% if @skill.pictures && @skill.pictures.exists? %>
+      <%= check_box_tag "destroy_image", "1" %> 刪除圖片重新上傳
+    <% end %>
   </div>
 
   <p>

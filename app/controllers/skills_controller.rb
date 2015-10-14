@@ -16,10 +16,14 @@ class SkillsController < ApplicationController
   def create
     @skill = Skill.new(skill_params)
     @skill.user = current_user
-
     if @skill.save
-        flash[:notice] = "技能新增成功！"
-        redirect_to skill_path(@skill)
+      if params[:images]
+        params[:images].each { |image|
+          @skill.pictures.create(image: image)
+        }
+      end
+      flash[:notice] = "技能新增成功！"
+      redirect_to skill_path(@skill)
     else
       render 'new'
     end
@@ -29,7 +33,16 @@ class SkillsController < ApplicationController
   end
 
   def update
+    if params[:destroy_image] == "1"
+      @skill.pictures.delete_all
+    end
+
     if @skill.update(skill_params)
+      if params[:images]
+        params[:images].each { |image|
+          @skill.pictures.create(image: image)
+        }
+      end
       flash[:notice] = "技能更新成功！"
       redirect_to skill_path(@skill)
     else
@@ -53,7 +66,7 @@ class SkillsController < ApplicationController
   end
 
   def skill_params
-    params.require(:skill).permit(:name, :requirement, :description, :category_id)
+    params.require(:skill).permit(:name, :requirement, :description, :pictures, :category_id)
   end
 
 end

@@ -47,6 +47,15 @@
           <div class="col-sm-4">
             <div class="skill-block">
               <div class="skill-info">
+                <div>
+                  <% if s.pictures.exists?%>
+                  <div class="skill-img">
+                    <%= image_tag (s.pictures.last.image.url(:medium))%>
+                  </div>
+                  <% else %>
+                  無上傳圖片
+                  <% end %>
+                </div>
                 <h5><%= link_to s.name, skill_path(s) %></h5>
                 <h4><span class="label label-info"><%= s.category.name %></span>
               </div>
