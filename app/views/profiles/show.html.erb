@@ -36,6 +36,13 @@
   <div class="row">
     <div class="col-sm-12" id="skills-want">
       <h3>我想學</h3>
+      <h1>
+        <% @profile.categories.each do |c| %>
+        <span class="label label-info">
+        <%= c.name %>
+        </span>
+        <% end %>
+      </h1>
     </div>
   </div>
   <div class="row">
@@ -48,16 +55,24 @@
             <div class="skill-block panel panel-info">
               <div class="skill-info">
                 <div>
-                  <% if s.pictures.exists?%>
-                  <div class="skill-img">
+                    <%= link_to skill_path(s) do %>
+                    <% if s.pictures.exists?%>
+                    <div class="skill-img">
                     <%= image_tag (s.pictures.last.image.url) %>
-                  </div>
-                  <% else %>
-                  無上傳圖片
+                    </div>
+                    <% else %>
+                    無上傳圖片
+                    <% end %>
+                    <h5><%= s.name %></h5>
                   <% end %>
                 </div>
-                <h5><%= link_to s.name, skill_path(s) %></h5>
-                <h4><span class="label label-info"><%= s.category.name %></span>
+                <h4>
+                  <% s.categories.each do |c| %>
+                  <span class="label label-info">
+                  <%= c.name %>
+                  </span>
+                  <% end %>
+                </h4>
               </div>
               <div class="row">
                 <div class="col-sm-6">

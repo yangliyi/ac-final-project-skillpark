@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014043740) do
+ActiveRecord::Schema.define(version: 20151015013816) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 20151014043740) do
 
   add_index "pictures", ["skill_id"], name: "index_pictures_on_skill_id", using: :btree
 
+  create_table "profile_categoryships", force: :cascade do |t|
+    t.integer  "profile_id",  limit: 4
+    t.integer  "category_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "profile_categoryships", ["category_id"], name: "index_profile_categoryships_on_category_id", using: :btree
+  add_index "profile_categoryships", ["profile_id"], name: "index_profile_categoryships_on_profile_id", using: :btree
+
   create_table "profiles", force: :cascade do |t|
     t.string   "username",           limit: 255
     t.text     "description",        limit: 65535
@@ -55,6 +65,16 @@ ActiveRecord::Schema.define(version: 20151014043740) do
   add_index "profiles", ["location_id"], name: "index_profiles_on_location_id", using: :btree
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
+  create_table "skill_categoryships", force: :cascade do |t|
+    t.integer  "skill_id",    limit: 4
+    t.integer  "category_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "skill_categoryships", ["category_id"], name: "index_skill_categoryships_on_category_id", using: :btree
+  add_index "skill_categoryships", ["skill_id"], name: "index_skill_categoryships_on_skill_id", using: :btree
+
   create_table "skills", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.text     "requirement", limit: 65535
@@ -62,10 +82,8 @@ ActiveRecord::Schema.define(version: 20151014043740) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "user_id",     limit: 4
-    t.integer  "category_id", limit: 4
   end
 
-  add_index "skills", ["category_id"], name: "index_skills_on_category_id", using: :btree
   add_index "skills", ["user_id"], name: "index_skills_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|

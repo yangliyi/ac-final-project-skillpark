@@ -9,12 +9,15 @@
   <div class="form-group">
     <%= f.label :photo, "更新大頭照：" %>
     <%= f.file_field :photo %>
-
   </div>
 
   <div class="form-group">
     <%= f.label :location_id, "出沒地：" %>
     <%= f.select :location_id, Location.all.map{ |x| [x.city, x.id] } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.select :category_ids, Category.all.map{ |x| [x.name, x.id] }, {}, :multiple => true %>
   </div>
 
   <div class="form-group">
@@ -39,16 +42,24 @@
           <div class="skill-block panel panel-info">
             <div class="skill-info">
               <div>
+              <%= link_to skill_path(s) do %>
                 <% if s.pictures.exists?%>
                 <div class="skill-img">
-                  <%= image_tag (s.pictures.last.image.url%>
+                <%= image_tag (s.pictures.last.image.url) %>
                 </div>
                 <% else %>
                 無上傳圖片
+              <% end %>
+                <h5><%= s.name %></h5>
                 <% end %>
               </div>
-              <h5><%= link_to s.name, skill_path(s) %></h5>
-              <h4><span class="label label-info"><%= s.category.name %></span>
+              <h4>
+                <% s.categories.each do |c| %>
+                <span class="label label-info">
+                  <%= c.name %>
+                </span>
+                <% end %>
+              </h4>
             </div>
             <div class="row">
               <div class="col-sm-6">
