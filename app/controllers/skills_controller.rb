@@ -2,8 +2,9 @@ class SkillsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index]
   before_action :set_skill, :only => [:show, :edit, :update, :destroy]
-
+  before_action :set_interested_skills, :only => [:index]
   def index
+
   end
 
   def new
@@ -60,6 +61,21 @@ class SkillsController < ApplicationController
   end
 
   private
+
+  def set_interested_skills
+    if current_user
+      @categories = current_user.profile.categories
+        a = []
+        @categories.each do |c|
+          c.skills.each do |s|
+            a << s
+          end
+        end
+        @skills = a.uniq
+    else
+      @skills = Skill.all
+    end
+  end
 
   def set_skill
     @skill = Skill.find(params[:id])

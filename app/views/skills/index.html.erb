@@ -1,3 +1,49 @@
-<% if not current_user %>
-<%= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook) %>
-<% end %>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="header">
+      <h1>來交換吧</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere amet veniam nostrum maxime omnis totam animi quas esse iste dolorum!</p>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
+      <% @skills.each do |s| %>
+      <div class="col-sm-4">
+        <div class="skill-block panel panel-info">
+          <div class="skill-info">
+            <div>
+                <%= link_to skill_path(s) do %>
+                <% if s.pictures.exists?%>
+                <div class="skill-img">
+                <%= image_tag (s.pictures.last.image.url) %>
+                </div>
+                <% else %>
+                無上傳圖片
+                <% end %>
+                <h5><%= s.name %></h5>
+              <% end %>
+            </div>
+            <h4>
+              <% s.categories.each do |c| %>
+              <span class="label label-info">
+              <%= c.name %>
+              </span>
+              <% end %>
+            </h4>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <h6><%= link_to s.user.profile.username, profile_path(s.user.profile)%> </h6>
+            </div>
+            <div class="col-sm-6">
+              評價
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
