@@ -4,6 +4,22 @@ class SkillsController < ApplicationController
   before_action :set_skill, :only => [:show, :edit, :update, :destroy]
   before_action :set_interested_skills, :only => [:index]
   def index
+    @q = Skill.ransack(params[:q])
+
+    if current_user && params[:q]
+      @skills = @q.result.includes(:categories)
+    elsif current_user
+      a = []
+      @categories = current_user.profile.categories
+        @categories.each do |c|
+          c.skills.each do |s|
+            a << s
+          end
+        end
+      @skills = a.uniq
+    else
+      @skills = Skill.all
+    end
 
   end
 

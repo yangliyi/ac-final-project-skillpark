@@ -17,6 +17,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'paperclip'
 gem 'select2-rails', '~> 3.5.9.3'
+gem 'ransack'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
