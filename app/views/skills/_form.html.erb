@@ -1,27 +1,28 @@
 <%= form_for @skill, :html => { :multipart => true } do |f| %>
 
   <div class="form-group">
-    <%= f.label :name, "技能名稱" %><br>
+    <%= f.label :name, "技能名稱：" %><br>
     <%= f.text_field :name, class: "form-control", required: true %>
   </div>
 
 
   <div class="form-group">
+    <%= f.label :name, "分類：" %><br>
     <%= f.select :category_ids, Category.all.map{ |x| [x.name, x.id] }, {}, :multiple => true, required: true %>
   </div>
 
   <div class="form-group">
-    <%= f.label :requirement, "需自備的工具或軟體" %>
+    <%= f.label :requirement, "需自備的工具或軟體：" %><br>
     <%= f.text_area :requirement, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
-    <%= f.label :description, "詳細敘述自己的技能吧！" %>
+    <%= f.label :description, "詳細敘述自己的技能吧！" %><br>
     <%= f.text_area :description, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
-    <%= f.label :pictures, '可選擇多個檔案上傳', :class => 'control-label' %>
+    <%= f.label :pictures, '可選擇多個檔案上傳', :class => 'control-label' %><br>
     <%= file_field_tag "images[]", type: :file, multiple: true %>
     <% if @skill.pictures && @skill.pictures.exists? %>
       <%= check_box_tag "destroy_image", "1" %> 刪除圖片重新上傳
@@ -34,3 +35,9 @@
   </p>
 
 <% end %>
+
+<script>
+  $(document).on("page:change", function(){
+    $("#skill_category_ids").select2();
+  })
+</script>
