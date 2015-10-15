@@ -46,78 +46,78 @@
   </tr>
 </table>
 
-  <div class="row">
-    <div class="col-sm-6" id="about-me">
-      <h3><span class="label">關於我</span></h3>
-      <h5><span class="label">出沒地：
-        <% if @profile.try(:location_id) %>
-          <%= @profile.location.city %>
-        <% end %>
-      </span></h5>
-      <p>
-        <% if @profile.try(:description) %>
-          <%= @profile.description %>
-        <% end %>
-      </p>
-    </div>
-    <div class="col-sm-6" id="user-rating">
-      <h3><span class="label">別人怎麼說</span></h3>
-      評價
-    </div>
+<div class="row">
+  <div class="col-sm-6" id="about-me">
+    <h3><span class="label">關於我</span></h3>
+    <h5><span class="label">出沒地：
+      <% if @profile.try(:location_id) %>
+        <%= @profile.location.city %>
+      <% end %>
+    </span></h5>
+    <p>
+      <% if @profile.try(:description) %>
+        <%= @profile.description %>
+      <% end %>
+    </p>
   </div>
-  <div class="row">
-    <div class="col-sm-12" id="skills-want">
-      <h3>我想學</h3>
-      <h2>
-        <% @profile.categories.each do |c| %>
-        <span class="label label-info">
-        <%= c.name %>
-        </span>
-        <% end %>
-      </h2>
-    </div>
+  <div class="col-sm-6" id="user-rating">
+    <h3><span class="label">別人怎麼說</span></h3>
+    評價
   </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="skills-have">
-        <h3>我擅長</h3>
-        <div class="row">
-          <% @profile.user.skills.each do |s| %>
-          <div class="col-sm-4">
-            <div class="skill-block panel panel-info">
-              <div class="skill-info">
-                <div>
-                    <%= link_to skill_path(s) do %>
-                    <% if s.pictures.exists?%>
-                    <div class="skill-img">
-                    <%= image_tag (s.pictures.last.image.url) %>
-                    </div>
-                    <% else %>
-                    無上傳圖片
-                    <% end %>
-                    <h5><%= s.name %></h5>
+</div>
+<div class="row">
+  <div class="col-sm-12" id="skills-want">
+    <h3>我想學</h3>
+    <h2>
+      <% @profile.categories.each do |c| %>
+      <span class="label label-info">
+      <%= c.name %>
+      </span>
+      <% end %>
+    </h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="skills-have">
+      <h3>我擅長</h3>
+      <div class="row">
+        <% @profile.user.skills.each do |s| %>
+        <div class="col-sm-4">
+          <div class="skill-block panel panel-info">
+            <div class="skill-info">
+              <div>
+                  <%= link_to skill_path(s) do %>
+                  <% if s.pictures.exists?%>
+                  <div class="skill-img">
+                  <%= image_tag (s.pictures.last.image.url) %>
+                  </div>
+                  <% else %>
+                  無上傳圖片
                   <% end %>
-                </div>
-                <h4>
-                  <% s.categories.each do |c| %>
-                  <span class="label label-info">
-                  <%= c.name %>
-                  </span>
-                  <% end %>
-                </h4>
+                  <h5><%= s.name %></h5>
+                <% end %>
               </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <h6><%= link_to s.user.profile.username, profile_path(s.user.profile)%> </h6>
-                </div>
-                <div class="col-sm-6">
-                  評價
-                </div>
+              <h4>
+                <% s.categories.each do |c| %>
+                <span class="label label-info">
+                <%= c.name %>
+                </span>
+                <% end %>
+              </h4>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <h6><%= link_to s.user.profile.username, profile_path(s.user.profile)%> </h6>
+              </div>
+              <div class="col-sm-6">
+                評價
               </div>
             </div>
           </div>
-          <% end %>
         </div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>

@@ -18,6 +18,7 @@ gem 'omniauth-facebook'
 gem 'paperclip'
 gem 'select2-rails', '~> 3.5.9.3'
 gem 'ransack'
+gem 'lightbox2-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

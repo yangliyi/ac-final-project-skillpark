@@ -19,7 +19,7 @@
     <% @skill.pictures.each do |p| %>
   <div class="col-sm-4">
     <div class="skill-img">
-      <%= link_to image_tag(p.image.url), p.image.url %>
+      <%= link_to image_tag(p.image.url), p.image.url, :rel => "lightbox", data: {lightbox: @skill.name} %>
       <%=  %>
     </div>
   </div>
