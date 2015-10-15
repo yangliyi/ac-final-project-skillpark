@@ -73,7 +73,15 @@ img.user-photo {
 }
 
 #skills-want {
-  h3 {
-  text-align: center;
+  h1 {
+    text-align: center;
   }
+  h3 {
+    text-align: center;
+  }
+}
+
+span.label {
+  margin: 0 5px;
+  padding: 5px;
 }
