@@ -12,7 +12,7 @@
     <% @skill.pictures.each do |p| %>
   <div class="col-sm-4">
     <div class="skill-img">
-      <%= image_tag (p.image.url(:medium)) %>
+      <%= image_tag (p.image.url) %>
     </div>
   </div>
     <% end %>

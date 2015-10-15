@@ -45,12 +45,12 @@
         <div class="row">
           <% @profile.user.skills.each do |s| %>
           <div class="col-sm-4">
-            <div class="skill-block">
+            <div class="skill-block panel panel-info">
               <div class="skill-info">
                 <div>
                   <% if s.pictures.exists?%>
                   <div class="skill-img">
-                    <%= image_tag (s.pictures.last.image.url(:medium))%>
+                    <%= image_tag (s.pictures.last.image.url) %>
                   </div>
                   <% else %>
                   無上傳圖片
