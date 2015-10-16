@@ -1,4 +1,4 @@
-<% if @profiles != nil %>
+<% if @profiles %>
   <div class="panel panel-info">
     <div class="panel-heading">
       <h3 class="panel-title">聯絡過的對象：</h3>
@@ -12,31 +12,36 @@
 <% end %>
 
 留言紀錄：
-<% @profiles.each do |p| %>
-<div class="panel panel-success">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= link_to p.username, profile_path(p) %></h3>
-    <% @p = p %>
-  </div>
-  <div class="panel-body">
-    <% @comments.each do |c| %>
-      <% if c.profile == @p && c.user == current_user || c.profile == current_user.profile && c.user == @p.user %>
-      <div class="row">
-        <div class="col-sm-6">
-          <%= c.user.profile.username %>：
+
+<% @comments_group_by_profile.each do |p, comments| %>
+
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= link_to p.username, profile_path(p) %></h3>
+      <% @p = p %>
+    </div>
+    <div class="panel-body">
+      <% comments.each do |c| %>
+        <% if ( c.profile == @p && c.user == current_user ) || ( c.profile == current_user.profile && c.user == @p.user ) %>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= c.user.profile.username %>：
+          </div>
+          <div class="col-sm-6">
+            <%= c.content %>
+          </div>
         </div>
-        <div class="col-sm-6">
-          <%= c.content %>
-        </div>
-      </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+
   <%= form_for Comment.new, url: profile_comments_path(p) do |f| %>
     <div class="form-group">
       <%= f.text_area :content, class: "form-control" %>
       <%= f.submit "回覆", class: "btn btn-default"%>
     </div>
   <% end %>
+
+  </div>
+
 <% end %>
-</div>

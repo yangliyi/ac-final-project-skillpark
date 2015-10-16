@@ -5,13 +5,9 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:destroy]
 
   def index
-    @comments = Comment.where( "profile_id = ? or user_id = ?", current_user.profile, current_user ).order("id DESC")
-    a = []
-    @comments.each do |c|
-      a << c.profile
-      a << c.user.profile
-    end
-    @profiles = a.uniq
+    @comments_group_by_profile = Comment.get_communications(current_user)
+
+    @profiles = @comments_group_by_profile.keys
   end
 
   def create
