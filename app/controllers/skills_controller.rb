@@ -8,7 +8,7 @@ class SkillsController < ApplicationController
 
     if current_user && params[:q]
       @skills = @q.result.includes(:categories)
-    elsif current_user && current_user.profile.categories.exists?
+    elsif current_user && current_user.profile.try(:categories)
       a = []
       @categories = current_user.profile.categories
         @categories.each do |c|
@@ -79,7 +79,7 @@ class SkillsController < ApplicationController
   private
 
   def set_interested_skills
-    if current_user
+    if current_user && current_user.profile.try(:categories)
       @categories = current_user.profile.categories
         a = []
         @categories.each do |c|
