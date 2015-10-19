@@ -9,14 +9,8 @@ class SkillsController < ApplicationController
     if current_user && params[:q]
       @skills = @q.result.includes(:categories)
     elsif current_user && current_user.profile.try(:categories)
-      a = []
-      @categories = current_user.profile.categories
-        @categories.each do |c|
-          c.skills.each do |s|
-            a << s
-          end
-        end
-      @skills = a.uniq
+      category_ids = current_user.profile.categories.map {|c| c.id }
+      @skills = Skill.joins(:skill_categoryships).where(:skill_categoryships => {:category_id => category_ids})
     else
       @skills = Skill.all
     end

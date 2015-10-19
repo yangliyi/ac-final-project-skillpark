@@ -6,4 +6,7 @@ class Skill < ActiveRecord::Base
   has_many :categories, through: :skill_categoryships
 
   has_many :pictures, :dependent => :destroy
+
+  default_scope { order(updated_at: :desc) }
+
 end
