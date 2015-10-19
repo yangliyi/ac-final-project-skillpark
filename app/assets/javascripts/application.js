@@ -15,4 +15,3 @@
 //= require jquery_ujs
 //= require select2
 //= require lightbox
-//= require_tree .
