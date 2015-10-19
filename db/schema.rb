@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019003656) do
+ActiveRecord::Schema.define(version: 20151019084002) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -76,6 +76,17 @@ ActiveRecord::Schema.define(version: 20151019003656) do
 
   add_index "profiles", ["location_id"], name: "index_profiles_on_location_id", using: :btree
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "publiccomments", force: :cascade do |t|
+    t.text     "content",    limit: 65535
+    t.integer  "profile_id", limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "publiccomments", ["profile_id"], name: "index_publiccomments_on_profile_id", using: :btree
+  add_index "publiccomments", ["user_id"], name: "index_publiccomments_on_user_id", using: :btree
 
   create_table "skill_categoryships", force: :cascade do |t|
     t.integer  "skill_id",    limit: 4

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_one :profile
   has_many :skills
   has_many :comments
+  has_many :publiccomments
 
   # Favorite profiles of user
   has_many :user_profile_favoriteships

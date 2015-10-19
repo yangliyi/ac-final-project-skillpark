@@ -2,8 +2,8 @@
   <div class="col-sm-12">
     <div class="message">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-        我要留言！
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        私人留言
       </button>
       <!-- Modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -44,7 +44,7 @@
 <table>
   <tr>
     <td>
-      <h3><span class="label"><%= @profile.username %></span></h3>
+      <h3><span class="label label-primary"><%= @profile.username %></span></h3>
     </td>
   </tr>
   <tr>
@@ -58,8 +58,8 @@
 
 <div class="row">
   <div class="col-sm-6" id="about-me">
-    <h3><span class="label">關於我</span></h3>
-    <h5><span class="label">出沒地：
+    <h3><span class="label label-primary">關於我</span></h3>
+    <h5><span class="label label-primary">出沒地：
       <% if @profile.try(:location_id) %>
         <%= @profile.location.city %>
       <% end %>
@@ -71,7 +71,7 @@
     </p>
   </div>
   <div class="col-sm-6" id="user-rating">
-    <h3><span class="label">別人怎麼說</span></h3>
+    <h3><span class="label label-primary">別人怎麼說</span></h3>
     評價
   </div>
 </div>
@@ -130,4 +130,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div id="publiccomments">
+  <%= render 'publiccomments/publiccomment' %>
 </div>

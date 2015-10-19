@@ -7,6 +7,7 @@ class Profile < ActiveRecord::Base
   has_many :categories, through: :profile_categoryships
 
   has_many :comments, dependent: :destroy
+  has_many :publiccomments, dependent: :destroy
   # Favorited by users
   has_many :user_profile_favoriteships
   has_many :favorited_users, through: :user_profile_favoriteships, source: :user

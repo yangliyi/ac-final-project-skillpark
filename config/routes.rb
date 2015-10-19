@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :profiles do
     resources :comments
+    resources :publiccomments
 
     member do
       post :favorite
