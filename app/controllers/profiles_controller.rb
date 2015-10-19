@@ -20,6 +20,24 @@ class ProfilesController < ApplicationController
     end
   end
 
+  # Add and remove favorite profiles
+  # for current_user
+  def favorite
+    @profile = Profile.find(params[:id])
+
+    if current_user.favorite_profile?(@profile)
+      current_user.favorite_profiles.delete(@profile)
+    else
+      current_user.favorite_profiles << @profile
+    end
+    respond_to do |format|
+      format.html {
+        redirect_to :back
+      }
+      format.js
+    end
+  end
+
   private
 
   def set_profile

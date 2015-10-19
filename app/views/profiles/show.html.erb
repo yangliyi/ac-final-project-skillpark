@@ -30,6 +30,16 @@
     </div>
   </div>
 </div>
+<% if current_user %>
+    <%= link_to favorite_profile_path(@profile), method: :post, class: "btn", id: "favorite", remote: true do %>
+      <% if current_user.favorite_profile?(@profile) %>
+        <span class="btn btn-success">取消收藏</span>
+      <% else %>
+        <span class="btn btn-default">收藏</span>
+      <% end %>
+      <span class="badge"><%= @profile.favorited_users.size %></span>
+    <% end %>
+<% end %>
 
 <table>
   <tr>

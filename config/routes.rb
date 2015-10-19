@@ -4,6 +4,11 @@ Rails.application.routes.draw do
 
   resources :profiles do
     resources :comments
+
+    member do
+      post :favorite
+    end
+
   end
 
   resources :skills

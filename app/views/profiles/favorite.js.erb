@@ -1,0 +1,10 @@
+$('#favorite').children('span').toggleClass('btn-success');
+$('#favorite').children('span').toggleClass('btn-default');
+
+<% if current_user.favorite_profile?(@profile) %>
+  $('#favorite').children('span').html('取消收藏');
+<% else %>
+  $('#favorite').children('span').html('收藏');
+<% end %>
+
+$('#favorite').children('span').last().html('<%= @profile.favorited_users.count %>');

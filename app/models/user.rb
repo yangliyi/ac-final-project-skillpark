@@ -9,6 +9,15 @@ class User < ActiveRecord::Base
   has_many :skills
   has_many :comments
 
+  # Favorite profiles of user
+  has_many :user_profile_favoriteships
+  has_many :favorite_profiles, through: :user_profile_favoriteships, source: :profile
+
+  def favorite_profile?(profile)
+    self.favorite_profiles.include?(profile)
+  end
+
+
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
     user = User.find_by_fb_uid( auth.uid )

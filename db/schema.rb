@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015174555) do
+ActiveRecord::Schema.define(version: 20151019003656) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -61,16 +61,17 @@ ActiveRecord::Schema.define(version: 20151015174555) do
   add_index "profile_categoryships", ["profile_id"], name: "index_profile_categoryships_on_profile_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
-    t.string   "username",           limit: 255
-    t.text     "description",        limit: 65535
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.integer  "user_id",            limit: 4
-    t.string   "photo_file_name",    limit: 255
-    t.string   "photo_content_type", limit: 255
-    t.integer  "photo_file_size",    limit: 4
+    t.string   "username",              limit: 255
+    t.text     "description",           limit: 65535
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.integer  "user_id",               limit: 4
+    t.string   "photo_file_name",       limit: 255
+    t.string   "photo_content_type",    limit: 255
+    t.integer  "photo_file_size",       limit: 4
     t.datetime "photo_updated_at"
-    t.integer  "location_id",        limit: 4
+    t.integer  "location_id",           limit: 4
+    t.integer  "favorited_users_count", limit: 4,     default: 0
   end
 
   add_index "profiles", ["location_id"], name: "index_profiles_on_location_id", using: :btree
@@ -96,6 +97,16 @@ ActiveRecord::Schema.define(version: 20151015174555) do
   end
 
   add_index "skills", ["user_id"], name: "index_skills_on_user_id", using: :btree
+
+  create_table "user_profile_favoriteships", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "profile_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "user_profile_favoriteships", ["profile_id"], name: "index_user_profile_favoriteships_on_profile_id", using: :btree
+  add_index "user_profile_favoriteships", ["user_id"], name: "index_user_profile_favoriteships_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

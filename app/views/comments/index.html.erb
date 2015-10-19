@@ -1,3 +1,17 @@
+<% if current_user.favorite_profiles.exists? %>
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title"> 收藏的對象：</h3>
+    </div>
+    <div class="panel-body">
+      <% current_user.favorite_profiles.each do |f| %>
+        <%= link_to f.username, profile_path(f) %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+
 <% if @profiles %>
   <div class="panel panel-info">
     <div class="panel-heading">
