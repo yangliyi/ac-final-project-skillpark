@@ -12,7 +12,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :location_id, "出沒地：" %>
+    <%= f.label :location_id, "偏好交換地區：" %>
     <%= f.select :location_id, Location.all.map{ |x| [x.city, x.id] } %>
   </div>
 
@@ -22,7 +22,7 @@
    </div>
 
   <div class="form-group">
-    <%= f.label :description, "介紹一下自己，越詳細越容易收到Deal邀請：" %>
+    <%= f.label :description, "介紹一下自己吧，越詳細才能讓大家更了解妳：" %>
     <%= f.text_area :description, class: "form-control" %>
   </div>
 
@@ -42,6 +42,11 @@
         <div class="col-sm-4">
           <div class="skill-block panel panel-info">
             <div class="skill-info">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6><%= link_to s.user.profile.username, profile_path(s.user.profile)%> </h6>
+                </div>
+              </div>
               <div>
               <%= link_to skill_path(s) do %>
                 <% if s.pictures.exists?%>
@@ -53,21 +58,6 @@
               <% end %>
                 <h5><%= s.name %></h5>
                 <% end %>
-              </div>
-              <h4>
-                <% s.categories.each do |c| %>
-                <span class="label label-info">
-                  <%= c.name %>
-                </span>
-                <% end %>
-              </h4>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <h6><%= link_to s.user.profile.username, profile_path(s.user.profile)%> </h6>
-              </div>
-              <div class="col-sm-6">
-                評價
               </div>
             </div>
             <div class="row">
