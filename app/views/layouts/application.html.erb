@@ -40,6 +40,13 @@
               修改個人資料<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               <% end %>
           </li>
+          <li>
+            <% if @q %>
+              <%= search_form_for @q, class: "navbar-form" do |f| %>
+                <%= f.search_field :name_or_categories_name_cont, placeholder: "搜尋技能或分類名稱", class: "form-control " %>
+              <% end %>
+            <% end %>
+          </li>
           <% else %>
           <li>
             <%= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook) %>
