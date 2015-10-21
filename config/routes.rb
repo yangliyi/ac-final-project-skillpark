@@ -14,6 +14,11 @@ Rails.application.routes.draw do
 
   resources :skills
 
+  scope :path => '/api/v1/', :defaults => { :format => :json }, :module => "api_v1", :as => 'v1' do
+
+    resources :skills # ApiV1::SkillsController
+
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
