@@ -6,4 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
   locations = Location.create([{ city: '基隆市' }, { city: '台北市' }, { city: '新北市'}, { city: '桃園市' }, { city: '新竹市' }, { city: '新竹縣' }, { city: '苗栗縣' }, { city: '台中市' }, { city: '南投縣市' }, { city: '彰化縣市' }, { city: '雲林縣市' }, { city: '嘉義市' }, { city: '嘉義縣' }, { city: '台南市' }, { city: '高雄市' }, { city: '屏東縣市' }, { city: '台東縣市' }, { city: '花蓮縣市' }, { city: '宜蘭縣市' }, { city: '澎湖縣' }, { city: '金門縣' }, { city: '連江縣' }])
-  categories = Category.create([{name: '運動'}, {name: '藝術'}, {name: '程式設計'}, {name: '語言'}, {name: '商業'}, {name: '其他'}])
+  categories = Category.create([{name: '烹飪'}, {name: '美容'}, {name: '音樂'}, {name: '運動'}, {name: '攝影'}, {name: '語言'}, {name: '寫作'}, {name: '程式'}, {name: '軟體應用'}, {name: '美術繪畫'}, {name: '手工藝DIY'}, {name: '其他'} ])
