@@ -2,7 +2,6 @@
     min-width: 100px !important;
 }
 
-
 .skill-img {
   img {
   width: 100%;
@@ -13,10 +12,51 @@ form {
   text-align: left;
 }
 
-.panel {
-  width:200px;
+/*** banner ***/
+
+.banner {
+  text-align: center;
+  background-color: #FFF;
+  color: black;
+  img {
+    width: 100px;
+    margin-top: 5px;
+  }
 }
+
+/*** all-skills ***/
+
+.all-skills {
+  background-color: #E9E9E9;
+}
+
+/*** masonry ***/
 
 .box.masonry-brick {
   background-color: white;
+}
+
+.box {
+  width:320px;
+  a {
+    color: #444444;
+  }
+}
+
+.skill-box-author {
+  img {
+    border-radius: 30px;
+  }
+  a {
+    color: #7B7B7B;
+  }
+  h6 {
+    display: inline-block;
+  }
+  i {
+    font-size: 1.3em;
+    color: #7B7B7B;
+    margin-right: 0;
+    text-align: right;
+  }
 }

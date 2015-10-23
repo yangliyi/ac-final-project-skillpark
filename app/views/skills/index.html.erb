@@ -1,30 +1,48 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div class="header">
-      <h1>來交換吧</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere amet veniam nostrum maxime omnis totam animi quas esse iste dolorum!</p>
+<div class="container-fluid banner">
+  <div class="row">
+    <div class="col-sm-12">
+      <div>
+        <%= link_to skills_path do %>
+          <%= image_tag ("skillpark.png") %>
+        <% end %>
+      </div>
+      <h3>來交換彼此生命中的故事吧！</h3>
     </div>
   </div>
 </div>
 
-<div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
+<div class="all-skills">
+  <div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
   <% @skills.each do |s| %>
   <div class="box">
-    <div class="skill-block panel panel-info">
-      <h6><%= link_to s.user.profile.username, profile_path(s.user.profile)%> </h6>
-      <div>
-        <%= link_to skill_path(s) do %>
-          <% if s.pictures.exists?%>
-          <div class="skill-img">
-          <%= image_tag (s.pictures.last.image.url) %>
-          </div>
-          <% else %>
-          無上傳圖片
-          <% end %>
-          <h5><%= s.name %></h5>
+    <div>
+      <%= link_to skill_path(s) do %>
+        <% if s.pictures.exists?%>
+        <div class="skill-img">
+        <%= image_tag (s.pictures.last.image.url) %>
+        </div>
+        <% else %>
+        無上傳圖片
         <% end %>
-      </div>
+        <h5 class="skill-name"><strong><%= s.name %></strong></h5>
+        <p><%= s.description %></p>
+      <% end %>
     </div>
+    <hr>
+    <div class="skill-box-author">
+      <%= image_tag (s.user.profile.photo.url), style: "width: 20px; display: inline;" %>
+      <h6 ><%= link_to s.user.profile.username, profile_path(s.user.profile)%></h6>
+      <% if current_user %>
+        <%= link_to favorite_profile_path(s.user.profile), method: :post, class: "btn", class: "favorite-#{s.user.profile.id}", remote: true do %>
+          <% if current_user.favorite_profile?(s.user.profile) %>
+            <i class="fa fa-heart"><%= s.user.profile.favorited_users.size %></i>
+          <% else %>
+            <i class="fa fa-heart-o"><%= s.user.profile.favorited_users.size %></i>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
   </div>
   <% end %>
 </div>

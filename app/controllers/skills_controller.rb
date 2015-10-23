@@ -10,7 +10,7 @@ class SkillsController < ApplicationController
       @skills = @q.result.includes(:categories)
     elsif current_user && current_user.profile.try(:categories)
       category_ids = current_user.profile.categories.map {|c| c.id }
-      @skills = Skill.joins(:skill_categoryships).where(:skill_categoryships => {:category_id => category_ids})
+      @skills = Skill.joins(:skill_categoryships).where(:skill_categoryships => {:category_id => category_ids}).uniq
     else
       @skills = Skill.all
     end

@@ -1,21 +1,30 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div class="skill-page">
-      <h3><%= @skill.name %></h3>
-      <h4>需自備的工具或軟體：<%= @skill.requirement %></h4>
-      <p>介紹：<%= @skill.description%></p>
+<div class="skill-info">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3><%= @skill.name %></h3>
+        <h4>需自備的工具或軟體：<%= @skill.requirement %></h4>
+        <p>介紹：<%= @skill.description%></p>
+      </div>
     </div>
   </div>
 </div>
-<div class="row">
-  <% if @skill.pictures.exists? %>
-    <% @skill.pictures.each do |p| %>
-  <div class="col-sm-4">
-    <div class="skill-img">
-      <%= link_to image_tag(p.image.url), p.image.url, :rel => "lightbox", data: {lightbox: @skill.name} %>
-      <%=  %>
-    </div>
+
+<div class="all-skills">
+  <div class="container">
+    <div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
+      <% if @skill.pictures.exists? %>
+        <% @skill.pictures.each do |p| %>
+        <div class="box">
+          <div>
+            <div class="skill-img">
+            <%= link_to image_tag(p.image.url), p.image.url, :rel => "lightbox", data: {lightbox: @skill.name} %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        無上傳圖片
+      <% end %>
   </div>
-    <% end %>
-  <% end %>
 </div>

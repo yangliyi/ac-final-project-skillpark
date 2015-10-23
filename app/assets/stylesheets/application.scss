@@ -12,3 +12,31 @@
 @import 'masonry/infinitescroll';
 @import 'masonry/right-to-left';
 @import 'masonry/transitions';
+@import 'font-awesome';
+
+.navbar.navbar-inverse.navbar-fixed-top {
+  background-color: #FF6A5F;
+  a {
+    color: #EFF0F2;
+    &:hover {
+      color: #DDD;
+    }
+  }
+}
+
+footer {
+  padding: 15px 0;
+  color: #BBB;
+  a {
+    color: #EFF0F2;
+    &:hover {
+      color: #DDD;
+    }
+  }
+  text-align: center;
+  background-color: #FF6A5F;
+  border-top: 1px solid #e5e5e5;
+}
+footer p:last-child {
+  margin-bottom: 0;
+}
