@@ -1,13 +1,14 @@
 class ProfilesController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_profile, :only => [:show, :edit, :update]
+  before_action :set_profile, :only => [:show, :edit, :update, :favorite, :all_favorites]
 
   def show
   end
 
 
   def edit
+    @skills = @profile.user.skills
   end
 
   def update
@@ -23,7 +24,6 @@ class ProfilesController < ApplicationController
   # Add and remove favorite profiles
   # for current_user
   def favorite
-    @profile = Profile.find(params[:id])
 
     if current_user.favorite_profile?(@profile)
       current_user.favorite_profiles.delete(@profile)
@@ -36,6 +36,10 @@ class ProfilesController < ApplicationController
       }
       format.js
     end
+  end
+
+  def all_favorites
+    @all_favorites = current_user.favorite_profiles
   end
 
   private

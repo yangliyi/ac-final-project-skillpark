@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     member do
       post :favorite
+      get :all_favorites
     end
 
   end

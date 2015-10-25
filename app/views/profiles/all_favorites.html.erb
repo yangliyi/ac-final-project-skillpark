@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="sol-sm-12">
+    <div class="container">
+      <div id="all-favorite-profiles">
+        <% if @all_favorites %>
+          <% @all_favorites.each do |p| %>
+            <div>
+              <%= link_to profile_path(p) do %>
+                <h2><%= p.username %></h2>
+                <span>
+                  <% if p.location %>
+                    <%= p.location.city %>
+                  <% end %>
+                </span>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="user-photo">
+                      <% if p.photo %>
+                        <%= image_tag (p.photo.url(:medium)) %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <h2>哈囉，關於我：</h2>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div id="about-description">
+                          <p>
+                            <% if p.description %>
+                              <%= p.description %>
+                            <% end %>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <%= '你還沒有任何收藏的對象喔！' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
