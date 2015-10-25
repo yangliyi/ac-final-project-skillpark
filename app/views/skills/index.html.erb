@@ -32,15 +32,13 @@
     <div class="skill-box-author">
       <%= image_tag (s.user.profile.photo.url), style: "width: 20px; display: inline;" %>
       <h6 ><%= link_to s.user.profile.username, profile_path(s.user.profile)%></h6>
-      <% if current_user %>
-        <%= link_to favorite_profile_path(s.user.profile), method: :post, class: "btn", class: "favorite-#{s.user.profile.id}", remote: true do %>
-          <% if current_user.favorite_profile?(s.user.profile) %>
-            <i class="fa fa-heart"><%= s.user.profile.favorited_users.size %></i>
-          <% else %>
-            <i class="fa fa-heart-o"><%= s.user.profile.favorited_users.size %></i>
-          <% end %>
+      <p>
+        <% if s.user.profile.location %>
+          <%= s.user.profile.location.city %>
+        <% else %>
+          ?地點？
         <% end %>
-      <% end %>
+      </p>
     </div>
 
   </div>

@@ -1,6 +1,11 @@
 
+$('#favorite').children('span').toggleClass('btn-primary');
+$('#favorite').children('span').toggleClass('btn-default');
 
-$(".favorite-<%= @profile.id %>").children('i').toggleClass('fa fa-heart');
-$(".favorite-<%= @profile.id %>").children('i').toggleClass('fa fa-heart-o');
+<% if current_user.favorite_profile?(@profile) %>
+  $('#favorite').children('span').html('取消收藏');
+<% else %>
+  $('#favorite').children('span').html('收藏');
+<% end %>
 
-$(".favorite-<%= @profile.id %>").children('i').html('<%= @profile.favorited_users.count %>');
+$('#favorite').children('span').last().html('<%= @profile.favorited_users.count %>');

@@ -1,57 +1,167 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
-body {
-  padding-top: 50px;
+
+$skills-wanted-red: #E83A57;
+$skills-have-blue: #60D0D4;
+$publiccomments-green: #D1C700;
+$background-grey: #EAE5E5;
+$font-grey: #4D4D4D;
+
+.profile {
+  color: $font-grey;
 }
 
-
-/*
- * Global add-ons
- */
-
-.sub-header {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-/*
- * Top navigation
- * Hide default border to remove 1px line.
- */
-.navbar-fixed-top {
-  border: 0;
-}
-
-a:hover {
+a {
   text-decoration:none;
+  &:hover {
+  text-decoration:none;
+  }
+}
+
+.container-fluid {
+  background-color: $background-grey;
+}
+
+#username {
+  margin-bottom: 30px;
+  color: $font-grey;
+  font-size: 2em;
+  h1 {
+    display: inline-block;
+  }
+}
+
+#favorite {
+  text-align: right;
 }
 
 /*
- * Table setting
+ * user-photo
  */
 
-table {
-  margin: 20px auto;
-  text-align: center;
+.user-photo {
+  width: 280px;
+  margin: 0 auto;
+}
+.user-photo img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
 }
 
-/*
- * User photo
- */
-
-img.user-photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 100px;
+.box {
+  width:320px;
+  a {
+    color: #444444;
+  }
 }
 
-#about-me {
+/*** user-info ***/
+
+.col-xs-4 {
+  margin: 10px 0;
+  a {
+    color: white;
+  }
+  .skills-want, .skills-have, .publiccomments {
+    width: 150px;
+    height: 150px;
+    padding-top: 45px;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 450px) {
+  .col-xs-4 {
+    .skills-want, .skills-have, .publiccomments {
+      width: 100px;
+      height: 100px;
+      padding-top: 20px;
+      font-size: 10px;
+    }
+  }
+}
+
+.skills-want {
+  height: 30px;
+  text-align:center;
+  background-color: $skills-wanted-red;
+  color: white;
+}
+.skills-have {
+  height: 30px;
+  text-align:center;
+  background-color: $skills-have-blue;
+  color: white;
+
+}
+.publiccomments {
+  height: 30px;
+  text-align:center;
+  background-color: $publiccomments-green;
+  color: white;
+
+}
+
+/*** description ***/
+#about-description {
+  margin: 10px;
   p {
     width: 100%;
     overflow: auto;
   }
 }
 
-span.label {
-  margin: 0 5px;
-  padding: 5px;
+/*** skills-have ***/
+#have {
+  .skills-have {
+    margin: 0 auto;
+    padding: 1px;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 2em;
+  }
 }
+
+
+/*** hover ***/
+@-webkit-keyframes hvr-pulse-grow {
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes hvr-pulse-grow {
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+.hvr-pulse-grow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+}
+.hvr-pulse-grow:hover, .hvr-pulse-grow:focus, .hvr-pulse-grow:active {
+  -webkit-animation-name: hvr-pulse-grow;
+  animation-name: hvr-pulse-grow;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
+

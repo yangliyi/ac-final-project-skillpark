@@ -33,47 +33,34 @@
 <% end %>
 
 <%= link_to '新增技能', new_skill_path, class: "btn btn-default" %>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="skills-have">
-      <h3>我擅長</h3>
-      <div class="row">
-        <% @profile.user.skills.each do |s| %>
-        <div class="col-sm-4">
-          <div class="skill-block panel panel-info">
-            <div class="skill-info">
-              <div class="row">
-                <div class="col-sm-6">
-                  <h6><%= link_to s.user.profile.username, profile_path(s.user.profile)%> </h6>
-                </div>
-              </div>
-              <div>
-              <%= link_to skill_path(s) do %>
-                <% if s.pictures.exists?%>
-                <div class="skill-img">
-                <%= image_tag (s.pictures.last.image.url) %>
-                </div>
-                <% else %>
-                無上傳圖片
-              <% end %>
-                <h5><%= s.name %></h5>
-                <% end %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="edit-btn">
-                  <%= link_to '更新', edit_skill_path(s), class: "glyphicon glyphicon-wrench" %>
-                  <%= link_to '刪除', skill_path(s), method: :delete, data: { confirm: "你確定要刪除這個技能?" }, class: "glyphicon glyphicon-trash" %>
-                </div>
-              </div>
-            </div>
-          </div>
+<div class="all-skills">
+  <div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
+  <% @skills.each do |s| %>
+  <div class="box">
+    <div>
+      <%= link_to skill_path(s) do %>
+        <% if s.pictures.exists?%>
+        <div class="skill-img">
+        <%= image_tag (s.pictures.last.image.url) %>
         </div>
+        <% else %>
+        無上傳圖片
         <% end %>
+        <h5 class="skill-name"><strong><%= s.name %></strong></h5>
+        <p><%= s.description %></p>
+      <% end %>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="edit-btn">
+          <%= link_to '更新', edit_skill_path(s), class: "glyphicon glyphicon-wrench" %>
+          <%= link_to '刪除', skill_path(s), method: :delete, data: { confirm: "你確定要刪除這個技能?" }, class: "glyphicon glyphicon-trash" %>
+        </div>
       </div>
     </div>
   </div>
+  <% end %>
 </div>
 
 <script>
@@ -82,3 +69,4 @@
     $("#profile_location_id").select2();
   })
 </script>
+

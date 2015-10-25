@@ -1,122 +1,174 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div class="message">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        私人留言
-      </button>
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">想跟他說什麼呢</h4>
-            </div>
-            <div class="modal-body">
-            <%= form_for Comment.new, url: profile_comments_path(@profile) do |f| %>
-              <div class="form-group">
-                <%= f.text_area :content, class: "form-control" %>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <%= f.submit "回覆", class: "btn btn-default"%>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<% if current_user %>
-    <%= link_to favorite_profile_path(@profile), method: :post, class: "btn", id: "favorite", remote: true do %>
-      <% if current_user.favorite_profile?(@profile) %>
-        <i class="fa fa-heart"><%= @profile.favorited_users.size %></i>
-      <% else %>
-        <i class="fa fa-heart-o"><%= @profile.favorited_users.size %></i>
-      <% end %>
-    <% end %>
-<% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
 
-<table>
-  <tr>
-    <td>
-      <h3><span class="label label-primary"><%= @profile.username %></span></h3>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <% if @profile.try(:photo) %>
-        <%= image_tag (@profile.photo.url(:medium)), class: "user-photo" %>
-      <% end %>
-    </td>
-  </tr>
-</table>
+      <div class="profile">
+        <div class="container">
 
-<div class="row">
-  <div class="col-sm-6" id="about-me">
-    <h3><span class="label label-primary">關於我</span></h3>
-    <h5><span class="label label-primary">偏好交換地區：
-      <% if @profile.try(:location_id) %>
-        <%= @profile.location.city %>
-      <% end %>
-    </span></h5>
-    <p>
-      <% if @profile.try(:description) %>
-        <%= @profile.description %>
-      <% end %>
-    </p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-12" id="skills-want">
-    <h3>我想學</h3>
-    <h2>
-      <% @profile.categories.each do |c| %>
-      <span class="label label-info">
-      <%= c.name %>
-      </span>
-      <% end %>
-    </h2>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="skills-have">
-      <h3>我擅長</h3>
-      <div class="row">
-        <% @profile.user.skills.each do |s| %>
-        <div class="col-sm-4">
-          <div class="skill-block panel panel-info">
-            <div class="skill-info">
-              <div class="row">
-                <div class="col-sm-12">
-                  <h6><%= link_to s.user.profile.username, profile_path(s.user.profile)%> </h6>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="profile-main">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div id="username">
+                      <h1><%= @profile.username %></h1>
+                      <span>
+                        <% if @profile.location %>
+                          <%= @profile.location.city %>
+                        <% end %>
+                      </span>
+                      <% if current_user %>
+                        <%= link_to favorite_profile_path(@profile), method: :post, class: "btn", id: "favorite", remote: true do %>
+                          <% if current_user.favorite_profile?(@profile) %>
+                            <span class="btn btn-primary">取消收藏</span>
+                          <% else %>
+                            <span class="btn btn-default">收藏</span>
+                          <% end %>
+                          <span class="badge"><%= @profile.favorited_users.size %></span>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="user-photo">
+                      <% if @profile.try(:photo) %>
+                        <%= image_tag (@profile.photo.url(:medium)) %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <h2>哈囉，關於我：</h2>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-4" >
+                          <a href="#wanted" class="scroll">
+                            <div class="skills-want hvr-pulse-grow">
+                              <h3>我想學</h3>
+                            </div>
+                          </a>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="#have">
+                          <div class="skills-have hvr-pulse-grow">
+                            <h3>我擅長</h3>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="#comments">
+                          <div class="publiccomments hvr-pulse-grow">
+                            <h3>公開留言</h3>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div id="about-description">
+                          <p>
+                            <% if @profile.try(:description) %>
+                              <%= @profile.description %>
+                            <% end %>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="skills-want"><h3 id="wanted">我想學</h3></div>
+            <% @profile.categories.each do |c| %>
+              <%= c.name %>
+            <% end %>
+          </div>
+
+          <div class="row">
+            <div class="all-skills">
+              <div class="skills-have"><h3 id="have">我擅長</h3></div>
+              <div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
+              <% @profile.user.skills.each do |s| %>
+              <div class="box">
+                <div>
                   <%= link_to skill_path(s) do %>
-                  <% if s.pictures.exists?%>
-                  <div class="skill-img">
-                  <%= image_tag (s.pictures.last.image.url) %>
-                  </div>
-                  <% else %>
-                  無上傳圖片
+                    <% if s.pictures.exists?%>
+                    <div class="skill-img">
+                    <%= image_tag (s.pictures.last.image.url) %>
+                    </div>
+                    <% else %>
+                    無上傳圖片
+                    <% end %>
+                    <h5 class="skill-name"><strong><%= s.name %></strong></h5>
+                    <p><%= s.description %></p>
                   <% end %>
-                  <h5><%= s.name %></h5>
-                <% end %>
+                </div>
+                <hr>
+                <div class="skill-box-author">
+                  <%= image_tag (s.user.profile.photo.url), style: "width: 20px; display: inline;" %>
+                  <h6 ><%= link_to s.user.profile.username, profile_path(s.user.profile)%></h6>
+                  <p>
+                    <% if s.user.profile.location %>
+                      <%= s.user.profile.location.city %>
+                    <% else %>
+                      ?地點？
+                    <% end %>
+                  </p>
+                </div>
+
+              </div>
+              <% end %>
               </div>
             </div>
           </div>
+
+          <div class="row">
+            <div class="publiccomments"><h3 id="comments">公開留言</h3></div>
+            <div id="publiccomments">
+              <%= render 'publiccomments/publiccomment' %>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="message">
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">悄悄話</button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel">想跟他說什麼呢</h4>
+                        </div>
+                        <div class="modal-body">
+                        <%= form_for Comment.new, url: profile_comments_path(@profile) do |f| %>
+                          <div class="form-group">
+                            <%= f.text_area :content, class: "form-control" %>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <%= f.submit "回覆", class: "btn btn-default"%>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <% end %>
       </div>
+
     </div>
   </div>
-</div>
-
-<div id="publiccomments">
-  <%= render 'publiccomments/publiccomment' %>
 </div>

@@ -14,8 +14,51 @@
 @import 'masonry/transitions';
 @import 'font-awesome';
 
-.navbar.navbar-inverse.navbar-fixed-top {
-  background-color: #FF6A5F;
+body {
+  padding-top: 50px;
+}
+
+$primary-orange: #E98544;
+$second-orange: #E8644C;
+
+/*** nav ***/
+
+.navbar-fixed-top {
+  border: 0;
+}
+
+nav.navbar.navbar-inverse.navbar-fixed-top {
+  background-color: $primary-orange;
+  #nav-button {
+    border-color: $primary-orange;
+    background-color: $primary-orange;
+    a {
+      &:hover {
+        color: #EEE;
+      }
+    }
+  }
+  #navbar {
+    border-color: $primary-orange;
+  }
+  #nav-dropdown-a {
+    background-color: $primary-orange;
+  }
+
+  #dropdown-menu {
+    background-color: $primary-orange;
+    border-color: $primary-orange;
+    color: #EFF0F2;
+    a {
+      &:hover {
+        color: #DDD;
+      }
+    }
+  }
+
+  #skill_search {
+    border-color: $primary-orange;
+  }
   a {
     color: #EFF0F2;
     &:hover {
@@ -24,6 +67,7 @@
   }
 }
 
+/*** footer ***/
 footer {
   padding: 15px 0;
   color: #BBB;
@@ -34,7 +78,7 @@ footer {
     }
   }
   text-align: center;
-  background-color: #FF6A5F;
+  background-color: $primary-orange;
   border-top: 1px solid #e5e5e5;
 }
 footer p:last-child {
