@@ -12,7 +12,7 @@ class Profile < ActiveRecord::Base
   has_many :user_profile_favoriteships
   has_many :favorited_users, through: :user_profile_favoriteships, source: :user
 
-  has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/default/missing.jpeg"
+  has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/default/missing.jpg"
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
 
 end
