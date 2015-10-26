@@ -7,7 +7,7 @@ class SkillsController < ApplicationController
     @q = Skill.ransack(params[:q])
 
     if current_user && params[:q]
-      @skills = @q.result.includes(:categories)
+      @skills = @q.result.includes(:categories).uniq
     elsif current_user && current_user.profile.try(:categories)
       category_ids = current_user.profile.categories.map {|c| c.id }
       @skills = Skill.joins(:skill_categoryships).where(:skill_categoryships => {:category_id => category_ids}).uniq
