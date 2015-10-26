@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
 
-  before_action :authenticate_user!
   before_action :set_profile, :set_comment, except: [:index]
   before_action :set_comment, only: [:destroy]
 
@@ -11,13 +10,18 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @profile.comments.create(comment_params)
-    @comment.user = current_user
+    if current_user
+      @comment = @profile.comments.create(comment_params)
+      @comment.user = current_user
 
-    if @comment.save
-      if @profile.save
-        redirect_to profile_comments_path(current_user.profile)
+      if @comment.save
+        if @profile.save
+          redirect_to profile_comments_path(current_user.profile)
+        end
       end
+    else
+      flash[:alert] = "要登入才可以留言！"
+      redirect_to :back
     end
   end
 

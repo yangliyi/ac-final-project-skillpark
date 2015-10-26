@@ -3,16 +3,22 @@ class PubliccommentsController < ApplicationController
   before_action :set_profile
 
   def create
-    @publiccomment = @profile.publiccomments.create(publiccomment_params)
-    @publiccomment.user = current_user
-    if @publiccomment.save
-      respond_to do |format|
-        format.html {
-          redirect_to profile_path(@profile)
-        }
-        format.js
+    if current_user
+      @publiccomment = @profile.publiccomments.create(publiccomment_params)
+      @publiccomment.user = current_user
+      if @publiccomment.save
+        respond_to do |format|
+          format.html {
+            redirect_to profile_path(@profile)
+          }
+          format.js
+        end
       end
+    else
+      flash[:alert] = "要登入才可以留言！"
+      redirect_to :back
     end
+
   end
 
 

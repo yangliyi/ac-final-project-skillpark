@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
   before_action :set_profile, :only => [:show, :edit, :update, :favorite, :all_favorites]
 
   def show
