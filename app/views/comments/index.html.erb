@@ -15,7 +15,7 @@
     </div>
   <% end %>
 
-<h3>留言紀錄：</h3>
+<h3>對話紀錄：</h3>
 
   <% @comments_group_by_profile.each do |p, comments| %>
 
@@ -33,11 +33,11 @@
         <% comments.each do |c| %>
           <% if ( c.profile == @p && c.user == current_user ) || ( c.profile == current_user.profile && c.user == @p.user ) %>
           <div class="row">
-            <div class="col-sm-6">
-              <%= c.user.profile.username %>：
-            </div>
-            <div class="col-sm-6">
-              <%= c.content %>
+            <div class="col-sm-12">
+              <div class="message">
+                <%= image_tag (c.user.profile.photo.url), style: "width: 20px; display: inline; border-radius: 100%;" %>：
+                <%= c.content %>
+              </div>
             </div>
           </div>
           <% end %>

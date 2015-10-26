@@ -3,8 +3,6 @@
 @import "select2";
 @import "select2-bootstrap";
 @import "lightbox";
-@import "profiles";
-@import "skills";
 @import 'masonry/basic';
 @import 'masonry/centered';
 @import 'masonry/fluid';
@@ -13,6 +11,9 @@
 @import 'masonry/right-to-left';
 @import 'masonry/transitions';
 @import 'font-awesome';
+@import "profiles";
+@import "skills";
+@import "comments";
 
 body {
   padding-top: 50px;
