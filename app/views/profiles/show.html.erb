@@ -97,12 +97,12 @@
               <div class="box">
                 <div>
                   <%= link_to skill_path(s) do %>
-                    <% if s.pictures.exists?%>
-                    <div class="skill-img">
-                    <%= image_tag (s.pictures.last.image.url) %>
-                    </div>
+                    <% if s.pictures.last %>
+                      <div class="skill-img">
+                      <%= image_tag (s.pictures.last.image.url) %>
+                      </div>
                     <% else %>
-                    無上傳圖片
+                      無上傳圖片
                     <% end %>
                     <h5 class="skill-name"><strong><%= s.name %></strong></h5>
                     <p><%= s.description %></p>

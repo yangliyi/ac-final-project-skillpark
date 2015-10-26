@@ -3,7 +3,9 @@
     <%= tag(:meta, :content => @skill.description, :property => "og:description") %>
     <%= tag(:meta, :content => "article", :property => "og:type") %>
     <%= tag(:meta, :content => skill_url(@skill), :property => "og:url") %>
-    <%= tag(:meta, :content => asset_url(@skill.pictures.last.image.url), :property => "og:image") %>
+    <% if @skill.pictures.last %>
+      <%= tag(:meta, :content => asset_url(@skill.pictures.last.image.url), :property => "og:image") %>
+    <% end %>
 <% end %>
 
 <div class="skill-info">
@@ -48,7 +50,7 @@
 <div class="all-skills">
   <div class="container">
     <div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
-      <% if @skill.pictures.exists? %>
+      <% if @skill.pictures.last %>
         <% @skill.pictures.each do |p| %>
         <div class="box">
           <div>
