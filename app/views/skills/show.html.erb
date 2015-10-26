@@ -8,48 +8,48 @@
     <% end %>
 <% end %>
 
-<div class="skill-info">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <h3><%= @skill.name %></h3>
-        <%= link_to like_skill_path(@skill), method: :post, class: "btn", id: "like-#{@skill.id}", remote: true do %>
-          <% if current_user && current_user.like_skill?(@skill) %>
-            <i class="fa fa-heart"><%= @skill.liked_users.size %></i>
-          <% else %>
-            <i class="fa fa-heart-o"><%= @skill.liked_users.size %></i>
-          <% end %>
-        <% end %>
-        <!-- share button code -->
-        <div class="fb-share-button"
-            data-href="<%= skill_url(@skill) %>"
-            data-layout="button_count">
-        </div>
-        <h4>需自備的工具或軟體：<%= @skill.requirement %></h4>
-        <p>介紹：<%= @skill.description%></p>
-        <div class="skill-box-author">
-          <h6 >
-            <%= link_to profile_path(@skill.user.profile) do %>
-              <%= image_tag (@skill.user.profile.photo.url), style: "width: 20px; display: inline; border-radius: 100%;" %>
-              <%= @skill.user.profile.username %>
-            <% end %>
-          </h6>
-          <p>
-            <% if @skill.user.profile.location %>
-              <%= @skill.user.profile.location.city %>
-            <% else %>
-              ?地點？
-            <% end %>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="all-skills">
   <div class="container">
     <div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
+      <div class="box">
+        <div class="skill-info">
+          <div class="row">
+            <div class="col-sm-12">
+              <h3><%= @skill.name %></h3>
+              <%= link_to like_skill_path(@skill), method: :post, class: "btn", id: "like-#{@skill.id}", remote: true do %>
+                <% if current_user && current_user.like_skill?(@skill) %>
+                  <i class="fa fa-heart"><%= @skill.liked_users.size %></i>
+                <% else %>
+                  <i class="fa fa-heart-o"><%= @skill.liked_users.size %></i>
+                <% end %>
+              <% end %>
+              <!-- share button code -->
+              <div class="fb-share-button"
+                  data-href="<%= skill_url(@skill) %>"
+                  data-layout="button_count">
+              </div>
+              <div class="skill-box-author">
+                <h6 >
+                  <%= link_to profile_path(@skill.user.profile) do %>
+                    <%= image_tag (@skill.user.profile.photo.url), style: "width: 20px; display: inline; border-radius: 100%;" %>
+                    <%= @skill.user.profile.username %>
+                  <% end %>
+                </h6>
+                <p>
+                  <% if @skill.user.profile.location %>
+                    <%= @skill.user.profile.location.city %>
+                  <% else %>
+                    ?地點？
+                  <% end %>
+                </p>
+              </div>
+              <hr>
+              <h4><%= @skill.description%></h4>
+              <h5>需自備：<%= @skill.requirement %></h5>
+            </div>
+          </div>
+        </div>
+      </div>
       <% if @skill.pictures.last %>
         <% @skill.pictures.each do |p| %>
         <div class="box">
