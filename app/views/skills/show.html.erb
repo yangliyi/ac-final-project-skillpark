@@ -2,9 +2,27 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h3><%= @skill.name %></h3>
+        <h3><%= @skill.name %><h3>
+        <%= link_to like_skill_path(@skill), method: :post, class: "btn", id: "like-#{@skill.id}", remote: true do %>
+          <% if current_user.like_skill?(@skill) %>
+            <i class="fa fa-heart"><%= @skill.liked_users.size %></i>
+          <% else %>
+            <i class="fa fa-heart-o"><%= @skill.liked_users.size %></i>
+          <% end %>
+        <% end %>
         <h4>需自備的工具或軟體：<%= @skill.requirement %></h4>
         <p>介紹：<%= @skill.description%></p>
+        <div class="skill-box-author">
+          <%= image_tag (@skill.user.profile.photo.url), style: "width: 20px; display: inline; border-radius: 100%;" %>
+          <h6 ><%= link_to @skill.user.profile.username, profile_path(@skill.user.profile)%></h6>
+          <p>
+            <% if @skill.user.profile.location %>
+              <%= @skill.user.profile.location.city %>
+            <% else %>
+              ?地點？
+            <% end %>
+          </p>
+        </div>
       </div>
     </div>
   </div>

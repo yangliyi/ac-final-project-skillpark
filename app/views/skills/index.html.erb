@@ -25,6 +25,13 @@
         無上傳圖片
         <% end %>
         <h5 class="skill-name"><strong><%= s.name %></strong></h5>
+        <%= link_to like_skill_path(s), method: :post, class: "btn", id: "like-#{s.id}", remote: true do %>
+          <% if current_user.like_skill?(s) %>
+            <i class="fa fa-heart"><%= s.liked_users.size %></i>
+          <% else %>
+            <i class="fa fa-heart-o"><%= s.liked_users.size %></i>
+          <% end %>
+        <% end %>
         <p><%= s.description %></p>
       <% end %>
     </div>

@@ -1,0 +1,4 @@
+$("#like-<%= @skill.id %>").children('i').toggleClass('fa fa-heart');
+$("#like-<%= @skill.id %>").children('i').toggleClass('fa fa-heart-o');
+
+$("#like-<%= @skill.id %>").children('i').html('<%= @skill.liked_users.count %>');

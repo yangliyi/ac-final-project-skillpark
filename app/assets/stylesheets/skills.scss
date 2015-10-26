@@ -28,6 +28,9 @@ form {
 
 .all-skills {
   background-color: #E9E9E9;
+  h5 {
+    display: inline-block;
+  }
 }
 
 /*** masonry ***/
@@ -62,5 +65,13 @@ form {
     color: #7B7B7B;
     margin-right: 0;
     text-align: right;
+  }
+}
+
+/*** skill-info ***/
+
+.skill-info {
+  h3 {
+    display: inline-block;
   }
 }

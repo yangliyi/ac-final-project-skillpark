@@ -1,7 +1,7 @@
 class SkillsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index]
-  before_action :set_skill, :only => [:show, :edit, :update, :destroy]
+  before_action :set_skill, :only => [:show, :edit, :update, :destroy, :like]
   before_action :set_interested_skills, :only => [:index]
   def index
     @q = Skill.ransack(params[:q])
@@ -67,6 +67,22 @@ class SkillsController < ApplicationController
       flash[:notice] = "技能刪除成功！"
 
       redirect_to :back
+    end
+  end
+
+  # Add and remove like skills
+  # for current_user
+  def like
+    if current_user.like_skill?(@skill)
+      current_user.like_skills.delete(@skill)
+    else
+      current_user.like_skills << @skill
+    end
+    respond_to do |format|
+      format.html {
+        redirect_to :back
+      }
+      format.js
     end
   end
 

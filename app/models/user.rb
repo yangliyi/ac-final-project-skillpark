@@ -14,8 +14,16 @@ class User < ActiveRecord::Base
   has_many :user_profile_favoriteships
   has_many :favorite_profiles, through: :user_profile_favoriteships, source: :profile
 
+  # Liked skills of user
+  has_many :user_skill_likeships
+  has_many :like_skills, through: :user_skill_likeships, source: :skill
+
   def favorite_profile?(profile)
     self.favorite_profiles.include?(profile)
+  end
+
+  def like_skill?(skill)
+    self.like_skills.include?(skill)
   end
 
 

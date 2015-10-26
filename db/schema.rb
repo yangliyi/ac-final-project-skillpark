@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019084002) do
+ActiveRecord::Schema.define(version: 20151026003747) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -99,12 +99,13 @@ ActiveRecord::Schema.define(version: 20151019084002) do
   add_index "skill_categoryships", ["skill_id"], name: "index_skill_categoryships_on_skill_id", using: :btree
 
   create_table "skills", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.text     "requirement", limit: 65535
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "user_id",     limit: 4
+    t.string   "name",              limit: 255
+    t.text     "requirement",       limit: 65535
+    t.text     "description",       limit: 65535
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "user_id",           limit: 4
+    t.integer  "liked_users_count", limit: 4,     default: 0
   end
 
   add_index "skills", ["user_id"], name: "index_skills_on_user_id", using: :btree
@@ -118,6 +119,16 @@ ActiveRecord::Schema.define(version: 20151019084002) do
 
   add_index "user_profile_favoriteships", ["profile_id"], name: "index_user_profile_favoriteships_on_profile_id", using: :btree
   add_index "user_profile_favoriteships", ["user_id"], name: "index_user_profile_favoriteships_on_user_id", using: :btree
+
+  create_table "user_skill_likeships", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "skill_id",   limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "user_skill_likeships", ["skill_id"], name: "index_user_skill_likeships_on_skill_id", using: :btree
+  add_index "user_skill_likeships", ["user_id"], name: "index_user_skill_likeships_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

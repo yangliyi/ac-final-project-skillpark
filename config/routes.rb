@@ -13,7 +13,11 @@ Rails.application.routes.draw do
 
   end
 
-  resources :skills
+  resources :skills do
+    member do
+      post :like
+    end
+  end
 
   scope :path => '/api/v1/', :defaults => { :format => :json }, :module => "api_v1", :as => 'v1' do
 
