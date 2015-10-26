@@ -1,17 +1,18 @@
 <%= content_for :head do %>
     <%= tag(:meta, :content => @skill.name, :property => "og:title") %>
+    <%= tag(:meta, :content => @skill.description, :property => "og:description") %>
     <%= tag(:meta, :content => "article", :property => "og:type") %>
     <%= tag(:meta, :content => skill_url(@skill), :property => "og:url") %>
-    <%= tag(:meta, :content => @skill.pictures.last.image.url, :property => "og:image") %>
+    <%= tag(:meta, :content => asset_url(@skill.pictures.last.image.url), :property => "og:image") %>
 <% end %>
-s
+
 <div class="skill-info">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
         <h3><%= @skill.name %></h3>
         <%= link_to like_skill_path(@skill), method: :post, class: "btn", id: "like-#{@skill.id}", remote: true do %>
-          <% if current_user.like_skill?(@skill) %>
+          <% if current_user && current_user.like_skill?(@skill) %>
             <i class="fa fa-heart"><%= @skill.liked_users.size %></i>
           <% else %>
             <i class="fa fa-heart-o"><%= @skill.liked_users.size %></i>

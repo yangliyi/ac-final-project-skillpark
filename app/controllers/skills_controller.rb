@@ -1,6 +1,6 @@
 class SkillsController < ApplicationController
 
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_skill, :only => [:show, :edit, :update, :destroy, :like]
   before_action :set_interested_skills, :only => [:index]
   def index
