@@ -1,3 +1,10 @@
+<%= content_for :head do %>
+    <%= tag(:meta, :content => @skill.name, :property => "og:title") %>
+    <%= tag(:meta, :content => "article", :property => "og:type") %>
+    <%= tag(:meta, :content => skill_url(@skill), :property => "og:url") %>
+    <%= tag(:meta, :content => @skill.pictures.last.image.url, :property => "og:image") %>
+<% end %>
+s
 <div class="skill-info">
   <div class="container">
     <div class="row">
@@ -10,7 +17,11 @@
             <i class="fa fa-heart-o"><%= @skill.liked_users.size %></i>
           <% end %>
         <% end %>
-        <div class="fb-share-button" data-href="<%= skill_url(@skill) %>" data-layout="button_count"></div>
+        <!-- share button code -->
+        <div class="fb-share-button"
+            data-href="<%= skill_url(@skill) %>"
+            data-layout="button_count">
+        </div>
         <h4>需自備的工具或軟體：<%= @skill.requirement %></h4>
         <p>介紹：<%= @skill.description%></p>
         <div class="skill-box-author">
