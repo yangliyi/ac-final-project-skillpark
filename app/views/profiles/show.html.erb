@@ -70,7 +70,7 @@
                         <div id="about-description">
                           <p>
                             <% if @profile.try(:description) %>
-                              <%= @profile.description %>
+                              <%= simple_format(@profile.description) %>
                             <% end %>
                           </p>
                         </div>
@@ -85,7 +85,10 @@
           <div class="row">
             <div class="skills-want"><h3 id="wanted">我想學</h3></div>
             <% @profile.categories.each do |c| %>
-              <%= c.name %>
+              <div class="category-box">
+              <%= image_tag (c.category_icon.url), style: "width: 150px; height: 150px; display: inline-block; border-radius: 100%;" %>
+              <p><%= c.name %></p>
+              </div>
             <% end %>
           </div>
 

@@ -27,7 +27,12 @@ Rails.application.routes.draw do
     resources :pictures
     resources :publiccomments
     resources :profiles
-    resources :skills
+    resources :skills do
+      collection do
+        get :about
+      end
+    end
+
   end
 
   scope :path => '/api/v1/', :defaults => { :format => :json }, :module => "api_v1", :as => 'v1' do

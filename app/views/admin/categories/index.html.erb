@@ -6,16 +6,18 @@
   <thead>
     <tr>
       <th>Category Name</th>
+      <th>Icon</th>
       <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @admin_categories.each do |admin_category| %>
+    <% @categories.each do |category| %>
       <tr>
-        <td><%= admin_category.name %></td>
-        <td><%= link_to 'Edit', edit_admin_category_path(admin_category) %></td>
-        <td><%= link_to 'Destroy', admin_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= category.name %></td>
+        <td><%= image_tag (category.category_icon.url), style: "width: 100px; height: 100px; display: inline; border-radius: 100%;" %></td>
+        <td><%= link_to 'Edit', edit_admin_category_path(category) %></td>
+        <td><%= link_to 'Destroy', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

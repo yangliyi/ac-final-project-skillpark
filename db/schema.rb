@@ -11,12 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027040424) do
+ActiveRecord::Schema.define(version: 20151027063018) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",                       limit: 255
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "category_icon_file_name",    limit: 255
+    t.string   "category_icon_content_type", limit: 255
+    t.integer  "category_icon_file_size",    limit: 4
+    t.datetime "category_icon_updated_at"
   end
 
   create_table "comments", force: :cascade do |t|
