@@ -1,0 +1,86 @@
+<p id="notice"><%= notice %></p>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Requirement</th>
+      <th>Liked Users</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= @admin_skill.name %></td>
+        <td><%= @admin_skill.description %></td>
+        <td><%= @admin_skill.requirement %></td>
+        <td><%= @admin_skill.liked_users_count %></td>
+        <td><%= link_to 'Edit', edit_admin_skill_path(@admin_skill) %></td>
+        <td><%= link_to 'Destroy', @admin_skill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  </tbody>
+</table>
+<%= link_to 'Edit', edit_admin_skill_path(@admin_skill) %> |
+<%= link_to 'Back', admin_skills_path %>
+
+<div class="all-skills">
+  <div class="container">
+    <div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
+      <div class="box">
+        <div class="skill-info">
+          <div class="row">
+            <div class="col-sm-12">
+              <h3><%= @admin_skill.name %></h3>
+              <%= link_to like_skill_path(@admin_skill), method: :post, class: "btn", id: "like-#{@admin_skill.id}", remote: true do %>
+                <% if current_user && current_user.like_skill?(@admin_skill) %>
+                  <i class="fa fa-heart"><%= @admin_skill.liked_users.size %></i>
+                <% else %>
+                  <i class="fa fa-heart-o"><%= @admin_skill.liked_users.size %></i>
+                <% end %>
+              <% end %>
+              <!-- share button code -->
+              <div class="fb-share-button"
+                  data-href="<%= skill_url(@admin_skill) %>"
+                  data-layout="button_count">
+              </div>
+              <div class="skill-box-author">
+                <h6 >
+                  <%= link_to profile_path(@admin_skill.user.profile) do %>
+                    <%= image_tag (@admin_skill.user.profile.photo.url), style: "width: 20px; display: inline; border-radius: 100%;" %>
+                    <%= @admin_skill.user.profile.username %>
+                  <% end %>
+                </h6>
+                <p>
+                  <% if @admin_skill.user.profile.location %>
+                    <%= @admin_skill.user.profile.location.city %>
+                  <% else %>
+                    ?地點？
+                  <% end %>
+                </p>
+              </div>
+              <hr>
+              <h4><%= @admin_skill.description%></h4>
+              <h5>需自備：<%= @admin_skill.requirement %></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% if @admin_skill.pictures.last %>
+        <% @admin_skill.pictures.each do |p| %>
+        <div class="box">
+          <div>
+            <div class="skill-img">
+            <%= link_to image_tag(p.image.url), p.image.url, :rel => "lightbox", data: {lightbox: @admin_skill.name} %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        無上傳圖片
+      <% end %>
+    </div>
+  </div>
+</div>

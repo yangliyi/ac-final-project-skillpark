@@ -19,6 +19,17 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :users
+    resources :categories
+    resources :comments
+    resources :locations
+    resources :pictures
+    resources :publiccomments
+    resources :profiles
+    resources :skills
+  end
+
   scope :path => '/api/v1/', :defaults => { :format => :json }, :module => "api_v1", :as => 'v1' do
 
     resources :skills # ApiV1::SkillsController

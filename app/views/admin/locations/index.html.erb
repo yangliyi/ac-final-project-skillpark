@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Admin Locations</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>City</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_locations.each do |admin_location| %>
+      <tr>
+        <td><%= admin_location.city %></td>
+        <td><%= link_to 'Edit', edit_admin_location_path(admin_location) %></td>
+        <td><%= link_to 'Destroy', admin_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Location', new_admin_location_path %>

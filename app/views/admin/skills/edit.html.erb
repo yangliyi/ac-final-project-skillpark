@@ -1,0 +1,12 @@
+<h1>Editing Admin Skill</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @admin_skill %> |
+<%= link_to 'Back', admin_skills_path %>
+
+<script>
+  $(document).ready(function() {
+    $("#admin_skill_category_ids").select2();
+  })
+</script>

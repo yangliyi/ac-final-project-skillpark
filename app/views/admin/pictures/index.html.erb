@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Admin Pictures</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_pictures.each do |admin_picture| %>
+      <tr>
+        <td class="admin_picture"><%= image_tag (admin_picture.image.url), style: "width: 100px; display: inline;" %></td>
+        <td><%= link_to 'Edit', edit_admin_picture_path(admin_picture) %></td>
+        <td><%= link_to 'Destroy', admin_picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Picture', new_admin_picture_path %>

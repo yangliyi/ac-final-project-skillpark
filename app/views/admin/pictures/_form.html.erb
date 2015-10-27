@@ -1,0 +1,17 @@
+<%= form_for(@admin_picture) do |f| %>
+  <% if @admin_picture.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_picture.errors.count, "error") %> prohibited this admin_picture from being saved:</h2>
+
+      <ul>
+      <% @admin_picture.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

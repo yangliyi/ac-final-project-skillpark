@@ -1,0 +1,164 @@
+<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="profile">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="profile-main">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div id="username">
+                      <h1><%= @admin_profile.username %></h1>
+                      <span>
+                        <% if @admin_profile.location %>
+                          <%= @admin_profile.location.city %>
+                        <% end %>
+                      </span>
+                      <% if current_user %>
+                        <%= link_to favorite_profile_path(@admin_profile), method: :post, class: "btn", id: "favorite", remote: true do %>
+                          <% if current_user.favorite_profile?(@admin_profile) %>
+                            <span class="btn btn-primary">取消收藏</span>
+                          <% else %>
+                            <span class="btn btn-default">收藏</span>
+                          <% end %>
+                          <span class="badge"><%= @admin_profile.favorited_users.size %></span>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="user-photo">
+                      <% if @profile%>
+                        <%= image_tag (@profile.photo.url(:medium)) %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <h2>哈囉，關於我：</h2>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-4" >
+                          <a href="#wanted" class="scroll">
+                            <div class="skills-want hvr-pulse-grow">
+                              <h3>我想學</h3>
+                            </div>
+                          </a>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="#have">
+                          <div class="skills-have hvr-pulse-grow">
+                            <h3>我擅長</h3>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="#comments">
+                          <div class="publiccomments hvr-pulse-grow">
+                            <h3>公開留言</h3>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div id="about-description">
+                          <p>
+                            <% if @admin_profile.try(:description) %>
+                              <%= simple_format(@admin_profile.description) %>
+                            <% end %>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="skills-want"><h3 id="wanted">我想學</h3></div>
+            <% @admin_profile.categories.each do |c| %>
+              <%= c.name %>
+            <% end %>
+          </div>
+
+          <div class="row">
+            <div class="all-skills">
+              <div class="skills-have"><h3 id="have">我擅長</h3></div>
+              <div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
+              <% @admin_profile.user.skills.each do |s| %>
+              <div class="box">
+                <div>
+                  <%= link_to skill_path(s) do %>
+                    <% if s.pictures.last %>
+                      <div class="skill-img">
+                      <%= image_tag (s.pictures.last.image.url) %>
+                      </div>
+                    <% else %>
+                      無上傳圖片
+                    <% end %>
+                    <h5 class="skill-name"><strong><%= s.name %></strong></h5>
+                    <p><%= s.description %></p>
+                  <% end %>
+                </div>
+              </div>
+              <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <% if false %>
+            <div class="publiccomments"><h3 id="comments">公開留言</h3></div>
+            <div id="publiccomments">
+              <%= render 'publiccomments/publiccomment' %>
+            </div>
+            <% end %>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="message">
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">悄悄話</button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel">想跟他說什麼呢</h4>
+                        </div>
+                        <div class="modal-body">
+                        <%= form_for Comment.new, url: profile_comments_path(@admin_profile) do |f| %>
+                          <div class="form-group">
+                            <%= f.text_area :content, class: "form-control" %>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <%= f.submit "回覆", class: "btn btn-default"%>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%= link_to 'Edit', edit_admin_profile_path(@admin_profile) %> |
+<%= link_to 'Back', admin_profiles_path %>

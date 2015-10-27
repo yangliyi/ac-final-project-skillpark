@@ -26,6 +26,9 @@ class User < ActiveRecord::Base
     self.like_skills.include?(skill)
   end
 
+  def admin?
+    self.role == "admin"
+  end
 
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid

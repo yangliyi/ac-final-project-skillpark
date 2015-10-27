@@ -1,0 +1,27 @@
+<%= form_for(@admin_location) do |f| %>
+  <% if @admin_location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_location.errors.count, "error") %> prohibited this admin_location from being saved:</h2>
+
+      <ul>
+      <% @admin_location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :city, "城市：" %><br>
+    <%= f.text_field :city, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :administrationarea, "地區：" %><br>
+    <%= f.text_field :administrationarea, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Admin Publiccomments</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Commentor</th>
+      <th>Content</th>
+      <th>Commented Profile</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_publiccomments.each do |admin_publiccomment| %>
+      <tr>
+        <td><%= admin_publiccomment.user.profile.username %></td>
+        <td><%= admin_publiccomment.content %></td>
+        <td><%= admin_publiccomment.profile.username %></td>
+        <td><%= link_to 'Edit', edit_admin_publiccomment_path(admin_publiccomment) %></td>
+        <td><%= link_to 'Destroy', admin_publiccomment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Publiccomment', new_admin_publiccomment_path %>
