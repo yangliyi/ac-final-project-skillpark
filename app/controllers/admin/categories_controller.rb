@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  before_action :set_admin_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   before_action :authenticate_user!
   before_action :check_admin
@@ -8,7 +8,7 @@ class Admin::CategoriesController < ApplicationController
   # GET /admin/categories
   # GET /admin/categories.json
   def index
-    @admin_categories = Admin::Category.all
+    @categories = Category.all
   end
 
   # GET /admin/categories/1
@@ -18,7 +18,7 @@ class Admin::CategoriesController < ApplicationController
 
   # GET /admin/categories/new
   def new
-    @admin_category = Admin::Category.new
+    @category = Category.new
   end
 
   # GET /admin/categories/1/edit
@@ -28,15 +28,15 @@ class Admin::CategoriesController < ApplicationController
   # POST /admin/categories
   # POST /admin/categories.json
   def create
-    @admin_category = Admin::Category.new(admin_category_params)
+    @category = Category.new(category_params)
 
     respond_to do |format|
       if @admin_category.save
-        format.html { redirect_to @admin_category, notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: @admin_category }
+        format.html { redirect_to admin_categories_url, notice: 'Category was successfully created.' }
+        format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new }
-        format.json { render json: @admin_category.errors, status: :unprocessable_entity }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,13 +44,16 @@ class Admin::CategoriesController < ApplicationController
   # PATCH/PUT /admin/categories/1
   # PATCH/PUT /admin/categories/1.json
   def update
+    if params[:destroy_category_icon] == "1"
+      @category.category_icon = nil
+    end
     respond_to do |format|
-      if @admin_category.update(admin_category_params)
-        format.html { redirect_to @admin_category, notice: 'Category was successfully updated.' }
-        format.json { render :show, status: :ok, location: @admin_category }
+      if @category.update(category_params)
+        format.html { redirect_to admin_categories_url, notice: 'Category was successfully updated.' }
+        format.json { render :show, status: :ok, location: @category }
       else
         format.html { render :edit }
-        format.json { render json: @admin_category.errors, status: :unprocessable_entity }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,7 +61,7 @@ class Admin::CategoriesController < ApplicationController
   # DELETE /admin/categories/1
   # DELETE /admin/categories/1.json
   def destroy
-    @admin_category.destroy
+    @category.destroy
     respond_to do |format|
       format.html { redirect_to admin_categories_url, notice: 'Category was successfully destroyed.' }
       format.json { head :no_content }
@@ -74,12 +77,12 @@ class Admin::CategoriesController < ApplicationController
   end
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_admin_category
-    @admin_category = Admin::Category.find(params[:id])
+  def set_category
+    @category = Category.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def admin_category_params
-    params.require(:admin_category).permit(:name)
+  def category_params
+    params.require(:category).permit(:name, :category_icon)
   end
 end

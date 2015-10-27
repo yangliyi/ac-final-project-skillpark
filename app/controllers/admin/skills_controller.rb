@@ -65,6 +65,9 @@ class Admin::SkillsController < ApplicationController
     end
   end
 
+  def about
+  end
+
   private
 
   def check_admin

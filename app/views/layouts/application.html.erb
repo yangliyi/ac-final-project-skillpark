@@ -57,7 +57,7 @@
                 <%= link_to '修改個人資料', edit_profile_url(current_user.profile) %>
               </li>
               <% if current_user && current_user.admin? %>
-              <li><%= link_to '後台管理頁面', admin_skills_path %></li>
+              <li><%= link_to '後台管理頁面', about_admin_skills_path %></li>
               <% end %>
               <li>
                 <%= link_to('登出', destroy_user_session_path, :method => :delete) %>

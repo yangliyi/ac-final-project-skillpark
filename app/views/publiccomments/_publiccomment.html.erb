@@ -1,40 +1,31 @@
 <div class="row">
   <div class="col-sm-12">
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title">留言</h3>
-      </div>
+    <div class="panel">
       <div class="panel-body">
-      <% if @profile.publiccomments.any? %>
-          <% @profile.publiccomments.each do |pub|%>
-          <div id="publiccomment-<%= pub.id %>">
-            <div class="publiccomment-commenter">
-              <span class="label">
-                <%= link_to profile_path(pub.user.profile) do %>
-                  <%= image_tag (pub.user.profile.photo.url), style: "width: 20px; display: inline; border-radius: 100%;" %>
-                  <%= pub.user.profile.username %>
-                <% end %>：
-              </span>
-              <span><%= pub.content %></span>
+        <% if @profile.publiccomments.any? %>
+            <% @profile.publiccomments.each do |pub|%>
+            <div id="publiccomment-<%= pub.id %>">
+              <div class="publiccomment-commenter">
+                <span class="label">
+                  <%= link_to profile_path(pub.user.profile) do %>
+                    <%= image_tag (pub.user.profile.photo.url), style: "width: 20px; display: inline; border-radius: 100%;" %>
+                    <%= pub.user.profile.username %>
+                  <% end %>：
+                </span>
+                <span><%= pub.content %></span>
+              </div>
             </div>
+            <% end %>
+        <% else %>
+          <h4>尚無留言</h4>
+        <% end %>
+        <%= form_for Publiccomment.new, url: profile_publiccomments_path(@profile), remote: true do |f| %>
+          <div class="form-group">
+            <%= f.text_area :content, class: "form-control" %>
           </div>
-          <% end %>
-      <% else %>
-        <h4>尚無留言</h4>
-      <% end %>
+          <%= f.submit "回覆", class: "btn btn-default"%>
+        <% end %>
       </div>
     </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-6">
-    <h4>回覆：</h4>
-    <%= form_for Publiccomment.new, url: profile_publiccomments_path(@profile), remote: true do |f| %>
-      <div class="form-group">
-        <%= f.text_area :content, class: "form-control" %>
-      </div>
-      <%= f.submit "回覆", class: "btn btn-default"%>
-      </div>
-    <% end %>
   </div>
 </div>

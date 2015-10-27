@@ -1,0 +1,50 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Path</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  class="success">
+      <td colspan="2">Default</td>
+    </tr>
+    <tr>
+      <td><%= link_to 'Locations', admin_locations_path %></td>
+      <td><%= Admin::Location.count %></td>
+    </tr>
+    <tr>
+      <td><%= link_to 'Categories', admin_categories_path %></td>
+      <td><%= Admin::Category.count %></td>
+    </tr>
+    <tr  class="info">
+      <td colspan="2">User info</td>
+    </tr>
+    <tr>
+      <td><%= link_to 'Users', admin_users_path %></td>
+      <td><%= Admin::User.count %></td>
+    </tr>
+    <tr>
+      <td><%= link_to 'Profile', admin_profiles_path %></td>
+      <td><%= Admin::Profile.count %></td>
+    </tr>
+    <tr>
+      <td><%= link_to 'Skills', admin_skills_path %></td>
+      <td><%= Admin::Skill.count %></td>
+    </tr>
+    <tr>
+      <td><%= link_to 'Comments', admin_comments_path %></td>
+      <td><%= Admin::Comment.count %></td>
+    </tr>
+    <tr>
+      <td><%= link_to 'Publiccomments', admin_publiccomments_path %></td>
+      <td><%= Admin::Publiccomment.count %></td>
+    </tr>
+    <tr>
+      <td><%= link_to 'Pictures', admin_pictures_path %></td>
+      <td><%= Admin::Picture.count %></td>
+    </tr>
+
+  </tbody>
+
+</table>

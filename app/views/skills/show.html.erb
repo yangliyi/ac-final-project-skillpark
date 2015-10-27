@@ -44,8 +44,8 @@
                 </p>
               </div>
               <hr>
-              <h4><%= @skill.description%></h4>
-              <h5>需自備：<%= @skill.requirement %></h5>
+              <h4><%= simple_format(@skill.description) %></h4>
+              <h5>需自備：<%= simple_format(@skill.requirement) %></h5>
             </div>
           </div>
         </div>

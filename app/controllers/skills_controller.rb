@@ -11,6 +11,7 @@ class SkillsController < ApplicationController
     elsif current_user && current_user.profile.try(:categories)
       category_ids = current_user.profile.categories.map {|c| c.id }
       @skills = Skill.joins(:skill_categoryships).where(:skill_categoryships => {:category_id => category_ids}).uniq
+      @unfollowed_skills = Skill.where.not(id: @skills)
     else
       @skills = Skill.all
     end

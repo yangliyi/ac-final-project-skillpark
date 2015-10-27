@@ -1,14 +1,8 @@
-/* Move down content because we have a fixed navbar that is 50px tall */
-
-$skills-wanted-red: #E83A57;
-$skills-have-blue: #60D0D4;
-$publiccomments-green: #D1C700;
+$skills-wanted: #EF3D6C;
+$skills-have: #34BEA7;
+$publiccomment: #EFCC58;
 $background-grey: #EAE5E5;
 $font-grey: #4D4D4D;
-
-.profile {
-  color: $font-grey;
-}
 
 a {
   text-decoration:none;
@@ -34,74 +28,25 @@ a {
   text-align: right;
 }
 
-/*
- * user-photo
- */
+
+/*** user-photo ***/
 
 .user-photo {
   width: 280px;
   margin: 0 auto;
 }
+
 .user-photo img {
   width: 280px;
   height: 280px;
   border-radius: 50%;
 }
 
-.box {
-  width:320px;
+.box.masonry-brick {
+  width:250px;
   a {
     color: #444444;
   }
-}
-
-/*** user-info ***/
-
-.col-xs-4 {
-  margin: 10px 0;
-  a {
-    color: white;
-  }
-  .skills-want, .skills-have, .publiccomments {
-    width: 150px;
-    height: 150px;
-    padding-top: 45px;
-    border-radius: 50%;
-    text-align: center;
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 450px) {
-  .col-xs-4 {
-    .skills-want, .skills-have, .publiccomments {
-      width: 100px;
-      height: 100px;
-      padding-top: 20px;
-      font-size: 10px;
-    }
-  }
-}
-
-.skills-want {
-  height: 30px;
-  text-align:center;
-  background-color: $skills-wanted-red;
-  color: white;
-}
-.skills-have {
-  height: 30px;
-  text-align:center;
-  background-color: $skills-have-blue;
-  color: white;
-
-}
-.publiccomments {
-  height: 30px;
-  text-align:center;
-  background-color: $publiccomments-green;
-  color: white;
-
 }
 
 /*** description ***/
@@ -113,16 +58,138 @@ a {
   }
 }
 
-/*** skills-have ***/
-#have {
-  .skills-have {
-    margin: 0 auto;
-    padding: 1px;
-    width: 200px;
-    height: 50px;
-    border-radius: 10px;
+/*** user-info ***/
+
+.col-xs-4 {
+  margin: 10px 0;
+  a {
+    color: white;
+  }
+  #skills-want, #skills-have, #publiccomment {
+    width: 150px;
+    height: 150px;
+    padding-top: 45px;
+    border-radius: 50%;
     text-align: center;
-    font-size: 2em;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .col-xs-4 {
+    #skills-want, #skills-have, #publiccomment {
+      width: 120px;
+      height: 120px;
+      padding-top: 25px;
+    }
+  }
+}
+@media (max-width: 400px) {
+  .col-xs-4 {
+    #skills-want, #skills-have, #publiccomment {
+      width: 98px;
+      height: 98px;
+      padding-top: 20px;
+    }
+  }
+}
+
+#skills-want {
+  text-align:center;
+  background-color: $skills-wanted;
+  color: white;
+}
+
+#skills-have {
+  background-color: $skills-have;
+  h3 {
+    text-align:center;
+    color: white;
+  }
+
+}
+#publiccomment {
+  background-color: $publiccomment;
+  h3 {
+    text-align:center;
+    color: white;
+  }
+}
+
+#wanted {
+  text-align:center;
+  background-color: $skills-wanted;
+  h3 {
+    color: white;
+  }
+  #wanted-top, #want-bottom {
+    height: 30px;
+  }
+}
+#have {
+  text-align:center;
+  background-color: $skills-have;
+  h3 {
+    color: white;
+  }
+  #have-top, #have-bottom {
+    height: 30px;
+  }
+}
+#comments {
+  background-color: $publiccomment;
+  h3 {
+    color: white;
+    text-align: center;
+  }
+  #comments-top, #comments-bottom {
+    height: 30px;
+  }
+}
+.category-box {
+  img {
+    width: 140px;
+    height: 140px;
+    display: inline-block;
+    border-radius: 100%;
+  }
+  margin: 15px;
+  display: inline-block;
+  text-align: center;
+}
+
+@media (max-width: 406px) {
+  .category-box {
+    margin: 10px;
+    img {
+      width: 120px;
+      height: 120px;
+      display: inline-block;
+      border-radius: 100%;
+    }
+  }
+}
+
+@media (max-width: 345px) {
+  .category-box {
+    margin: 10px;
+    img {
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      border-radius: 100%;
+    }
+  }
+}
+
+/*** skills-have ***/
+
+/*** publiccomments ***/
+
+
+#publiccomments {
+  div {
+    overflow: auto;
   }
 }
 

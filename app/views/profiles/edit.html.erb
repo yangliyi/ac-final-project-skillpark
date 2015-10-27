@@ -1,66 +1,72 @@
-<h2>修改個人資料</h2>
-<%= form_for @profile do |f| %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>修改個人資料</h2>
+      <%= form_for @profile do |f| %>
 
-  <div class="form-group">
-    <%= f.label :username, "顯示名稱：" %><br>
-    <%= f.text_field :username, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :photo, "更新大頭照：" %>
-    <%= f.file_field :photo %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :location_id, "偏好交換地區：" %>
-    <%= f.select :location_id, Location.all.map{ |x| [x.city, x.id] } %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :category_ids, "感興趣的主題：" %>
-    <%= f.select :category_ids, Category.all.map{ |x| [x.name, x.id] }, {}, :multiple => true %>
-   </div>
-
-  <div class="form-group">
-    <%= f.label :description, "介紹一下自己吧，越詳細才能讓大家更了解妳：" %>
-    <%= f.text_area :description, class: "form-control" %>
-  </div>
-
-  <p>
-    <%= f.submit '更新', class: "btn btn-default"%>
-  </p>
-
-<% end %>
-
-<%= link_to '新增技能', new_skill_path, class: "btn btn-default" %>
-<div class="all-skills">
-  <div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
-  <% @skills.each do |s| %>
-  <div class="box">
-    <div>
-      <%= link_to skill_path(s) do %>
-        <% if s.pictures.exists?%>
-        <div class="skill-img">
-        <%= image_tag (s.pictures.last.image.url) %>
+        <div class="form-group">
+          <%= f.label :username, "顯示名稱：" %><br>
+          <%= f.text_field :username, class: "form-control" %>
         </div>
-        <% else %>
-        無上傳圖片
-        <% end %>
-        <h5 class="skill-name"><strong><%= s.name %></strong></h5>
-        <p><%= s.description %></p>
+
+        <div class="form-group">
+          <%= f.label :photo, "更新大頭照：" %>
+          <%= f.file_field :photo %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :location_id, "偏好交換地區：" %>
+          <%= f.select :location_id, Location.all.map{ |x| [x.city, x.id] } %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :category_ids, "感興趣的主題：" %>
+          <%= f.select :category_ids, Category.all.map{ |x| [x.name, x.id] }, {}, :multiple => true %>
+         </div>
+
+        <div class="form-group">
+          <%= f.label :description, "介紹一下自己吧，越詳細才能讓大家更了解妳：" %>
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+
+        <p>
+          <%= f.submit '更新', class: "btn btn-default"%>
+        </p>
+
       <% end %>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="edit-btn">
-          <%= link_to '更新', edit_skill_path(s), class: "glyphicon glyphicon-wrench" %>
-          <%= link_to '刪除', skill_path(s), method: :delete, data: { confirm: "你確定要刪除這個技能?" }, class: "glyphicon glyphicon-trash" %>
+
+      <%= link_to '新增技能', new_skill_path, class: "btn btn-default" %>
+      <div class="all-skills">
+        <div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
+        <% @skills.each do |s| %>
+        <div class="box">
+          <div>
+            <%= link_to skill_path(s) do %>
+              <% if s.pictures.exists?%>
+              <div class="skill-img">
+              <%= image_tag (s.pictures.last.image.url) %>
+              </div>
+              <% else %>
+              無上傳圖片
+              <% end %>
+              <h5 class="skill-name"><strong><%= s.name %></strong></h5>
+              <p><%= s.description %></p>
+            <% end %>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="edit-btn">
+                <%= link_to '更新', edit_skill_path(s), class: "glyphicon glyphicon-wrench" %>
+                <%= link_to '刪除', skill_path(s), method: :delete, data: { confirm: "你確定要刪除這個技能?" }, class: "glyphicon glyphicon-trash" %>
+              </div>
+            </div>
+          </div>
         </div>
+        <% end %>
       </div>
     </div>
   </div>
-  <% end %>
 </div>
 
 <script>

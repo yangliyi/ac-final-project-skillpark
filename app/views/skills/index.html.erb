@@ -13,42 +13,79 @@
 
 <div class="all-skills">
   <div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
-  <% @skills.each do |s| %>
-  <div class="box">
-    <div>
-      <%= link_to skill_path(s) do %>
-        <% if s.pictures.exists?%>
-        <div class="skill-img">
-        <%= image_tag (s.pictures.last.image.url) %>
-        </div>
-        <% else %>
-        無上傳圖片
-        <% end %>
-        <h5 class="skill-name"><strong><%= s.name %></strong></h5>
-        <%= link_to like_skill_path(s), method: :post, class: "btn", id: "like-#{s.id}", remote: true do %>
-          <% if current_user && current_user.like_skill?(s) %>
-            <i class="fa fa-heart"><%= s.liked_users.size %></i>
+    <% @skills.each do |s| %>
+    <div class="box">
+      <div>
+        <%= link_to skill_path(s) do %>
+          <% if s.pictures.exists?%>
+          <div class="skill-img">
+          <%= image_tag (s.pictures.last.image.url) %>
+          </div>
           <% else %>
-            <i class="fa fa-heart-o"><%= s.liked_users.size %></i>
+          無上傳圖片
           <% end %>
+          <h5 class="skill-name"><strong><%= s.name %></strong></h5>
+          <%= link_to like_skill_path(s), method: :post, class: "btn", id: "like-#{s.id}", remote: true do %>
+            <% if current_user && current_user.like_skill?(s) %>
+              <i class="fa fa-heart"><%= s.liked_users.size %></i>
+            <% else %>
+              <i class="fa fa-heart-o"><%= s.liked_users.size %></i>
+            <% end %>
+          <% end %>
+          <p><%= s.description %></p>
         <% end %>
-        <p><%= s.description %></p>
+      </div>
+      <hr>
+      <div class="skill-box-author">
+        <%= image_tag (s.user.profile.photo.url), style: "width: 20px; display: inline; border-radius: 100%;" %>
+        <h6 ><%= link_to s.user.profile.username, profile_path(s.user.profile)%></h6>
+        <p>
+          <% if s.user.profile.location %>
+            <%= s.user.profile.location.city %>
+          <% else %>
+            ?地點？
+          <% end %>
+        </p>
+      </div>
+    </div>
+    <% end %>
+    <% if @unfollowed_skills %>
+      <% @unfollowed_skills.each do |s| %>
+        <div class="box">
+          <div>
+            <%= link_to skill_path(s) do %>
+              <% if s.pictures.exists?%>
+              <div class="skill-img">
+              <%= image_tag (s.pictures.last.image.url) %>
+              </div>
+              <% else %>
+              無上傳圖片
+              <% end %>
+              <h5 class="skill-name"><strong><%= s.name %></strong></h5>
+              <%= link_to like_skill_path(s), method: :post, class: "btn", id: "like-#{s.id}", remote: true do %>
+                <% if current_user && current_user.like_skill?(s) %>
+                  <i class="fa fa-heart"><%= s.liked_users.size %></i>
+                <% else %>
+                  <i class="fa fa-heart-o"><%= s.liked_users.size %></i>
+                <% end %>
+              <% end %>
+              <p><%= s.description %></p>
+            <% end %>
+          </div>
+          <hr>
+          <div class="skill-box-author">
+            <%= image_tag (s.user.profile.photo.url), style: "width: 20px; display: inline; border-radius: 100%;" %>
+            <h6 ><%= link_to s.user.profile.username, profile_path(s.user.profile)%></h6>
+            <p>
+              <% if s.user.profile.location %>
+                <%= s.user.profile.location.city %>
+              <% else %>
+                ?地點？
+              <% end %>
+            </p>
+          </div>
+        </div>
       <% end %>
-    </div>
-    <hr>
-    <div class="skill-box-author">
-      <%= image_tag (s.user.profile.photo.url), style: "width: 20px; display: inline; border-radius: 100%;" %>
-      <h6 ><%= link_to s.user.profile.username, profile_path(s.user.profile)%></h6>
-      <p>
-        <% if s.user.profile.location %>
-          <%= s.user.profile.location.city %>
-        <% else %>
-          ?地點？
-        <% end %>
-      </p>
-    </div>
-
-  </div>
-  <% end %>
+    <% end %>
   </div>
 </div>

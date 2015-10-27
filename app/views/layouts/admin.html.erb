@@ -39,9 +39,6 @@
             </a>
             <ul id="dropdown-menu" class="dropdown-menu">
               <li>
-                <%= link_to('返回技能公園', skills_path)%>
-              </li>
-              <li>
                 <%= link_to('登出', destroy_user_session_path, :method => :delete) %>
               </li>
             </ul>
@@ -87,7 +84,7 @@
   <footer>
       <p><a href="http://www.skillpark.co">Skillpark</a> by <a href="#">@skillpark</a>.</p>
       <p>
-        <a href="#">Back to top</a>
+        <%= link_to '返回後台管理首頁', about_admin_skills_path %>
       </p>
   </footer>
 </body>
