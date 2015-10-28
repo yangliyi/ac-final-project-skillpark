@@ -67,12 +67,6 @@ class Admin::PicturesController < ApplicationController
 
   private
 
-  def check_admin
-    unless current_user.admin?
-      raise ActiveRecord::RecordNotFound
-    end
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_admin_picture
     @admin_picture = Admin::Picture.find(params[:id])

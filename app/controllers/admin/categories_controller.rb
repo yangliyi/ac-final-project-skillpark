@@ -70,12 +70,6 @@ class Admin::CategoriesController < ApplicationController
 
   private
 
-  def check_admin
-    unless current_user.admin?
-      raise ActiveRecord::RecordNotFound
-    end
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_category
     @category = Category.find(params[:id])

@@ -67,12 +67,6 @@ class Admin::ProfilesController < ApplicationController
 
   private
 
-  def check_admin
-    unless current_user.admin?
-      raise ActiveRecord::RecordNotFound
-    end
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_admin_profile
     @admin_profile = Admin::Profile.find(params[:id])

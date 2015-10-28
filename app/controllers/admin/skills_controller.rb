@@ -70,12 +70,6 @@ class Admin::SkillsController < ApplicationController
 
   private
 
-  def check_admin
-    unless current_user.admin?
-      raise ActiveRecord::RecordNotFound
-    end
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_admin_skill
     @admin_skill = Admin::Skill.find(params[:id])

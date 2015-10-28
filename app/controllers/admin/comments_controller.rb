@@ -67,12 +67,6 @@ class Admin::CommentsController < ApplicationController
 
   private
 
-  def check_admin
-    unless current_user.admin?
-      raise ActiveRecord::RecordNotFound
-    end
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_admin_comment
     @admin_comment = Admin::Comment.find(params[:id])
