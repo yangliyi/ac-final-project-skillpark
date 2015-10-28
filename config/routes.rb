@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    root "skills#about"
+
     resources :users
     resources :categories
     resources :comments
@@ -27,17 +29,15 @@ Rails.application.routes.draw do
     resources :pictures
     resources :publiccomments
     resources :profiles
-    resources :skills do
-      collection do
-        get :about
-      end
-    end
-
+    resources :skills
   end
 
   scope :path => '/api/v1/', :defaults => { :format => :json }, :module => "api_v1", :as => 'v1' do
 
     resources :skills # ApiV1::SkillsController
+    resources :profiles
+    resources :locations
+    resources :comments
 
   end
   # The priority is based upon order of creation: first created -> highest priority.

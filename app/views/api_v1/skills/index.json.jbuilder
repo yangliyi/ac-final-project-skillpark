@@ -7,5 +7,11 @@ json.data @skills do |s|
   json.name s.name
   json.requirement s.requirement
   json.description s.description
-  json.category s.categories.map{|c|c.id}
+  json.username s.user.profile.username
+  json.location s.user.profile.location.city
+  json.category s.categories.map{|c| [c.id, c.name]}
+  json.pictures s.pictures do |p|
+    json.url asset_url( p.image.url )
+  end
+  json.liked_users_count s.liked_users_count
 end
