@@ -1,8 +1,5 @@
 class CommentsController < ApplicationController
 
-  before_action :set_profile, :set_comment, except: [:index]
-  before_action :set_comment, only: [:destroy]
-
   def index
     @comments_group_by_profile = Comment.get_communications(current_user)
 
@@ -10,6 +7,8 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @profile = Profile.find(params[:profile_id])
+
     if current_user
       @comment = @profile.comments.create(comment_params)
       @comment.user = current_user
@@ -27,14 +26,6 @@ class CommentsController < ApplicationController
 
 
   private
-
-  def set_profile
-    @profile = Profile.find(params[:profile_id])
-  end
-
-  def set_comment
-    @comment = Comment.find(params[:id])
-  end
 
   def comment_params
     params.require(:comment).permit(:content, :user_id)

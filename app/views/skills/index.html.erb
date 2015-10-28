@@ -26,6 +26,7 @@
           無上傳圖片
           <% end %>
           <h5 class="skill-name"><strong><%= s.name %></strong></h5>
+          <span class="time"><%= time_ago_in_words(s.updated_at) %>前更新</span>
           <%= link_to like_skill_path(s), method: :post, class: "btn", id: "like-#{s.id}", remote: true do %>
             <% if current_user && s.like_by_user?(current_user) %>
               <i class="fa fa-heart"><%= s.liked_users.size %></i>
@@ -63,6 +64,7 @@
               無上傳圖片
               <% end %>
               <h5 class="skill-name"><strong><%= s.name %></strong></h5>
+              <span class="time"><%= time_ago_in_words(s.updated_at) %>前更新</span>
               <%= link_to like_skill_path(s), method: :post, class: "btn", id: "like-#{s.id}", remote: true do %>
                 <% if current_user && s.like_by_user?(current_user) %>
                   <i class="fa fa-heart"><%= s.liked_users.size %></i>

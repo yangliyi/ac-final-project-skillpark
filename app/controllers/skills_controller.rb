@@ -1,7 +1,7 @@
 class SkillsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_skill, :only => [:show, :edit, :update, :destroy, :like]
+  before_action :set_my_skill, :only => [:edit, :update, :destroy, :like]
 
   def index
     @q = Skill.ransack(params[:q])
@@ -29,6 +29,7 @@ class SkillsController < ApplicationController
   end
 
   def show
+    @skill = Skill.includes(:pictures).find(params[:id])
   end
 
   def create
@@ -98,8 +99,8 @@ class SkillsController < ApplicationController
 
   private
 
-  def set_skill
-    @skill = Skill.includes(:pictures).find(params[:id])
+  def set_my_skill
+    @skill = current_user.skills.includes(:pictures).find(params[:id])
   end
 
   def skill_params
