@@ -8,6 +8,6 @@ class Picture < ActiveRecord::Base
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  default_scope { order(created_at: :desc) }
+  default_scope { order(id: :DESC) }
 
 end
