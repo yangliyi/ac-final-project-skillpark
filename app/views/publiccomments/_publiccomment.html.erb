@@ -1,9 +1,13 @@
+<%
+  # TODO: move to controller, and pass comments variable when render this partial
+  comments = @profile.publiccomments.includes(:user => :profile)
+%>
 <div class="row">
   <div class="col-sm-12">
     <div class="panel">
       <div class="panel-body">
-        <% if @profile.publiccomments.any? %>
-            <% @profile.publiccomments.each do |pub|%>
+        <% if comments.any? %>
+            <% comments.each do |pub|%>
             <div id="publiccomment-<%= pub.id %>">
               <div class="publiccomment-commenter">
                 <span class="label">

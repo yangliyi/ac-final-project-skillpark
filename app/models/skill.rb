@@ -1,5 +1,7 @@
 class Skill < ActiveRecord::Base
 
+  # TODO: Add more validations
+
   belongs_to :user
 
   has_many :skill_categoryships
@@ -12,5 +14,9 @@ class Skill < ActiveRecord::Base
   has_many :pictures, :dependent => :destroy
 
   default_scope { order(updated_at: :desc) }
+
+  def like_by_user?(u)
+    user_skill_likeships.select{ |x| x.user_id == u.id }.any?
+  end
 
 end

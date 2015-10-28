@@ -2,18 +2,24 @@ class SkillsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_skill, :only => [:show, :edit, :update, :destroy, :like]
-  before_action :set_interested_skills, :only => [:index]
+
   def index
     @q = Skill.ransack(params[:q])
 
-    if current_user && params[:q]
+    if params[:q]
       @skills = @q.result.includes(:categories).uniq
-    elsif current_user && current_user.profile.try(:categories)
-      category_ids = current_user.profile.categories.map {|c| c.id }
-      @skills = Skill.joins(:skill_categoryships).where(:skill_categoryships => {:category_id => category_ids}).uniq
-      @unfollowed_skills = Skill.where.not(id: @skills)
     else
-      @skills = Skill.all
+      @skills = Skill.includes(:pictures, :user => { :profile => :location } ).all
+
+      if current_user && current_user.profile.try(:categories)
+        @skills = @skills.includes(:user_skill_likeships)
+
+        category_ids = current_user.profile.category_ids
+        recommended_skill_ids = Skill.joins(:skill_categoryships).where(:skill_categoryships => {:category_id => category_ids}).pluck(:id).uniq
+
+        @unfollowed_skills = @skills.select{ |x| !recommended_skill_ids.include?(x.id) }
+        @skills = @skills.select{ |x| recommended_skill_ids.include?(x.id) }
+      end
     end
 
   end
@@ -74,11 +80,14 @@ class SkillsController < ApplicationController
   # Add and remove like skills
   # for current_user
   def like
+
+    # Refactor: current_user.toggle_like(@skill)
     if current_user.like_skill?(@skill)
       current_user.like_skills.delete(@skill)
     else
       current_user.like_skills << @skill
     end
+
     respond_to do |format|
       format.html {
         redirect_to :back
@@ -89,23 +98,8 @@ class SkillsController < ApplicationController
 
   private
 
-  def set_interested_skills
-    if current_user && current_user.profile.try(:categories)
-      @categories = current_user.profile.categories
-        a = []
-        @categories.each do |c|
-          c.skills.each do |s|
-            a << s
-          end
-        end
-        @skills = a.uniq
-    else
-      @skills = Skill.all
-    end
-  end
-
   def set_skill
-    @skill = Skill.find(params[:id])
+    @skill = Skill.includes(:pictures).find(params[:id])
   end
 
   def skill_params

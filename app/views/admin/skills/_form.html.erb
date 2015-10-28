@@ -24,7 +24,7 @@
   <div class="form-group">
     <%= f.label :pictures, '可選擇多個檔案上傳', :class => 'control-label' %><br>
     <%= file_field_tag "images[]", type: :file, multiple: true %>
-    <% if @admin_skill.pictures && @admin_skill.pictures.exists? %>
+    <% if @admin_skill.pictures.exists? %>
       <%= check_box_tag "destroy_image", "1" %> 刪除圖片重新上傳
     <% end %>
   </div>

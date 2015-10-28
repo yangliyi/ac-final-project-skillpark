@@ -49,7 +49,7 @@
   <div class="box">
     <div>
       <%= link_to skill_path(s) do %>
-        <% if s.pictures.exists?%>
+        <% if s.pictures.any? %>
         <div class="skill-img">
         <%= image_tag (s.pictures.last.image.url) %>
         </div>

@@ -1,11 +1,13 @@
 class ProfilesController < ApplicationController
 
   before_action :authenticate_user!, except: [:show]
-  before_action :set_profile, :only => [:show, :edit, :update, :favorite, :all_favorites]
+
+  before_action :set_profile, :only => [:show, :favorite]
+  before_action :set_my_profile, :only => [:edit, :update, :all_favorites]
+
 
   def show
   end
-
 
   def edit
     @skills = @profile.user.skills
@@ -25,11 +27,13 @@ class ProfilesController < ApplicationController
   # for current_user
   def favorite
 
+    # TODO: refactor  current_user.toggle_favorite_profile(@profile)
     if current_user.favorite_profile?(@profile)
       current_user.favorite_profiles.delete(@profile)
     else
       current_user.favorite_profiles << @profile
     end
+
     respond_to do |format|
       format.html {
         redirect_to :back
@@ -46,6 +50,10 @@ class ProfilesController < ApplicationController
 
   def set_profile
     @profile = Profile.find(params[:id])
+  end
+
+  def set_my_profile
+    @profile = current_user.profile
   end
 
   def profile_params

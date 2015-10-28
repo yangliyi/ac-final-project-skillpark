@@ -7,41 +7,43 @@
   </thead>
   <tbody>
     <tr  class="success">
-      <td colspan="2">Default</td>
+      <td colspan="2">官方設定值</td>
     </tr>
     <tr>
-      <td><%= link_to 'Locations', admin_locations_path %></td>
+      <td><%= link_to '地區', admin_locations_path %></td>
       <td><%= Admin::Location.count %></td>
     </tr>
     <tr>
-      <td><%= link_to 'Categories', admin_categories_path %></td>
+      <td><%= link_to '分類', admin_categories_path %></td>
       <td><%= Admin::Category.count %></td>
     </tr>
-    <tr  class="info">
-      <td colspan="2">User info</td>
+    <tr  class="danger">
+      <td colspan="2">使用者資料(不可亂刪！)</td>
     </tr>
     <tr>
-      <td><%= link_to 'Users', admin_users_path %></td>
+      <td><%= link_to '使用者', admin_users_path %></td>
       <td><%= Admin::User.count %></td>
     </tr>
     <tr>
-      <td><%= link_to 'Profile', admin_profiles_path %></td>
+      <td><%= link_to '使用者個人資料', admin_profiles_path %></td>
       <td><%= Admin::Profile.count %></td>
     </tr>
     <tr>
-      <td><%= link_to 'Skills', admin_skills_path %></td>
+      <td><%= link_to '技能', admin_skills_path %></td>
       <td><%= Admin::Skill.count %></td>
     </tr>
+    <% if false %>
     <tr>
-      <td><%= link_to 'Comments', admin_comments_path %></td>
+      <td><%= link_to '悄悄話', admin_comments_path %></td>
       <td><%= Admin::Comment.count %></td>
     </tr>
+    <% end %>
     <tr>
-      <td><%= link_to 'Publiccomments', admin_publiccomments_path %></td>
+      <td><%= link_to '公開留言', admin_publiccomments_path %></td>
       <td><%= Admin::Publiccomment.count %></td>
     </tr>
     <tr>
-      <td><%= link_to 'Pictures', admin_pictures_path %></td>
+      <td><%= link_to '技能照片', admin_pictures_path %></td>
       <td><%= Admin::Picture.count %></td>
     </tr>
 

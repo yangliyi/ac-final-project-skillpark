@@ -6,7 +6,9 @@
           <%= image_tag ("skillpark.png") %>
         <% end %>
       </div>
-      <h3>來交換彼此生命中的故事吧！</h3>
+      <h3>歡迎入園！來交換彼此生命中的故事吧！</h3>
+      <p>技能公園是一個專屬女性的技能交換平台，我們希望給每一位女孩一個安全有趣又免費的交換空間，除了分享自己的才藝外，也分享妳們對生活的熱情！
+讓技能公園陪妳一起成長！</p>
     </div>
   </div>
 </div>
@@ -17,7 +19,7 @@
     <div class="box">
       <div>
         <%= link_to skill_path(s) do %>
-          <% if s.pictures.exists?%>
+          <% if s.pictures.any? %>
           <div class="skill-img">
           <%= image_tag (s.pictures.last.image.url) %>
           </div>
@@ -26,7 +28,7 @@
           <% end %>
           <h5 class="skill-name"><strong><%= s.name %></strong></h5>
           <%= link_to like_skill_path(s), method: :post, class: "btn", id: "like-#{s.id}", remote: true do %>
-            <% if current_user && current_user.like_skill?(s) %>
+            <% if current_user && s.like_by_user?(current_user) %>
               <i class="fa fa-heart"><%= s.liked_users.size %></i>
             <% else %>
               <i class="fa fa-heart-o"><%= s.liked_users.size %></i>
@@ -54,7 +56,7 @@
         <div class="box">
           <div>
             <%= link_to skill_path(s) do %>
-              <% if s.pictures.exists?%>
+              <% if s.pictures.any?%>
               <div class="skill-img">
               <%= image_tag (s.pictures.last.image.url) %>
               </div>
@@ -63,7 +65,7 @@
               <% end %>
               <h5 class="skill-name"><strong><%= s.name %></strong></h5>
               <%= link_to like_skill_path(s), method: :post, class: "btn", id: "like-#{s.id}", remote: true do %>
-                <% if current_user && current_user.like_skill?(s) %>
+                <% if current_user && s.like_by_user?(current_user) %>
                   <i class="fa fa-heart"><%= s.liked_users.size %></i>
                 <% else %>
                   <i class="fa fa-heart-o"><%= s.liked_users.size %></i>

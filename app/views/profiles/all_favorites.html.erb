@@ -2,7 +2,7 @@
   <div class="sol-sm-12">
     <div class="container">
       <div id="all-favorite-profiles">
-        <% if @all_favorites %>
+        <% if @all_favorites.exists? %>
           <% @all_favorites.each do |p| %>
             <div>
               <%= link_to profile_path(p) do %>
@@ -43,7 +43,7 @@
             </div>
           <% end %>
         <% else %>
-          <%= '你還沒有任何收藏的對象喔！' %>
+          <h1 style="text-align: center; padding: 10px;"><%= '目前還沒有任何收藏唷！快把想學習的對象收藏起來吧！' %></h1>
         <% end %>
       </div>
     </div>

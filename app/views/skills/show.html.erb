@@ -1,6 +1,6 @@
 <%= content_for :head do %>
     <%= tag(:meta, :content => @skill.name, :property => "og:title") %>
-    <%= tag(:meta, :content => @skill.description, :property => "og:description") %>
+    <%= tag(:meta, :content => "#{@skill.user.profile.username},#{@skill.description}", :property => "og:description") %>
     <%= tag(:meta, :content => "article", :property => "og:type") %>
     <%= tag(:meta, :content => skill_url(@skill), :property => "og:url") %>
     <% if @skill.pictures.last %>

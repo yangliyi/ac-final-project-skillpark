@@ -102,7 +102,7 @@
           <div id="have-top"></div>
           <h3>我擅長</h3>
           <div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
-            <% @profile.user.skills.each do |s| %>
+            <% @profile.user.skills.includes(:pictures).each do |s| %>
             <div class="box">
               <div>
                 <%= link_to skill_path(s) do %>
