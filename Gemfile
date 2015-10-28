@@ -27,6 +27,7 @@ gem 'rspec-rails'
 gem 'font-awesome-rails'
 gem 'capistrano-rails', :group => :development
 gem 'capistrano-passenger', :group => :development
+gem "rails-i18n"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
