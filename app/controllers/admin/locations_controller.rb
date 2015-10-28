@@ -67,12 +67,6 @@ class Admin::LocationsController < ApplicationController
 
   private
 
-  def check_admin
-    unless current_user.admin?
-      raise ActiveRecord::RecordNotFound
-    end
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_admin_location
     @admin_location = Admin::Location.find(params[:id])
@@ -80,7 +74,7 @@ class Admin::LocationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def admin_location_params
-    params.require(:admin_location).permit(:city, :administrationarea)
+    params.require(:admin_location).permit(:city,)
   end
 
 end
