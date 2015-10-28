@@ -32,8 +32,8 @@ a {
 /*** user-photo ***/
 
 .user-photo {
-  width: 280px;
-  margin: 0 auto;
+  width: 270px;
+  margin: 40px auto;
 }
 
 .user-photo img {
@@ -75,12 +75,30 @@ a {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 992px) {
   .col-xs-4 {
     #skills-want, #skills-have, #publiccomment {
       width: 120px;
       height: 120px;
-      padding-top: 25px;
+      padding-top: 30px;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .col-xs-4 {
+    #skills-want, #skills-have, #publiccomment {
+      width: 150px;
+      height: 150px;
+      padding-top: 38px;
+    }
+  }
+}
+@media (max-width: 500px) {
+  .col-xs-4 {
+    #skills-want, #skills-have, #publiccomment {
+      width: 120px;
+      height: 120px;
+      padding-top: 30px;
     }
   }
 }
