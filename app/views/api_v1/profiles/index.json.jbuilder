@@ -9,6 +9,8 @@ json.data @profiles do |p|
   json.photo asset_url(p.photo.url)
   if p.location
     json.location p.location.city
+  else
+    json.location ""
   end
   json.category p.categories.map{|c| [c.id, c.name, asset_url(c.category_icon.url)] }
   json.public_comment p.publiccomments.map {|p| [p.user.profile.username, p.content] }
