@@ -15,8 +15,11 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="user-photo">
-                    <% if p.photo %>
-                      <%= image_tag (p.photo.url(:medium)) %>
+                    <% if p.photo_updated_at %>
+                      <%= image_tag (p.photo.url(:medium))%>
+                    <% else %>
+                      <% @p = p %>
+                      <%= image_tag ("http://graph.facebook.com/#{@p.user.fb_uid}/picture?width=999") %>
                     <% end %>
                   </div>
                 </div>

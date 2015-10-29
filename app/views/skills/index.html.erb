@@ -39,7 +39,12 @@
       </div>
       <hr>
       <div class="skill-box-author">
-        <%= image_tag (s.user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+        <% if s.user.profile.photo_updated_at %>
+          <%= image_tag (s.user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+        <% else %>
+          <% @s = s %>
+          <%= image_tag ("http://graph.facebook.com/#{@s.user.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+        <% end %>
         <h6 ><%= link_to s.user.profile.username, profile_path(s.user.profile)%></h6>
         <p>
           <% if s.user.profile.location %>
@@ -75,7 +80,12 @@
           </div>
           <hr>
           <div class="skill-box-author">
-            <%= image_tag (s.user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+            <% if s.user.profile.photo_updated_at %>
+              <%= image_tag (s.user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+            <% else %>
+              <% @s = s %>
+              <%= image_tag ("http://graph.facebook.com/#{@s.user.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+            <% end %>
             <h6 ><%= link_to s.user.profile.username, profile_path(s.user.profile)%></h6>
             <p>
               <% if s.user.profile.location %>

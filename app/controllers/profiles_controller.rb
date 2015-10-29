@@ -15,7 +15,11 @@ class ProfilesController < ApplicationController
 
   def update
 
-      if @profile.update(profile_params)
+    if params[:destroy_photo] == "1"
+      @profile.photo = nil
+    end
+
+    if @profile.update(profile_params)
       flash[:notice] = "個人資料修改成功！"
       redirect_to profile_path(@profile)
     else
