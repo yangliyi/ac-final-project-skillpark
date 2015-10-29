@@ -8,7 +8,9 @@ json.data @skills do |s|
   json.requirement s.requirement
   json.description s.description
   json.username s.user.profile.username
-  json.location s.user.profile.location.city
+  if s.user.profile.location
+    json.location s.user.profile.location.city
+  end
   json.category s.categories.map{|c| [c.id, c.name]}
   json.pictures s.pictures do |p|
     json.url asset_url( p.image.url )

@@ -12,7 +12,7 @@
               <div class="publiccomment-commenter">
                 <span class="label">
                   <%= link_to profile_path(pub.user.profile) do %>
-                    <%= image_tag (pub.user.profile.photo.url), style: "width: 20px; display: inline; border-radius: 100%;" %>
+                    <%= image_tag (pub.user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
                     <%= pub.user.profile.username %>
                   <% end %>：
                 </span>

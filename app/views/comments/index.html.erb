@@ -7,7 +7,7 @@
       <div class="panel-body">
         <% @profiles.each do |p| %>
           <%= link_to profile_path(p) do %>
-            <%= image_tag (p.photo.url), style: "width: 20px; display: inline;" %>
+            <%= image_tag (p.photo.url), style: "width: 20px; height: 20px; border-radius: 100%; display: inline;" %>
             <%= p.username %>
           <% end %>
         <% end %>
@@ -23,7 +23,7 @@
       <div class="panel-heading">
         <h3 class="panel-title">
           <%= link_to profile_path(p) do %>
-            <%= image_tag (p.photo.url), style: "width: 20px; display: inline; border-radius: 100%;" %>
+            <%= image_tag (p.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
             <%= p.username %>
           <% end %>
         </h3>
