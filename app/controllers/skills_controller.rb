@@ -1,7 +1,7 @@
 class SkillsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_my_skill, :only => [:edit, :update, :destroy, :like]
+  before_action :set_my_skill, :only => [:edit, :update, :destroy]
 
   def index
     @q = Skill.ransack(params[:q])
@@ -81,7 +81,7 @@ class SkillsController < ApplicationController
   # Add and remove like skills
   # for current_user
   def like
-
+    @skill = Skill.find(params[:id])
     # Refactor: current_user.toggle_like(@skill)
     if current_user.like_skill?(@skill)
       current_user.like_skills.delete(@skill)
