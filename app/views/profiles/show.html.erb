@@ -13,6 +13,30 @@
                 <% end %>
               </span>
               <% if current_user %>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">訊息</button>
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">想跟她說什麼呢</h4>
+                    </div>
+                    <div class="modal-body">
+                    <%= form_for Comment.new, url: profile_comments_path(@profile) do |f| %>
+                      <div class="form-group">
+                        <%= f.text_area :content, class: "form-control" %>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <%= f.submit "回覆", class: "btn btn-default"%>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
                 <%= link_to favorite_profile_path(@profile), method: :post, class: "btn", id: "favorite", remote: true do %>
                   <% if current_user.favorite_profile?(@profile) %>
                     <span class="btn btn-primary">取消收藏</span>
@@ -110,11 +134,10 @@
                     <div class="skill-img">
                     <%= image_tag (s.pictures.last.image.url) %>
                     </div>
-                  <% else %>
-                    無上傳圖片
                   <% end %>
-                  <h5 class="skill-name"><strong><%= s.name %></strong></h5>
-                  <p><%= s.description %></p>
+                    <h5 class="skill-name" style="display: inline-block;"><strong><%= s.name %></strong></h5>
+                    <span><%= t( time_ago_in_words(s.updated_at) ) %>前</span>
+                    <p><%= s.description %></p>
                 <% end %>
               </div>
             </div>
@@ -133,36 +156,6 @@
         <h3>留言給我</h3>
         <div id="publiccomments">
           <%= render 'publiccomments/publiccomment' %>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-              <div class="message">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">悄悄話</button>
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">想跟她說什麼呢</h4>
-                      </div>
-                      <div class="modal-body">
-                      <%= form_for Comment.new, url: profile_comments_path(@profile) do |f| %>
-                        <div class="form-group">
-                          <%= f.text_area :content, class: "form-control" %>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <%= f.submit "回覆", class: "btn btn-default"%>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
         </div>
         <div id="comments-bottom"></div>
       </div>

@@ -60,8 +60,6 @@
               <div class="skill-img">
               <%= image_tag (s.pictures.last.image.url) %>
               </div>
-              <% else %>
-              無上傳圖片
               <% end %>
               <h5 class="skill-name"><strong><%= s.name %></strong></h5>
               <span class="time"><%= time_ago_in_words(s.updated_at) %>前更新</span>
