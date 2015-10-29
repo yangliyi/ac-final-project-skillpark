@@ -28,6 +28,9 @@ gem 'font-awesome-rails'
 gem 'capistrano-rails', :group => :development
 gem 'capistrano-passenger', :group => :development
 gem "rails-i18n"
+gem 'rollbar', '~> 2.5.1'
+gem 'oj', '~> 2.12.14'
+gem 'newrelic_rpm'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
