@@ -43,7 +43,7 @@ a {
 }
 
 .box.masonry-brick {
-  width:255px;
+  width:320px;
   a {
     color: #444444;
   }
@@ -136,7 +136,6 @@ a {
 
 #wanted {
   text-align:center;
-  background-color: $skills-wanted;
   h3 {
     color: white;
   }
@@ -146,7 +145,6 @@ a {
 }
 #have {
   text-align:center;
-  background-color: $skills-have;
   h3 {
     color: white;
   }
@@ -155,7 +153,6 @@ a {
   }
 }
 #comments {
-  background-color: $publiccomment;
   h3 {
     color: white;
     text-align: center;

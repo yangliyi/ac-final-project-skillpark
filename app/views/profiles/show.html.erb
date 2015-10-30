@@ -12,7 +12,7 @@
                   <%= @profile.location.city %>
                 <% end %>
               </span>
-              <% if current_user %>
+              <% if current_user && current_user != @profile.user %>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">訊息</button>
               <!-- Modal -->
@@ -45,6 +45,9 @@
                   <% end %>
                   <span class="badge"><%= @profile.favorited_users.size %></span>
                 <% end %>
+              <% end %>
+              <% if current_user == @profile.user %>
+              <%= link_to '編輯個人資料', edit_profile_path(@profile), class: "btn btn-primary" %>
               <% end %>
             </div>
           </div>
