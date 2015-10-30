@@ -16,7 +16,7 @@ a {
 }
 
 #username {
-  margin-bottom: 30px;
+  margin: 40px 0;
   color: $font-grey;
   font-size: 2em;
   h1 {
@@ -33,7 +33,7 @@ a {
 
 .user-photo {
   width: 270px;
-  margin: 40px auto;
+  margin: 20px auto;
 }
 
 .user-photo img {
@@ -42,17 +42,12 @@ a {
   border-radius: 50%;
 }
 
-.box.masonry-brick {
-  width:320px;
-  a {
-    color: #444444;
+#about-me {
+  h2 {
+    margin: 40px 0 20px 0;
   }
-}
-
-/*** description ***/
-#about-description {
-  margin: 10px;
   p {
+    font-size: 1.1em;
     width: 100%;
     overflow: auto;
   }
@@ -66,12 +61,12 @@ a {
     color: white;
   }
   #skills-want, #skills-have, #publiccomment {
-    width: 150px;
-    height: 150px;
-    padding-top: 45px;
+    margin: 10px auto;
+    padding-top: 30px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     text-align: center;
-    margin: 0 auto;
   }
 }
 
@@ -133,32 +128,47 @@ a {
     color: white;
   }
 }
+#wanted-top {
+  margin: 50px auto;
+  width: 200px;
+  border-top: 2px solid $skills-wanted;
+}
 
 #wanted {
   text-align:center;
-  h3 {
-    color: white;
+  h2 {
+    margin-bottom: 50px;
+    color: $font-grey;
   }
   #wanted-top, #want-bottom {
     height: 30px;
   }
 }
+#have-top {
+  margin: 50px auto;
+  width: 200px;
+  border-top: 2px solid $skills-have;
+}
 #have {
   text-align:center;
-  h3 {
-    color: white;
+  h2 {
+    margin-bottom: 50px;
+    color: $font-grey;
   }
   #have-top, #have-bottom {
     height: 30px;
   }
 }
+#comments-top {
+  margin: 50px auto;
+  width: 200px;
+  border-top: 2px solid $publiccomment;
+}
 #comments {
-  h3 {
-    color: white;
+  h2 {
+    margin-bottom: 50px;
+    color: $font-grey;
     text-align: center;
-  }
-  #comments-top, #comments-bottom {
-    height: 30px;
   }
 }
 .category-box {
@@ -198,13 +208,23 @@ a {
 }
 
 /*** skills-have ***/
-
+.box.masonry-brick {
+  width:320px;
+  a {
+    color: #444444;
+  }
+}
 /*** publiccomments ***/
 
 
-#publiccomments {
-  div {
+.public-comment {
+  color: $font-grey;
+  margin: 10px;
+  border: 1px solid #AAA;
+  background-color: #FCFCFC;
+  p {
     overflow: auto;
+    font-size: 1.2em;
   }
 }
 

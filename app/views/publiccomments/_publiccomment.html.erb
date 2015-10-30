@@ -3,34 +3,44 @@
   comments = @profile.publiccomments.includes(:user => :profile)
 %>
 <div class="row">
-  <div class="col-sm-12">
-    <div class="panel">
-      <div class="panel-body">
-        <% if comments.any? %>
-            <% comments.each do |pub|%>
+  <div class="col-sm-10" style="margin: 0 auto;">
+    <% if comments.any? %>
+      <% comments.each do |pub|%>
+        <div class="row public-comment">
+          <div class="col-sm-2">
+            <% if pub.user.profile.photo_updated_at %>
+              <%= image_tag (pub.user.profile.photo.url), style: "width: 60px; height: 60px; display: block; margin: 20px auto; border-radius: 100%;" %>
+            <% else %>
+              <% @u = pub.user %>
+              <%= image_tag ("http://graph.facebook.com/#{@u.fb_uid}/picture?width=999"), style: "width: 60px; height: 60px; display: block; margin: 20px auto; border-radius: 100%;" %>
+            <% end %>
+          </div>
+          <div class="col-sm-10">
             <div id="publiccomment-<%= pub.id %>">
               <div class="publiccomment-commenter">
-                <span class="label">
-                  <%= link_to profile_path(pub.user.profile) do %>
-                    <%= image_tag (pub.user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
-                    <%= pub.user.profile.username %>
-                  <% end %>：
-                </span>
-                <span><%= pub.content %></span>
-                <span style="float: right;"><%= t( time_ago_in_words(pub.created_at) ) %>前</span>
+                <h6><strong><%= pub.user.profile.username %></strong></h6>
+                <p><%= pub.content %></p>
+                <p style="text-align: right;">
+                  留言時間：<%= t( time_ago_in_words(pub.created_at) ) %>前
+                </p>
               </div>
             </div>
-            <% end %>
-        <% else %>
-          <h4>尚無留言</h4>
-        <% end %>
-        <%= form_for Publiccomment.new, url: profile_publiccomments_path(@profile), remote: true do |f| %>
-          <div class="form-group">
-            <%= f.text_area :content, class: "form-control" %>
           </div>
-          <%= f.submit "回覆", class: "btn btn-default"%>
-        <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="row">
+        <h4>尚無留言</h4>
       </div>
+    <% end %>
+    <div class="col-sm-12">
+      <%= form_for Publiccomment.new, url: profile_publiccomments_path(@profile), remote: true do |f| %>
+        <div class="form-group">
+          <%= f.text_area :content, class: "form-control" %>
+        </div>
+        <%= f.submit "回覆", class: "btn btn-default"%>
+      <% end %>
     </div>
   </div>
 </div>
+
