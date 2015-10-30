@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :profiles
     resources :locations
     resources :comments
+    resources :categories
 
   end
   # The priority is based upon order of creation: first created -> highest priority.
