@@ -32,11 +32,7 @@
                 <h6>
                   <%= link_to profile_path(@skill.user.profile) do %>
                 </h6>
-                  <% if @skill.user.profile.photo_updated_at %>
-                    <%= image_tag (@skill.user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
-                  <% else %>
-                    <%= image_tag ("http://graph.facebook.com/#{@skill.user.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
-                  <% end %>
+                  <%= image_tag (@skill.user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
                   <%= @skill.user.profile.username %>
                 <% end %>
                 <p>
