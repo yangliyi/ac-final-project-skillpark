@@ -44,6 +44,10 @@ class Admin::SkillsController < ApplicationController
   # PATCH/PUT /admin/skills/1
   # PATCH/PUT /admin/skills/1.json
   def update
+    if params[:destroy_image] == "1"
+      @admin_skill.pictures.delete_all
+    end
+
     respond_to do |format|
       if @admin_skill.update(admin_skill_params)
         format.html { redirect_to @admin_skill, notice: 'Skill was successfully updated.' }
