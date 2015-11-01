@@ -50,6 +50,11 @@ class Admin::SkillsController < ApplicationController
 
     respond_to do |format|
       if @admin_skill.update(admin_skill_params)
+        if params[:images]
+          params[:images].each { |image|
+            @admin_skill.pictures.create(image: image)
+          }
+        end
         format.html { redirect_to @admin_skill, notice: 'Skill was successfully updated.' }
         format.json { render :show, status: :ok, location: @admin_skill }
       else
