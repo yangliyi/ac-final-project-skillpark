@@ -128,9 +128,16 @@ a {
     color: white;
   }
 }
+
+
+#wanted, #have {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
 #wanted-top {
-  margin: 50px auto;
-  width: 200px;
+  width: 50%;
   border-top: 2px solid $skills-wanted;
 }
 
@@ -140,13 +147,9 @@ a {
     margin-bottom: 50px;
     color: $font-grey;
   }
-  #wanted-top, #want-bottom {
-    height: 30px;
-  }
 }
 #have-top {
-  margin: 50px auto;
-  width: 200px;
+  width: 50%;
   border-top: 2px solid $skills-have;
 }
 #have {
@@ -160,11 +163,12 @@ a {
   }
 }
 #comments-top {
-  margin: 50px auto;
-  width: 200px;
+  width: 50%;
   border-top: 2px solid $publiccomment;
 }
 #comments {
+  margin-top: 100px;
+  margin-bottom: 100px;
   h2 {
     margin-bottom: 50px;
     color: $font-grey;

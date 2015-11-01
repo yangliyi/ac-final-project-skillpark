@@ -1,0 +1,150 @@
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/* Carousel base class */
+.carousel {
+  height: 100vh;
+  padding: 0;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 100vh;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 100vh;
+
+}
+.carousel-inner .container {
+  .skillpark-logo {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+  }
+}
+
+#want-to-learn, #banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.how, .now {
+  margin: 10px;
+  padding: 10px;
+  color: white;
+  font-size: 25px;
+  border-radius: 5px;
+}
+.how {
+  background-color: #959090;
+}
+.now {
+  background-color: #EC7665;
+}
+
+#want-to-learn {
+  height: 75vh;
+  background-color: white;
+  img {
+    width: 150px;
+    margin: 2px;
+  }
+  h1 {
+    color: #E15B47;
+  }
+  .go-to-button {
+    display: block;
+    margin: 20px auto;
+    border-radius: 5px;
+    width: 200px;
+    border: 2px solid black;
+    padding: 15px;
+  }
+}
+
+#banner {
+  height: 25vh;
+  background-image: url(landingpage/banner.png);
+  background-size: cover;
+  h1 {
+    font-size: 300%;
+    color: white;
+  }
+}
+
+#find, #show, #interact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  height: 60vh;
+  background-color: white;
+  text-align: center;
+  color: #E15B47;
+  img {
+    width: 100%;
+    display: inline-block;
+  }
+  h1 {
+    margin-top: 100px;
+  }
+}
+
+#sign-up {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 50vh;
+  background-color: white;
+  h1 {
+    margin-bottom: 50px;
+  }
+}
+
+#about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 50vh;
+  background-image: url(landingpage/background-image.png);
+  background-size: cover;
+  color: white;
+  h1 {
+    margin: 20px;
+  }
+  p {
+    width: 70%;
+    font-size: 1.2em;
+    margin: 20px auto;
+  }
+  hr {
+    width: 60%;
+    size: 10px;
+    color: white;
+  }
+}
+
+
+
+

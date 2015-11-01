@@ -1,0 +1,212 @@
+<div class="container-fluid" id="head">
+<div class="row">
+  <div class="col-sm-12" style="padding: 0;">
+    <!-- Carousel -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <% if false %>
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <% end %>
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <%= image_tag ('landingpage/background-image.png'), class: "first-slide" %>
+          <div class="container">
+            <div class="carousel-caption">
+              <%= image_tag ('skillpark.png'), class: "first-slide skillpark-logo" %>
+              <h1>專 屬 女 孩 技 能 交 換 空 間</h1>
+              <p>想 嘗 試 新 事 物 嗎 ？ 用 信 賴 又 免 費 的 方 式 嘗 試 所 有 妳 想 學 的 才 藝</p>
+              <a href="#banner" class="how">如何使用</a>
+              <%= link_to '立即開始', skills_path, class: "now" %>
+            </div>
+          </div>
+        </div>
+        <% if false %>
+        <div class="item">
+          <%= image_tag ('landingpage/background-image.png'), class: "second-slide" %>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Another example headline.</h1>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <%= image_tag ("landingpage/background-image.png"), class: "third-slide" %>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>One more for good measure.</h1>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <% if false %>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+      <% end %>
+    </div><!-- /.carousel -->
+  </div>
+</div>
+</div>
+<div class="container-fluid" id="want-to-learn">
+<div class="row">
+  <div class="col-sm-12">
+    <div class="container want-to-learn-inner">
+      <h1>有 想 學 的 東 西 嗎？</h1>
+        <div>
+          <%= link_to skills_path do %>
+            <%= image_tag ('landingpage/diy.png') %>
+          <% end %>
+          <%= link_to skills_path do %>
+            <%= image_tag ('landingpage/makeup.png') %>
+          <% end %>
+          <%= link_to skills_path do %>
+            <%= image_tag ('landingpage/cook.png') %>
+          <% end %>
+          <%= link_to skills_path do %>
+            <%= image_tag ('landingpage/draw.png') %>
+          <% end %>
+          <%= link_to skills_path do %>
+            <%= image_tag ('landingpage/music.png') %>
+          <% end %>
+          <%= link_to skills_path do %>
+            <%= image_tag ('landingpage/coding.png') %>
+          <% end %>
+          <%= link_to skills_path do %>
+            <%= image_tag ('landingpage/lang.png') %>
+          <% end %>
+          <%= link_to skills_path do %>
+            <%= image_tag ('landingpage/bike.png') %>
+          <% end %>
+          <%= link_to skills_path do %>
+            <%= image_tag ('landingpage/writing.png') %>
+          <% end %>
+          <%= link_to skills_path do %>
+            <%= image_tag ('landingpage/software.png') %>
+          <% end %>
+          <%= link_to skills_path do %>
+            <%= image_tag ('landingpage/cam.png') %>
+          <% end %>
+        </div>
+        <%= link_to '都有興趣！我想看全部！', skills_path, class: "go-to-button" %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container-fluid" id="banner">
+<div class="row">
+  <div class="col-sm-12">
+    <div class="container">
+      <h1>在 技 能 公 園 你 可 以</h1>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container-fluid" id="find">
+<div class="row">
+  <div class="col-sm-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <%= image_tag ('landingpage/mac.png') %>
+        </div>
+        <div class="col-sm-6">
+          <h1>快速找到想學的才藝</h1>
+          <p>無論是吉他、插畫，還是菜市場學攝影等特色技能，只要是妳有興趣的，都能一眼看到，快速掌握想學的才藝！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container-fluid" id="show">
+<div class="row">
+  <div class="col-sm-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <h1>她的熱情與技能程度 用影像秀給妳看！</h1>
+          <p>無論是熱呼呼的手作餅乾、舞台上的精湛舞步，還是攝影作品、手繪插畫，都能用影像看見！</p>
+        </div>
+        <div class="col-sm-6">
+          <%= image_tag ('landingpage/mac.png') %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container-fluid" id="interact">
+<div class="row">
+  <div class="col-sm-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <%= image_tag ('landingpage/mac.png') %>
+        </div>
+        <div class="col-sm-6">
+          <h1>盡情安心交換去！</h1>
+          <p>在公開留言中提問、在私密留言中聯繫並確定交換的內容，與對方的線上交流通通可以在技能公園值得信賴的系統中完成。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container-fluid" id="sign-up">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <h1>立即註冊體驗</h1>
+            <%= link_to '立即體驗', skills_path, class: "now" %>
+          </div>
+          <div class="col-sm-6">
+            <h1>關注我們</h1>
+            <div id="fb-root"></div>
+              <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.4";
+              fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));</script>
+              <div class="fb-page" data-href="https://www.facebook.com/技;能公園Skill-Park-928145693927318/timeline/?ref=aymt_homepage_panel" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" id="about">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1>關 於 技 能 公 園</h1>
+            <p>現實生活中我們都創立了許多虛擬的角色性格，上傳人人稱羨的生活照、經營美好的虛擬形象。
+但，妳也已經對這樣的生活感到厭倦了吧？因為這些所謂的社交並沒有建立起人與人之間真正的交流。<br><br>
+技能公園成立的目的是希望打造一個讓人們發現並創造自己價值的空間，透過才藝交換的方式，將原本可能不會有任何交集的人們，用知識、熱情及生活態度連起來，並發現跟其他人分享自己所學是件非常開心有意義的事，從中得到一個更幸福充實的生活。</p><br>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
