@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   before_create :generate_authentication_token
 
+  serialize :fb_raw_data
+
   has_one :profile, dependent: :destroy
   has_many :skills, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -41,7 +43,7 @@ class User < ActiveRecord::Base
     user = User.find_by_fb_uid( auth.uid )
     if user
       user.fb_token = auth.credentials.token
-      # user.fb_raw_data = auth
+      user.fb_raw_data = auth
       user.save!
       return user
     end
@@ -51,7 +53,7 @@ class User < ActiveRecord::Base
     if existing_user
       existing_user.fb_uid = auth.uid
       existing_user.fb_token = auth.credentials.token
-      #existing_user.fb_raw_data = auth
+      existing_user.fb_raw_data = auth
       existing_user.save!
       return existing_user
     end
@@ -62,7 +64,7 @@ class User < ActiveRecord::Base
     user.fb_token = auth.credentials.token
     user.email = auth.info.email
     user.password = Devise.friendly_token[0,20]
-    #user.fb_raw_data = auth
+    user.fb_raw_data = auth
     user.save!
     profile = user.create_profile
     profile.photo = auth.info.image
