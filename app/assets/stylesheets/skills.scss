@@ -11,23 +11,33 @@
 form {
   text-align: left;
 }
-
+$background-grey: #EAE5E5;
 /*** banner ***/
 
 .banner {
   text-align: center;
-  background-color: #FFF;
-  color: black;
+  background-color: $background-grey;
+  h3 {
+    display: inline-block;
+    color: #D0544E;
+  }
+  p {
+    width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    font-size: 1.2em;
+  }
   img {
-    width: 100px;
-    margin-top: 5px;
+    display: inline-block;
+    width: 50px;
   }
 }
 
 /*** all-skills ***/
 
 .all-skills {
-  background-color: #E9E9E9;
+  background-color: $background-grey;
   h5 {
     display: inline-block;
   }
