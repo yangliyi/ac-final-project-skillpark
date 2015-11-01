@@ -1,6 +1,6 @@
 class Picture < ActiveRecord::Base
 
-  belongs_to :skill
+  belongs_to :skill, touch: true
 
   has_attached_file :image,
     :path => ":rails_root/public/images/:id/:style/:filename",

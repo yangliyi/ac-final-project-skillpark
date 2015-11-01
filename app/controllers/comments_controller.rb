@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
   def index
-    @comments_group_by_profile = Comment.get_communications(current_user)
+    @comments_group_by_profile = Comment.get_communications(current_user).order(id: :DESC)
 
     @profiles = @comments_group_by_profile.keys
   end
