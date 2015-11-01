@@ -18,7 +18,7 @@
         <%= link_to skill_path(s) do %>
           <% if s.pictures.any? %>
           <div class="skill-img">
-            <%= image_tag (s.pictures.last.image.url(:large)) %>
+            <%= image_tag (s.pictures.first.image.url(:large)) %>
           </div>
           <% else %>
           無上傳圖片
@@ -65,7 +65,7 @@
             <%= link_to skill_path(s) do %>
               <% if s.pictures.any?%>
               <div class="skill-img">
-              <%= image_tag (s.pictures.last.image.url(:large)) %>
+              <%= image_tag (s.pictures.first.image.url(:large)) %>
               </div>
               <% end %>
               <h5 class="skill-name"><strong><%= s.name %></strong></h5>
