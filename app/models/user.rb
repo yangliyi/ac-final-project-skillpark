@@ -78,7 +78,6 @@ class User < ActiveRecord::Base
     user.fb_raw_data = auth
     user.save!
     profile = user.create_profile
-    profile.photo = auth.info.image
     profile.username = auth.info.name
     profile.save!
     return user
