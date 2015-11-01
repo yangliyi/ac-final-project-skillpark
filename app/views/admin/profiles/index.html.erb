@@ -17,7 +17,11 @@
       <tr>
         <td><%= admin_profile.username %></td>
         <td><%= admin_profile.description %></td>
-        <td><%= admin_profile.location.city %></td>
+        <td>
+          <% if admin_profile.location %>
+            <%= admin_profile.location.city %>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', admin_profile %></td>
         <td><%= link_to 'Edit', edit_admin_profile_path(admin_profile) %></td>
         <td><%= link_to 'Destroy', admin_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
