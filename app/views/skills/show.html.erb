@@ -37,6 +37,7 @@
                   <% else %>
                     <%= image_tag ("http://graph.facebook.com/#{@skill.user.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
                   <% end %>
+                  <%= @skill.user.profile.username %>
                 <% end %>
                 <p>
                   <% if @skill.user.profile.location %>
