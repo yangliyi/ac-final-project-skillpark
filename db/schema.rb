@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028014103) do
+ActiveRecord::Schema.define(version: 20151101103047) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",                       limit: 255
@@ -149,8 +149,10 @@ ActiveRecord::Schema.define(version: 20151028014103) do
     t.string   "fb_uid",                 limit: 255
     t.string   "fb_token",               limit: 255
     t.string   "role",                   limit: 255
+    t.string   "authentication_token",   limit: 255
   end
 
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["fb_uid"], name: "index_users_on_fb_uid", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

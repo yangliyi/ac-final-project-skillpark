@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
+  before_create :generate_authentication_token
+
   has_one :profile, dependent: :destroy
   has_many :skills, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -17,6 +19,10 @@ class User < ActiveRecord::Base
   # Liked skills of user
   has_many :user_skill_likeships, dependent: :destroy
   has_many :like_skills, through: :user_skill_likeships, source: :skill, dependent: :destroy
+
+  def generate_authentication_token
+    self.authentication_token = Devise.friendly_token
+  end
 
   def favorite_profile?(profile)
     self.favorite_profiles.include?(profile)
