@@ -124,7 +124,6 @@
             <% @profile.categories.each do |c| %>
               <div class="category-box">
                 <%= image_tag (c.category_icon.url) %>
-                <p><%= c.name %></p>
               </div>
             <% end %>
           <% else %>
