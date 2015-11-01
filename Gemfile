@@ -31,6 +31,7 @@ gem "rails-i18n"
 gem 'rollbar', '~> 2.5.1'
 gem 'oj', '~> 2.12.14'
 gem 'newrelic_rpm'
+gem 'rest-client'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
