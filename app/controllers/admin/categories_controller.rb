@@ -31,7 +31,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     respond_to do |format|
-      if @admin_category.save
+      if @category .save
         format.html { redirect_to admin_categories_url, notice: 'Category was successfully created.' }
         format.json { render :show, status: :created, location: @category }
       else
@@ -61,10 +61,15 @@ class Admin::CategoriesController < ApplicationController
   # DELETE /admin/categories/1
   # DELETE /admin/categories/1.json
   def destroy
-    @category.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
+    if @category.skills.count == 0
+      @category.destroy
+      respond_to do |format|
+        format.html { redirect_to admin_categories_url, notice: 'Category was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      flash[:alert] = "有文章的分類不能刪除！"
+      redirect_to admin_categories_url
     end
   end
 
