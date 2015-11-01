@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-12">
     <div class="container">
-      <div class="profile-main">
+      <div class="profile-main" style="height: 100vh; display: flex; flex-direction: column; justify-content: center;">
         <div class="row">
           <div class="col-sm-12" style="margin-bottom: 20px;">
             <div id="username" style="margin: 30px;">
@@ -67,33 +67,31 @@
           <div class="col-sm-6" id="about-me">
             <div class="row">
               <div class="col-sm-12">
-                <h2>哈囉，關於我：</h2>
-                <p>
+                <h1>哈囉，關於我：</h1>
                   <% if @profile.description %>
-                    <%= simple_format(@profile.description) %>
+                    <p><%= simple_format(@profile.description) %></p>
                   <% else %>
-                    自我介紹尚未編輯
+                    <h3>自我介紹尚未編輯</h3>
                   <% end %>
-                </p>
               </div>
             </div>
             <div class="row">
               <div class="col-xs-4" >
-                  <a href="#wanted-top" class="scroll">
+                  <a href="#wanted" class="scroll">
                     <div class="hvr-pulse-grow" id="skills-want">
                       <h3>我想學</h3>
                     </div>
                   </a>
               </div>
               <div class="col-xs-4">
-                <a href="#have-top">
+                <a href="#have">
                   <div class="hvr-pulse-grow" id="skills-have">
                     <h3>我擅長</h3>
                   </div>
                 </a>
               </div>
               <div class="col-xs-4">
-                <a href="#comments-top">
+                <a href="#comments">
                   <div class="hvr-pulse-grow" id="publiccomment">
                     <h3>留言給我</h3>
                   </div>
@@ -119,7 +117,7 @@
             </div>
           </div>
         </div>
-        <h2>我想學</h2>
+        <h1>我想學</h1>
           <% if @profile.categories %>
             <% @profile.categories.each do |c| %>
               <div class="category-box">
@@ -127,7 +125,7 @@
               </div>
             <% end %>
           <% else %>
-            <h1>尚未編輯</h1>
+            <h2>尚未編輯</h2>
           <% end %>
       </div>
     </div>
@@ -146,7 +144,7 @@
             </div>
           </div>
         <div id="all-skills">
-          <h2>我擅長</h2>
+          <h1>我擅長</h1>
           <% if @profile.user.skills %>
             <div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix">
               <% @profile.user.skills.includes(:pictures).each do |s| %>
@@ -167,14 +165,14 @@
               <% end %>
             </div>
           <% else %>
-            <h1>尚未編輯</h1>
+            <h2>尚未編輯</h2>
           <% end %>
         </div>
       </div>
     </div>
   </div>
   <hr id="comments-top">
-  <div class="row publiccomments" id="comments">
+  <div class="row publiccomments" id="comments" >
     <div class="col-sm-12">
       <div class="container">
         <h2>留言給我</h2>

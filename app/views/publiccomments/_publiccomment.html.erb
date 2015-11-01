@@ -3,7 +3,7 @@
   comments = @profile.publiccomments.includes(:user => :profile)
 %>
 <div class="row">
-  <div class="col-sm-10" style="margin: 0 auto;">
+  <div class="col-sm-12" style="margin: 0 auto;">
     <% if comments.any? %>
       <% comments.each do |pub|%>
         <div class="row public-comment">
