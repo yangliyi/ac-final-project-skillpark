@@ -5,18 +5,18 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_one :profile
-  has_many :skills
-  has_many :comments
-  has_many :publiccomments
+  has_one :profile, dependent: :destroy
+  has_many :skills, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :publiccomments, dependent: :destroy
 
   # Favorite profiles of user
-  has_many :user_profile_favoriteships
-  has_many :favorite_profiles, through: :user_profile_favoriteships, source: :profile
+  has_many :user_profile_favoriteships, dependent: :destroy
+  has_many :favorite_profiles, through: :user_profile_favoriteships, source: :profile, dependent: :destroy
 
   # Liked skills of user
-  has_many :user_skill_likeships
-  has_many :like_skills, through: :user_skill_likeships, source: :skill
+  has_many :user_skill_likeships, dependent: :destroy
+  has_many :like_skills, through: :user_skill_likeships, source: :skill, dependent: :destroy
 
   def favorite_profile?(profile)
     self.favorite_profiles.include?(profile)
