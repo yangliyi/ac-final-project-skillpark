@@ -96,11 +96,10 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: left;
   background-color: white;
   height: 60vh;
   background-image: asset-url('welcome_white.png');
-  text-align: center;
   color: #E15B47;
   img {
     width: 100%;
@@ -188,9 +187,8 @@ a {
   #welcome-find, #show, #interact {
     display: block;
     align-items: center;
-    text-align: center;
+    text-align: left;
     height: 60vh;
-    text-align: center;
     color: #E15B47;
     img {
       width: 300px;
@@ -198,6 +196,7 @@ a {
       margin: 50px auto;
     }
     h1 {
+      text-align: center;
       margin-top: 40px;
     }
   }
