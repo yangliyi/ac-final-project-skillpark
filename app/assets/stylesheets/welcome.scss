@@ -40,7 +40,7 @@ a {
   }
 }
 
-#want-to-learn, #banner {
+#want-to-learn, #welcome-banner {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -81,9 +81,9 @@ a {
   }
 }
 
-#banner {
+#welcome-banner {
   height: 25vh;
-  background-image: url(banner.png);
+  background-image: url(stare.png);
   background-size: cover;
   h1 {
     font-size: 300%;
@@ -91,7 +91,7 @@ a {
   }
 }
 
-#find, #show, #interact {
+#welcome-find, #show, #interact {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -99,7 +99,7 @@ a {
   text-align: center;
   background-color: white;
   height: 60vh;
-  background-image: url(background-white.png);
+  background-image: url(welcome_white.png);
   text-align: center;
   color: #E15B47;
   img {
@@ -134,7 +134,7 @@ a {
   align-items: center;
   text-align: center;
   height: 50vh;
-  background-image: url(banner.png);
+  background-image: url(stare.png);
   background-size: cover;
   color: white;
   h1 {
@@ -185,7 +185,7 @@ a {
 }
 
 @media (max-width: 768px) {
-  #find, #show, #interact {
+  #welcome-find, #show, #interact {
     display: block;
     align-items: center;
     text-align: center;
@@ -270,7 +270,7 @@ a {
     font-size: 15px;
     border-radius: 5px;
   }
-  #want-to-learn, #banner {
+  #want-to-learn, #welcome-banner {
     display: block;
     margin: 0 auto;
     align-items: center;
@@ -306,7 +306,7 @@ a {
       margin: 20px auto;
     }
   }
-  #find, #show, #interact {
+  #welcome-find, #show, #interact {
     height: 400px;
     img {
     margin: 0 auto;
@@ -323,7 +323,7 @@ a {
       margin: 2px;
     }
   }
-  #find, #show, #interact {
+  #welcome-find, #show, #interact {
     height: 250px;
     img {
       margin: 0 auto;
