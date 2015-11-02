@@ -3,40 +3,43 @@
   <div class="col-sm-12" style="padding: 0;">
     <!-- Carousel -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <% if false %>
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
+        <% if false %>
         <li data-target="#myCarousel" data-slide-to="2"></li>
+        <% end %>
       </ol>
-      <% end %>
+
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <%= image_tag ('landingpage/background-image.png'), class: "first-slide" %>
+          <%= image_tag ('start-image.jpg'), class: "first-slide" %>
           <div class="container">
-            <div class="carousel-caption">
+            <div class="carousel-caption" style="padding-bottom: 40px;">
               <%= image_tag ('skillpark.png'), class: "first-slide skillpark-logo" %>
-              <h1>專 屬 女 孩 技 能 交 換 空 間</h1>
+              <h1>專 屬 女 孩 的 技 能 交 換 空 間</h1>
               <p>想 嘗 試 新 事 物 嗎 ？ 用 信 賴 又 免 費 的 方 式 嘗 試 所 有 妳 想 學 的 才 藝</p>
-              <a href="#banner" class="how">如何使用</a>
+              <%= link_to '如何使用', '#want-to-learn', class: "how" %>
+              <%= link_to '立即開始', skills_path, class: "now" %>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <%= image_tag ('start-image2.png'), class: "second-slide" %>
+          <div class="container">
+            <div class="carousel-caption" style="padding-bottom: 40px;">
+             <h1 style="color: white;">還 在 等 什 麼？</h1>
+              <p style="color: white;">用 看 得 見 的 信 任 與 熱 情
+ 交 換 彼 此 的 才 藝 與 生 活 風 格</p>
+              <%= link_to '如何使用', '#want-to-learn', class: "how" %>
               <%= link_to '立即開始', skills_path, class: "now" %>
             </div>
           </div>
         </div>
         <% if false %>
         <div class="item">
-          <%= image_tag ('landingpage/background-image.png'), class: "second-slide" %>
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <%= image_tag ("landingpage/background-image.png"), class: "third-slide" %>
+          <%= image_tag ("background-image.png"), class: "third-slide" %>
           <div class="container">
             <div class="carousel-caption">
               <h1>One more for good measure.</h1>
@@ -68,37 +71,37 @@
       <h1>有 想 學 的 東 西 嗎？</h1>
         <div>
           <%= link_to skills_path do %>
-            <%= image_tag ('landingpage/diy.png') %>
+            <%= image_tag ('diy.png') %>
           <% end %>
           <%= link_to skills_path do %>
-            <%= image_tag ('landingpage/makeup.png') %>
+            <%= image_tag ('makeup.png') %>
           <% end %>
           <%= link_to skills_path do %>
-            <%= image_tag ('landingpage/cook.png') %>
+            <%= image_tag ('cook.png') %>
           <% end %>
           <%= link_to skills_path do %>
-            <%= image_tag ('landingpage/draw.png') %>
+            <%= image_tag ('draw.png') %>
           <% end %>
           <%= link_to skills_path do %>
-            <%= image_tag ('landingpage/music.png') %>
+            <%= image_tag ('music.png') %>
           <% end %>
           <%= link_to skills_path do %>
-            <%= image_tag ('landingpage/coding.png') %>
+            <%= image_tag ('coding.png') %>
           <% end %>
           <%= link_to skills_path do %>
-            <%= image_tag ('landingpage/lang.png') %>
+            <%= image_tag ('lang.png') %>
           <% end %>
           <%= link_to skills_path do %>
-            <%= image_tag ('landingpage/bike.png') %>
+            <%= image_tag ('bike.png') %>
           <% end %>
           <%= link_to skills_path do %>
-            <%= image_tag ('landingpage/writing.png') %>
+            <%= image_tag ('writing.png') %>
           <% end %>
           <%= link_to skills_path do %>
-            <%= image_tag ('landingpage/software.png') %>
+            <%= image_tag ('software.png') %>
           <% end %>
           <%= link_to skills_path do %>
-            <%= image_tag ('landingpage/cam.png') %>
+            <%= image_tag ('cam.png') %>
           <% end %>
         </div>
         <%= link_to '都有興趣！我想看全部！', skills_path, class: "go-to-button" %>
@@ -122,7 +125,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-6">
-          <%= image_tag ('landingpage/mac.png') %>
+          <%= image_tag ('index.jpg') %>
         </div>
         <div class="col-sm-6">
           <h1>快速找到想學的才藝</h1>
@@ -143,7 +146,7 @@
           <p>無論是熱呼呼的手作餅乾、舞台上的精湛舞步，還是攝影作品、手繪插畫，都能用影像看見！</p>
         </div>
         <div class="col-sm-6">
-          <%= image_tag ('landingpage/mac.png') %>
+          <%= image_tag ('skill.jpg') %>
         </div>
       </div>
     </div>
@@ -156,7 +159,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-6">
-          <%= image_tag ('landingpage/mac.png') %>
+          <%= image_tag ('comment.jpg') %>
         </div>
         <div class="col-sm-6">
           <h1>盡情安心交換去！</h1>
