@@ -83,7 +83,7 @@ a {
 
 #welcome-banner {
   height: 25vh;
-  background-image: url(stare.png);
+  background-image: asset-url('stare.png');
   background-size: cover;
   h1 {
     font-size: 300%;
@@ -99,7 +99,7 @@ a {
   text-align: center;
   background-color: white;
   height: 60vh;
-  background-image: url(welcome_white.png);
+  background-image: asset-url('welcome_white.png');
   text-align: center;
   color: #E15B47;
   img {
@@ -123,7 +123,7 @@ a {
     margin-bottom: 50px;
   }
   .fb-page {
-    width: 250px; height: 250;
+    width: 220px; height: 220;
   }
 }
 
@@ -134,7 +134,7 @@ a {
   align-items: center;
   text-align: center;
   height: 50vh;
-  background-image: url(stare.png);
+  background-image: asset-url('stare.png');
   background-size: cover;
   color: white;
   h1 {
