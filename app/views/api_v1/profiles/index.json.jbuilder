@@ -23,4 +23,9 @@ json.data @profiles do |p|
   end
   json.public_comment p.publiccomments.map {|p| [p.user.profile.username, p.content] }
   json.favorited_users_count p.favorited_users_count
+  if p.user.favorite_profiles
+    json.favorites p.user.favorite_profiles.map{|p| [p.id, p.username] }
+  else
+    json.favorites ""
+  end
 end
