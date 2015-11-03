@@ -19,6 +19,11 @@
   <div class="form-group">
     <%= f.label :photo, "更新大頭照：" %>
     <%= f.file_field :photo %>
+
+    <% if @admin_profile.photo.exists? %>
+      <%= check_box_tag "destroy_photo", "1" %> 回復Facebook照片
+    <% end %>
+
   </div>
 
   <div class="form-group">

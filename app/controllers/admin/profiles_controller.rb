@@ -44,6 +44,10 @@ class Admin::ProfilesController < ApplicationController
   # PATCH/PUT /admin/profiles/1
   # PATCH/PUT /admin/profiles/1.json
   def update
+
+    if params[:destroy_photo] == "1"
+      @admin_profile.photo = nil
+    end
     respond_to do |format|
       if @admin_profile.update(admin_profile_params)
         format.html { redirect_to @admin_profile, notice: 'Profile was successfully updated.' }
