@@ -18,7 +18,9 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'devise'
 gem 'omniauth-facebook'
-gem 'paperclip'
+gem 'paperclip', '~> 4.3.1'
+gem 'aws-sdk-v1' # If using paperclip <= v4.3.1
+
 gem 'select2-rails', '~> 3.5.9.3'
 gem 'ransack'
 gem 'lightbox2-rails'

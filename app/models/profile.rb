@@ -11,7 +11,8 @@ class Profile < ActiveRecord::Base
   has_many :user_profile_favoriteships, dependent: :destroy
   has_many :favorited_users, through: :user_profile_favoriteships, source: :user, dependent: :destroy
 
-  has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/default/missing.jpg"
+  has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/default/missing.jpg",
+                    :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml", :s3_host_name => "s3-ap-northeast-1.amazonaws.com"
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
 
 end

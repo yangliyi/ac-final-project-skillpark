@@ -4,7 +4,7 @@
 # overhead.  For more information, visit www.newrelic.com.
 #
 # Generated October 29, 2015
-# 
+#
 # This configuration file is custom generated for Skillpark
 #
 # For full documentation of agent configuration options, please refer to
@@ -47,3 +47,4 @@ staging:
 
 production:
   <<: *default_settings
+  app_name: My Application

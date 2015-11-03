@@ -19,3 +19,6 @@
 /public/system
 /public/images
 /config/fb.yml
+/config/newrelic.yml
+/config/s3.yml
+
