@@ -9,7 +9,7 @@ class ApiV1::CommentsController < ApiController
   def create
     @profile = Profile.find_by_username(params[:data][0][:commented_user] )
 
-    @comment = @profile.comments.create(comment_params)
+    @comment = @profile.comments.create(content: params[:data][0][:content] )
     @comment.profile = @profile
     @comment.user = User.find_by_authentication_token( params[:auth_token] )
 
