@@ -13,6 +13,8 @@ class Skill < ActiveRecord::Base
 
   has_many :pictures, :dependent => :destroy
 
+  validates_presence_of :name, :requirement, :description
+
   default_scope { order(updated_at: :desc) }
 
   def like_by_user?(u)

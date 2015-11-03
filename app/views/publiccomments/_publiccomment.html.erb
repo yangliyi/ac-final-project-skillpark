@@ -36,7 +36,7 @@
     <div class="col-sm-12">
       <%= form_for Publiccomment.new, url: profile_publiccomments_path(@profile), remote: true do |f| %>
         <div class="form-group">
-          <%= f.text_area :content, class: "form-control" %>
+          <%= f.text_area :content, class: "form-control", required: true %>
         </div>
         <%= f.submit "回覆", class: "btn btn-default"%>
       <% end %>

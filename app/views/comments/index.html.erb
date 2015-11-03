@@ -62,7 +62,7 @@
 
     <%= form_for Comment.new, url: profile_comments_path(p) do |f| %>
       <div class="form-group">
-        <%= f.text_area :content, class: "form-control" %>
+        <%= f.text_area :content, class: "form-control", required: true %>
         <%= f.submit "回覆", class: "btn btn-default"%>
       </div>
     <% end %>
