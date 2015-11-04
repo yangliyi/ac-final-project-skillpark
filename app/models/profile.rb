@@ -15,4 +15,6 @@ class Profile < ActiveRecord::Base
                     :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml", :s3_host_name => "s3-ap-northeast-1.amazonaws.com"
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
 
+  validates_presence_of :username
+
 end
