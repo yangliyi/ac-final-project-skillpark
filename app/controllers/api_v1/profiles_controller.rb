@@ -8,7 +8,7 @@ class ApiV1::ProfilesController < ApiController
   def favorite
 
     @user = User.find_by_authentication_token( params[:auth_token] )
-    @profile = Profile.find(params[:id])
+    @profile = Profile.find(params[:favorite_id])
 
     if @user && @profile
       if @user.favorite_profile?(@profile)
