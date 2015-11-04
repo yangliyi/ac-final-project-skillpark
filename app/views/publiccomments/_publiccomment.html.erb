@@ -29,9 +29,7 @@
         </div>
       <% end %>
     <% else %>
-      <div class="row">
-        <h4>尚無留言</h4>
-      </div>
+      <h3>尚無留言</h3>
     <% end %>
     <div class="col-sm-12">
       <%= form_for Publiccomment.new, url: profile_publiccomments_path(@profile), remote: true do |f| %>

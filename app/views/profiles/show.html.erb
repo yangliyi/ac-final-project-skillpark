@@ -112,7 +112,7 @@
           <div class="col-sm-12" style="margin-bottom: 20px;">
             <div id="username" style="margin: 30px;">
               <% if current_user == @profile.user %>
-              <%= link_to ' + 修改分類', edit_profile_path(@profile), class: "btn btn-primary", style: "float: right;" %>
+              <%= link_to ' + 修改想學的分類', edit_profile_path(@profile), class: "btn btn-primary", style: "float: right;" %>
               <% end %>
             </div>
           </div>
@@ -138,7 +138,7 @@
             <div class="col-sm-12" style="margin-bottom: 20px;">
               <div id="username" style="margin: 30px;">
                 <% if current_user == @profile.user %>
-                <%= link_to ' + 新增擅長技能', edit_profile_path(@profile), class: "btn btn-primary", style: "float: right;" %>
+                <%= link_to ' + 新增擅長技能', new_skill_path, class: "btn btn-primary", style: "float: right;" %>
                 <% end %>
               </div>
             </div>
@@ -165,7 +165,7 @@
               <% end %>
             </div>
           <% else %>
-            <h2>尚未編輯</h2>
+            <h2>尚未新增</h2>
           <% end %>
         </div>
       </div>
