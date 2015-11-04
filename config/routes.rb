@@ -35,11 +35,12 @@ Rails.application.routes.draw do
   scope :path => '/api/v1/', :defaults => { :format => :json }, :module => "api_v1", :as => 'v1' do
 
     resources :skills # ApiV1::SkillsController
-    resources :profiles
     resources :locations
     resources :comments
     resources :categories
 
+    get "/profiles" => "profiles#index"
+    post "/profiles/:id/favorite" => "profiles#favorite"
     post "/login" => "auth#login"
     post "/logout" => "auth#logout"
 
