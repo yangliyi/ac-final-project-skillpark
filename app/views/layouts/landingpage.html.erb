@@ -42,7 +42,12 @@
           <li>
             <%= link_to profile_comments_path(current_user.profile) do %>
               <span class="fa fa-comments"></span>訊息
-              <% end %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_skill_path do %>
+              <i class="fa fa-plus"></i>新增技能
+            <% end %>
           </li>
           <li id="nav-dropdown" class="dropdown"
           <% if current_user.profile.created_at == current_user.profile.updated_at %>

@@ -38,58 +38,63 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
-          <li>
-            <% if @q %>
-              <%= search_form_for @q, class: "navbar-form" do |f| %>
-                <%= f.search_field :name_or_categories_name_cont, placeholder: "搜尋技能或分類名稱", class: "form-control " %>
-              <% end %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to profile_path(current_user.profile) do %><i class="fa fa-female"></i>我的頁面<% end %>
-          </li>
-          <li>
-            <%= link_to all_favorites_profile_path(current_user.profile) do %>
-              <span class="fa fa-archive" aria-hidden="true"></span>收藏
-              <% end %>
-          </li>
-          <li>
-            <%= link_to profile_comments_path(current_user.profile) do %>
-              <span class="fa fa-comments"></span>訊息
-              <% end %>
-          </li>
-          <li id="nav-dropdown" class="dropdown"
-          <% if current_user.profile.created_at == current_user.profile.updated_at %>
-          data-toggle="tooltip" data-placement="bottom" title="瀏覽個人頁面跟修改資料！"
-          <% end %>
-          >
-            <a href="#" id="nav-dropdown-a" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <% if current_user.profile.photo_updated_at %>
-                <%= image_tag (current_user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 2px;" %>
-              <% else %>
-              <% @u = current_user %>
-                <%= image_tag ("http://graph.facebook.com/#{@u.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 2px;" %>
-              <% end %>
-              <span class="caret"></span>
-            </a>
-            <ul id="dropdown-menu" class="dropdown-menu" style="opacity: 0.9;">
-              <li>
-                <%= link_to edit_profile_url(current_user.profile) do %>
-                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>修改個人資料
+            <li>
+              <% if @q %>
+                <%= search_form_for @q, class: "navbar-form" do |f| %>
+                  <%= f.search_field :name_or_categories_name_cont, placeholder: "搜尋技能或分類名稱", class: "form-control " %>
                 <% end %>
-              </li>
-              <% if current_user && current_user.admin? %>
-              <li><%= link_to '後台管理頁面', admin_root_path %></li>
               <% end %>
-              <li>
-                <%= link_to('登出', destroy_user_session_path, :method => :delete) %>
-              </li>
-            </ul>
-          </li>
+            </li>
+            <li>
+              <%= link_to profile_path(current_user.profile) do %><i class="fa fa-female"></i>我的頁面<% end %>
+            </li>
+            <li>
+              <%= link_to all_favorites_profile_path(current_user.profile) do %>
+                <span class="fa fa-archive" aria-hidden="true"></span>收藏
+                <% end %>
+            </li>
+            <li>
+              <%= link_to profile_comments_path(current_user.profile) do %>
+                <span class="fa fa-comments"></span>訊息
+                <% end %>
+            </li>
+            <li>
+              <%= link_to new_skill_path do %>
+                <i class="fa fa-plus"></i>新增技能
+              <% end %>
+            </li>
+            <li id="nav-dropdown" class="dropdown"
+            <% if current_user.profile.created_at == current_user.profile.updated_at %>
+            data-toggle="tooltip" data-placement="bottom" title="瀏覽個人頁面跟修改資料！"
+            <% end %>
+            >
+              <a href="#" id="nav-dropdown-a" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <% if current_user.profile.photo_updated_at %>
+                  <%= image_tag (current_user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 2px;" %>
+                <% else %>
+                <% @u = current_user %>
+                  <%= image_tag ("http://graph.facebook.com/#{@u.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 2px;" %>
+                <% end %>
+                <span class="caret"></span>
+              </a>
+              <ul id="dropdown-menu" class="dropdown-menu" style="opacity: 0.9;">
+                <li>
+                  <%= link_to edit_profile_url(current_user.profile) do %>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>修改個人資料
+                  <% end %>
+                </li>
+                <% if current_user && current_user.admin? %>
+                <li><%= link_to '後台管理頁面', admin_root_path %></li>
+                <% end %>
+                <li>
+                  <%= link_to('登出', destroy_user_session_path, :method => :delete) %>
+                </li>
+              </ul>
+            </li>
           <% else %>
-          <li>
-            <%= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook) %>
-          </li>
+            <li>
+              <%= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook) %>
+            </li>
           <% end %>
         </ul>
       </div>
