@@ -2,8 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.message {
-  div {
-    overflow: auto;
-  }
+.panel {
+  background-color: #EAE5E5;
 }
+
+.panel.contact {
+  background-color: white;
+}
+.message {
+  display: inline-block;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #E2ECFF;
+ }
+
+ h4 {
+  display: inline;
+ }

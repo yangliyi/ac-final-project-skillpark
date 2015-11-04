@@ -1,0 +1,72 @@
+<h3>訊息</h3>
+<% if @comments_group_by_profile %>
+  <% @comments_group_by_profile.each do |p, comments| %>
+    <% if p == @profile %>
+        <div class="panel">
+          <div class="panel-heading" style="background-color: #41569C; color: white;">
+            <h3 class="panel-title" style="background-color: #41569C;">
+              <%= link_to profile_path(p) do %>
+                <% if p.photo_updated_at %>
+                  <%= image_tag (p.photo.url), style: "width: 25px; height: 25px; display: inline; border-radius: 100%;" %>
+                <% else %>
+                  <% @p = p %>
+                  <%= image_tag ("http://graph.facebook.com/#{@p.user.fb_uid}/picture?width=999"), style: "width: 25px; height: 25px; display: inline; border-radius: 100%;" %>
+                <% end %>
+                <%= p.username %>
+              <% end %>
+            </h3>
+            <% @p = p %>
+          </div>
+          <div class="panel-body" style="overflow: auto; height: 150px; background-color: #eee;">
+            <% comments.each do |c| %>
+              <% if ( c.profile == @p && c.user == current_user ) || ( c.profile == current_user.profile && c.user == @p.user ) %>
+                <% if c.user == current_user %>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <span class="message pull-right user-message">
+                        <%= c.content %>
+                      </span>
+                      <div class="pull-right" style="display: block; margin-top: 5px; font-size: 10px;"><%= time_ago_in_words(c.created_at) %>前</div>
+                    </div>
+                  </div>
+                <% elsif %>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <% if c.user.profile.photo_updated_at %>
+                        <%= image_tag (c.user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+                      <% else %>
+                        <% @c = c %>
+                        <%= image_tag ("http://graph.facebook.com/#{@c.user.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+                      <% end %>
+                      <div class="message" style="background-color: white;">
+                        <%= c.content %>
+                      </div>
+                      <span style="font-size: 10px;"><%= time_ago_in_words(c.created_at) %>前</span>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <%= form_for Comment.new, url: profile_comments_path(p), remote: true do |f| %>
+            <div class="form-group" style="margin-bottom: 0; background-color: #EEE;">
+              <%= f.text_area :content, class: "form-control", required: true %>
+              <%= f.submit "回覆", class: "btn btn-default", style: "position: relative; right: 0;" %>
+            </div>
+          <% end %>
+        </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<script>
+  var height = 0;
+  $('.panel-body .row').each(function(i, value){
+    height += parseInt($(this).height());
+  });
+
+  height += '';
+
+$('.panel-body').animate({scrollTop: height}, 10);
+</script>

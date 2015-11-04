@@ -1,9 +1,13 @@
 class CommentsController < ApplicationController
 
   def index
-    @comments_group_by_profile = Comment.order("id DESC").get_communications(current_user)
+    @comments_group_by_profile = Comment.get_communications(current_user)
 
     @profiles = @comments_group_by_profile.keys
+
+    if params[:id]
+      @profile = Profile.find(params[:id])
+    end
   end
 
   def create
@@ -14,8 +18,20 @@ class CommentsController < ApplicationController
       @comment.user = current_user
 
       if @comment.save
-        if @profile.save
-          redirect_to profile_comments_path(current_user.profile)
+        @profile.save
+
+        @comments_group_by_profile = Comment.get_communications(current_user)
+
+        @profiles = @comments_group_by_profile.keys
+
+        if params[:id]
+          @profile = Profile.find(params[:id])
+        end
+        respond_to do |format|
+          format.html {
+            redirect_to profile_comments_path(current_user.profile, id: @profile)
+          }
+          format.js
         end
       end
     else

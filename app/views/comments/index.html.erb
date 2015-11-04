@@ -1,74 +1,30 @@
 <div class="container">
-  <% if @profiles %>
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title">聯絡過的對象：</h3>
-      </div>
-      <div class="panel-body">
+  <div class="row">
+    <div class="col-sm-3">
+      <h3>聯絡過的對象</h3>
+      <% if @profiles %>
         <% @profiles.each do |p| %>
-          <%= link_to profile_path(p) do %>
-            <% if p.photo_updated_at %>
-              <%= image_tag (p.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
-            <% else %>
-              <% @p = p %>
-              <%= image_tag ("http://graph.facebook.com/#{@p.user.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+          <div style="margin: 20px;">
+            <%= link_to profile_comments_path(current_user.profile, :id => p) do %>
+              <% if p.photo_updated_at %>
+                <%= image_tag (p.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+              <% else %>
+                <% @p = p %>
+                <%= image_tag ("http://graph.facebook.com/#{@p.user.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+              <% end %>
+              <h4><%= p.username %></h4>
             <% end %>
-            <%= p.username %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-
-<h3>對話紀錄：</h3>
-
-  <% @comments_group_by_profile.each do |p, comments| %>
-
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <%= link_to profile_path(p) do %>
-            <% if p.photo_updated_at %>
-              <%= image_tag (p.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
-            <% else %>
-              <% @p = p %>
-              <%= image_tag ("http://graph.facebook.com/#{@p.user.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
-            <% end %>
-            <%= p.username %>
-          <% end %>
-        </h3>
-        <% @p = p %>
-      </div>
-      <div class="panel-body">
-        <% comments.each do |c| %>
-          <% if ( c.profile == @p && c.user == current_user ) || ( c.profile == current_user.profile && c.user == @p.user ) %>
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="message">
-                <% if c.user.profile.photo_updated_at %>
-                  <%= image_tag (c.user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
-                <% else %>
-                  <% @c = c %>
-                  <%= image_tag ("http://graph.facebook.com/#{@c.user.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
-                <% end %>
-                <%= c.content %>
-                <span style="float: right;"><%= time_ago_in_words(c.created_at) %>前</span>
-              </div>
-            </div>
           </div>
-          <% end %>
         <% end %>
-      </div>
-
-    <%= form_for Comment.new, url: profile_comments_path(p) do |f| %>
-      <div class="form-group">
-        <%= f.text_area :content, class: "form-control", required: true %>
-        <%= f.submit "回覆", class: "btn btn-default"%>
-      </div>
-    <% end %>
-
+      <% end %>
     </div>
-
-  <% end %>
+    <div class="col-sm-9">
+      <div id="private_comments">
+        <%= render 'comments', :locals => { :comments_group_by_profile => @comments_group_by_profile, :profile => @profile } %>
+      </div>
+    </div>
+  </div>
 </div>
+
+
 
