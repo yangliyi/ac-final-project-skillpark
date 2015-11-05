@@ -12,6 +12,7 @@
                 <% @p = p %>
                 <%= image_tag ("http://graph.facebook.com/#{@p.user.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
               <% end %>
+            <%= link_to profile_comments_path(current_user.profile, :id => p), remote: true do %>
               <h4><%= p.username %></h4>
             <% end %>
           </div>
