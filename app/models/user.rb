@@ -49,6 +49,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def toggle_like(skill)
+    if self.like_skill?(skill)
+      self.like_skills.delete(skill)
+    else
+      self.like_skills << skill
+    end
+  end
+
   def like_skill?(skill)
     self.like_skills.include?(skill)
   end

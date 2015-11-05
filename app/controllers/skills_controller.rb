@@ -15,10 +15,10 @@ class SkillsController < ApplicationController
         @skills = @skills.includes(:user_skill_likeships)
 
         category_ids = current_user.profile.category_ids
-        recommended_skill_ids = Skill.joins(:skill_categoryships).where(:skill_categoryships => {:category_id => category_ids}).pluck(:id).uniq
+        followed_skill_ids = Skill.find_followed_skill_ids(category_ids)
 
-        @unfollowed_skills = @skills.select{ |x| !recommended_skill_ids.include?(x.id) }
-        @skills = @skills.select{ |x| recommended_skill_ids.include?(x.id) }
+        @unfollowed_skills = @skills.select{ |x| !followed_skill_ids.include?(x.id) }
+        @skills = @skills.select{ |x| followed_skill_ids.include?(x.id) }
       end
     end
 
@@ -82,12 +82,7 @@ class SkillsController < ApplicationController
   # for current_user
   def like
     @skill = Skill.find(params[:id])
-    # Refactor: current_user.toggle_like(@skill)
-    if current_user.like_skill?(@skill)
-      current_user.like_skills.delete(@skill)
-    else
-      current_user.like_skills << @skill
-    end
+    current_user.toggle_like(@skill)
 
     respond_to do |format|
       format.html {

@@ -15,6 +15,10 @@ class Skill < ActiveRecord::Base
 
   default_scope { order(updated_at: :desc) }
 
+  def self.find_followed_skill_ids(category_ids)
+    self.joins(:skill_categoryships).where(:skill_categoryships => {:category_id => category_ids}).pluck(:id).uniq
+  end
+
   def like_by_user?(u)
     user_skill_likeships.select{ |x| x.user_id == u.id }.any?
   end
