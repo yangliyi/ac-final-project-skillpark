@@ -41,12 +41,24 @@ class User < ActiveRecord::Base
     self.favorite_profiles.include?(profile)
   end
 
+  def toggle_favorite_profile(profile)
+    if self.favorite_profile?(profile)
+      self.favorite_profiles.delete(profile)
+    else
+      self.favorite_profiles << profile
+    end
+  end
+
   def like_skill?(skill)
     self.like_skills.include?(skill)
   end
 
   def admin?
     self.role == "admin"
+  end
+
+  def profile_username
+    self.profile.username
   end
 
   def self.from_omniauth(auth)

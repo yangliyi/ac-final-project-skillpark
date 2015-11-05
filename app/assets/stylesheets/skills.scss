@@ -4,7 +4,7 @@
 
 .skill-img {
   img {
-  width: 100%;
+    width: 100%;
   }
 }
 
@@ -52,6 +52,15 @@ $background-grey: #EAE5E5;
   background-color: $background-grey;
   h5 {
     display: inline-block;
+  }
+}
+
+.skill-box-author {
+  .skill-owner-photo {
+    display: inline;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
   }
 }
 

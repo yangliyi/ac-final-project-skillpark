@@ -1,7 +1,5 @@
 class Skill < ActiveRecord::Base
 
-  # TODO: Add more validations
-
   belongs_to :user
 
   has_many :skill_categoryships, dependent: :destroy

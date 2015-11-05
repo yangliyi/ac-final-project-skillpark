@@ -41,12 +41,12 @@
           <%= link_to profile_path(s.user.profile) do %>
         </h6>
           <% if s.user.profile.photo_updated_at %>
-            <%= image_tag (s.user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+            <%= image_tag (s.user.profile.photo.url), class: "skill-owner-photo" %>
           <% else %>
             <% @s = s %>
-            <%= image_tag ("http://graph.facebook.com/#{@s.user.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+            <%= image_tag ("http://graph.facebook.com/#{@s.user.fb_uid}/picture?width=999"), class: "skill-owner-photo" %>
           <% end %>
-          <%= s.user.profile.username %>
+          <%= s.user.profile_username %>
         <% end %>
         <p>
           <% if s.user.profile.location %>
@@ -86,12 +86,12 @@
               <%= link_to profile_path(s.user.profile) do %>
             </h6>
               <% if s.user.profile.photo_updated_at %>
-                <%= image_tag (s.user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+                <%= image_tag (s.user.profile.photo.url), class: "skill-owner-photo" %>
               <% else %>
                 <% @s = s %>
-                <%= image_tag ("http://graph.facebook.com/#{@s.user.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
+                <%= image_tag ("http://graph.facebook.com/#{@s.user.fb_uid}/picture?width=999"), class: "skill-owner-photo" %>
               <% end %>
-              <%= s.user.profile.username %>
+              <%= s.user.profile_username %>
             <% end %>
             <p>
               <% if s.user.profile.location %>
