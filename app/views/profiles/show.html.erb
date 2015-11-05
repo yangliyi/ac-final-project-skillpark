@@ -177,7 +177,7 @@
       <div class="container">
         <h2>留言給我</h2>
         <div id="publiccomments">
-          <%= render 'publiccomments/publiccomment' %>
+          <%= render :partial => 'publiccomments/publiccomment', :locals => { :public_comments => @public_comments }  %>
         </div>
       </div>
     </div>

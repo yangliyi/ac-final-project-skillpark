@@ -1,18 +1,14 @@
-<%
-  # TODO: move to controller, and pass comments variable when render this partial
-  comments = @profile.publiccomments.includes(:user => :profile)
-%>
 <div class="row">
   <div class="col-sm-12" style="margin: 0 auto;">
-    <% if comments.any? %>
-      <% comments.each do |pub|%>
+    <% if public_comments.any? %>
+      <% public_comments.each do |pub|%>
         <div class="row public-comment">
           <div class="col-sm-2">
             <% if pub.user.profile.photo_updated_at %>
-              <%= image_tag (pub.user.profile.photo.url), style: "width: 60px; height: 60px; display: block; margin: 20px auto; border-radius: 100%;" %>
+              <%= image_tag (pub.user.profile.photo.url), class: "public-commentor-photo" %>
             <% else %>
               <% @u = pub.user %>
-              <%= image_tag ("http://graph.facebook.com/#{@u.fb_uid}/picture?width=999"), style: "width: 60px; height: 60px; display: block; margin: 20px auto; border-radius: 100%;" %>
+              <%= image_tag ("http://graph.facebook.com/#{@u.fb_uid}/picture?width=999"), class: "public-commentor-photo" %>
             <% end %>
           </div>
           <div class="col-sm-10">

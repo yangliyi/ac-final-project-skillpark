@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
 
 
   def show
+    @public_comments = @profile.publiccomments.includes(:user => :profile)
   end
 
   def edit
@@ -31,12 +32,7 @@ class ProfilesController < ApplicationController
   # for current_user
   def favorite
 
-    # TODO: refactor  current_user.toggle_favorite_profile(@profile)
-    if current_user.favorite_profile?(@profile)
-      current_user.favorite_profiles.delete(@profile)
-    else
-      current_user.favorite_profiles << @profile
-    end
+    current_user.toggle_favorite_profile(@profile)
 
     respond_to do |format|
       format.html {
