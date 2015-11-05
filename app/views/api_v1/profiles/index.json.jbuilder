@@ -10,7 +10,11 @@ json.data @profiles do |p|
   else
     json.description ""
   end
-  json.photo asset_url(p.photo.url)
+  if p.photo_updated_at
+    json.photo asset_url(p.photo.url)
+  else
+    json.photo p.fb_image
+  end
   if p.location
     json.location p.location.city
   else
