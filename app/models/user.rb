@@ -99,7 +99,9 @@ class User < ActiveRecord::Base
     user.save!
     profile = user.create_profile
     profile.username = auth.info.name
+    profile.fb_image = auth.info.image + "?width=600"
     profile.save!
     return user
   end
+
 end

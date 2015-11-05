@@ -15,11 +15,7 @@
         <div class="row" style="margin-bottom: 40px;">
           <div class="col-sm-6">
             <div class="user-photo">
-              <% if @profile.photo_updated_at %>
-                <%= image_tag (@profile.photo.url(:medium)) %>
-              <% else %>
-                <%= image_tag ("http://graph.facebook.com/#{@profile.user.fb_uid}/picture?width=999") %>
-              <% end %>
+              <%= image_tag (@profile.photo_url) %>
               <h1 style="text-align: center;"><%= @profile.username %></h1>
               <p style="text-align: center;">
                 <% if @profile.location %>

@@ -4,12 +4,7 @@
       <% public_comments.each do |pub|%>
         <div class="row public-comment">
           <div class="col-sm-2">
-            <% if pub.user.profile.photo_updated_at %>
-              <%= image_tag (pub.user.profile.photo.url), class: "public-commentor-photo" %>
-            <% else %>
-              <% @u = pub.user %>
-              <%= image_tag ("http://graph.facebook.com/#{@u.fb_uid}/picture?width=999"), class: "public-commentor-photo" %>
-            <% end %>
+            <%= image_tag (pub.user.profile.photo_url), class: "public-commentor-photo" %>
           </div>
           <div class="col-sm-10">
             <div id="publiccomment-<%= pub.id %>">

@@ -17,4 +17,12 @@ class Profile < ActiveRecord::Base
 
   validates_presence_of :username
 
+  def photo_url
+    if self.photo.updated_at
+      self.photo.url
+    else
+      self.fb_image
+    end
+  end
+
 end

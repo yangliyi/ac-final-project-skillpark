@@ -16,13 +16,15 @@
     <div class="box">
       <div>
         <%= link_to skill_path(s) do %>
-          <% if s.pictures.any? %>
+
           <div class="skill-img">
-            <%= image_tag (s.pictures.first.image.url(:medium)) %>
+            <% if s.pictures.any? %>
+              <%= image_tag (s.pictures.first.image.url(:medium)) %>
+            <% else %>
+              無上傳圖片
+            <% end %>
           </div>
-          <% else %>
-          無上傳圖片
-          <% end %>
+
           <h5 class="skill-name"><strong><%= s.name %></strong></h5>
           <span class="time"><%= time_ago_in_words(s.updated_at) %>前更新</span>
           <%= link_to like_skill_path(s), method: :post, class: "btn", id: "like-#{s.id}", remote: true do %>
@@ -40,12 +42,7 @@
         <h6>
           <%= link_to profile_path(s.user.profile) do %>
         </h6>
-          <% if s.user.profile.photo_updated_at %>
-            <%= image_tag (s.user.profile.photo.url), class: "skill-owner-photo" %>
-          <% else %>
-            <% @s = s %>
-            <%= image_tag ("http://graph.facebook.com/#{@s.user.fb_uid}/picture?width=999"), class: "skill-owner-photo" %>
-          <% end %>
+          <%= image_tag (s.user.profile.photo_url), class: "skill-owner-photo" %>
           <%= s.user.profile_username %>
         <% end %>
         <p>
@@ -63,11 +60,13 @@
         <div class="box">
           <div>
             <%= link_to skill_path(s) do %>
-              <% if s.pictures.any?%>
               <div class="skill-img">
-              <%= image_tag (s.pictures.first.image.url(:medium)) %>
+                <% if s.pictures.any?%>
+                  <%= image_tag (s.pictures.first.image.url(:medium)) %>
+                <% else %>
+                  無上傳圖片
+                <% end %>
               </div>
-              <% end %>
               <h5 class="skill-name"><strong><%= s.name %></strong></h5>
               <span class="time"><%= time_ago_in_words(s.updated_at) %>前更新</span>
               <%= link_to like_skill_path(s), method: :post, class: "btn", id: "like-#{s.id}", remote: true do %>
@@ -85,12 +84,7 @@
             <h6>
               <%= link_to profile_path(s.user.profile) do %>
             </h6>
-              <% if s.user.profile.photo_updated_at %>
-                <%= image_tag (s.user.profile.photo.url), class: "skill-owner-photo" %>
-              <% else %>
-                <% @s = s %>
-                <%= image_tag ("http://graph.facebook.com/#{@s.user.fb_uid}/picture?width=999"), class: "skill-owner-photo" %>
-              <% end %>
+              <%= image_tag (s.user.profile.photo_url), class: "skill-owner-photo" %>
               <%= s.user.profile_username %>
             <% end %>
             <p>

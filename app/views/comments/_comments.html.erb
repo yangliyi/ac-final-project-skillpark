@@ -6,12 +6,7 @@
           <div class="panel-heading" style="background-color: #41569C; color: white;">
             <h3 class="panel-title" style="background-color: #41569C;">
               <%= link_to profile_path(p) do %>
-                <% if p.photo_updated_at %>
-                  <%= image_tag (p.photo.url), style: "width: 25px; height: 25px; display: inline; border-radius: 100%;" %>
-                <% else %>
-                  <% @p = p %>
-                  <%= image_tag ("http://graph.facebook.com/#{@p.user.fb_uid}/picture?width=999"), style: "width: 25px; height: 25px; display: inline; border-radius: 100%;" %>
-                <% end %>
+                <%= image_tag (p.photo_url), style: "width: 25px; height: 25px; display: inline; border-radius: 100%;" %>
                 <%= p.username %>
               <% end %>
             </h3>
@@ -32,12 +27,7 @@
                 <% elsif %>
                   <div class="row">
                     <div class="col-sm-12">
-                      <% if c.user.profile.photo_updated_at %>
-                        <%= image_tag (c.user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
-                      <% else %>
-                        <% @c = c %>
-                        <%= image_tag ("http://graph.facebook.com/#{@c.user.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
-                      <% end %>
+                      <%= image_tag (c.user.profile.photo_url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
                       <div class="message" style="background-color: white;">
                         <%= c.content %>
                       </div>

@@ -55,12 +55,7 @@
           <% end %>
           >
             <a href="#" id="nav-dropdown-a" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <% if current_user.profile.photo_updated_at %>
-                <%= image_tag (current_user.profile.photo.url), style: "width: 20px; height: 20px; display: inline; border-radius: 2px;" %>
-              <% else %>
-              <% @u = current_user %>
-                <%= image_tag ("http://graph.facebook.com/#{@u.fb_uid}/picture?width=999"), style: "width: 20px; height: 20px; display: inline; border-radius: 2px;" %>
-              <% end %>
+              <%= image_tag (current_user.profile.photo_url), style: "width: 20px; height: 20px; display: inline; border-radius: 2px;" %>
               <span class="caret"></span>
             </a>
             <ul id="dropdown-menu" class="dropdown-menu" style="opacity: 0.9;">

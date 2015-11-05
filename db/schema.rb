@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101105636) do
+ActiveRecord::Schema.define(version: 20151105055239) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",                       limit: 255
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20151101105636) do
     t.datetime "photo_updated_at"
     t.integer  "location_id",           limit: 4
     t.integer  "favorited_users_count", limit: 4,     default: 0
+    t.string   "fb_image",              limit: 255
   end
 
   add_index "profiles", ["location_id"], name: "index_profiles_on_location_id", using: :btree
