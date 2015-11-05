@@ -6,6 +6,7 @@ class PubliccommentsController < ApplicationController
     if current_user
       @publiccomment = @profile.publiccomments.create(publiccomment_params)
       @publiccomment.user = current_user
+      @public_comments = @profile.publiccomments.includes(:user => :profile)
       if @publiccomment.save
         respond_to do |format|
           format.html {

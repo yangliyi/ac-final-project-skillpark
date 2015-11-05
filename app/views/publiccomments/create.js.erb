@@ -1,1 +1,1 @@
-$("#publiccomments").html(" <%= j render(:partial => "publiccomment") %> ");
+$("#publiccomments").html(" <%= j render(:partial => "publiccomment", :locals => {:public_comments => @public_comments }) %> ");
