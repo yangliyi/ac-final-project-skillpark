@@ -28,7 +28,14 @@ a {
   text-align: right;
 }
 
-
+@media (min-width: 560px) {
+  #profile-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+  }
+}
 /*** user-photo ***/
 
 .user-photo {
