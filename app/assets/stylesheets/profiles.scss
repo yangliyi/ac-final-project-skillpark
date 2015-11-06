@@ -130,12 +130,15 @@ a {
 }
 
 
-#wanted, #have {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
+@media (min-width: 1200px) {
+  #wanted, #have {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+  }
 }
+
 #wanted-top {
   width: 50%;
   border-top: 2px solid $skills-wanted;
