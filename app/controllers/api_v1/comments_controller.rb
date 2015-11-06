@@ -21,6 +21,13 @@ class ApiV1::CommentsController < ApiController
 
   end
 
+  def last_comments
+    @commented_id = params[:id]
+    @commented_user = User.find_by_authentication_token( params[:auth_token] )
+    @commentor = User.find(params[:commentor_id])
+    @comments = Comment.where("id > ? AND profile_id = ? AND user_id = ?", @commented_id, @commented_user.profile, @commentor)
+  end
+
   def comment_params
     params.permit(:content)
   end

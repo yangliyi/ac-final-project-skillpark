@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :categories
 
+    get "/comments/:id/last_comments" => "comments#last_comments"
     get "/profiles" => "profiles#index"
     post "/profiles/:id/favorite" => "profiles#favorite"
     post "/login" => "auth#login"
