@@ -5,7 +5,7 @@
       <% if @profiles %>
         <% @profiles.each do |p| %>
           <div>
-            <%= link_to profile_comments_path(current_user.profile, :id => p), remote: true do %>
+            <%= link_to profile_comments_path(current_user.profile, :id => p) do %>
               <%= image_tag (p.photo_url) %>
               <p><%= p.username %></p>
             <% end %>
@@ -14,13 +14,31 @@
       <% end %>
     </div>
     <div class="col-sm-8">
-      <div id="private_comments">
+      <div>
+        <div id="private_comments">
         <%= render 'comments', :locals => { :comments_group_by_profile => @comments_group_by_profile, :profile => @profile } %>
+        </div>
+        <% if params[:id] %>
+          <%= form_for Comment.new, url: profile_comments_path(@profile), remote: true do |f| %>
+            <div class="form-group" style="margin-bottom: 0; background-color: #EEE;">
+              <%= f.text_area :content, class: "form-control", required: true %>
+              <%= f.submit "回覆", class: "btn btn-default", style: "position: relative; right: 0;" %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="col-sm-2"></div>
   </div>
 </div>
+
+<script>
+  var pollActivity = function() {
+  return $.get('/profiles/<%= params[:profile_id] %>/comments.js?id=<%= params[:id] %>')
+}
+
+window.setInterval( pollActivity, 2000 )
+</script>
 
 
 

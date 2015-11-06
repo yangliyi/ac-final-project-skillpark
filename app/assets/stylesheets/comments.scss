@@ -9,6 +9,14 @@
 .panel.contact {
   background-color: white;
 }
+
+.all-the-comments {
+  .panel-body {
+    overflow: auto;
+    height: 350px;
+    background-color: #eee;
+  }
+}
 .message {
   display: inline-block;
   margin-bottom: 5px;

@@ -2,7 +2,7 @@
 <% if @comments_group_by_profile %>
   <% @comments_group_by_profile.each do |p, comments| %>
     <% if p == @profile %>
-        <div class="panel">
+        <div class="panel all-the-comments" style="margin-bottom: 0; padding-bottom: 0;">
           <div class="panel-heading" style="background-color: #41569C; color: white;">
             <h3 class="panel-title" style="background-color: #41569C;">
               <%= link_to profile_path(p) do %>
@@ -12,7 +12,7 @@
             </h3>
             <% @p = p %>
           </div>
-          <div class="panel-body" style="overflow: auto; height: 250px; background-color: #eee;">
+          <div class="panel-body">
             <% comments.each do |c| %>
               <% if ( c.profile == @p && c.user == current_user ) || ( c.profile == current_user.profile && c.user == @p.user ) %>
                 <% if c.user == current_user %>
@@ -39,12 +39,7 @@
             <% end %>
           </div>
 
-          <%= form_for Comment.new, url: profile_comments_path(p), remote: true do |f| %>
-            <div class="form-group" style="margin-bottom: 0; background-color: #EEE;">
-              <%= f.text_area :content, class: "form-control", required: true %>
-              <%= f.submit "回覆", class: "btn btn-default", style: "position: relative; right: 0;" %>
-            </div>
-          <% end %>
+
         </div>
     <% end %>
   <% end %>
