@@ -12,7 +12,7 @@
             </h3>
             <% @p = p %>
           </div>
-          <div class="panel-body" style="overflow: auto; height: 150px; background-color: #eee;">
+          <div class="panel-body" style="overflow: auto; height: 250px; background-color: #eee;">
             <% comments.each do |c| %>
               <% if ( c.profile == @p && c.user == current_user ) || ( c.profile == current_user.profile && c.user == @p.user ) %>
                 <% if c.user == current_user %>
