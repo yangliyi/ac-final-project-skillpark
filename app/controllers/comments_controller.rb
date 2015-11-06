@@ -8,9 +8,7 @@ class CommentsController < ApplicationController
     if params[:id]
       @profile = Profile.find(params[:id])
       respond_to do |format|
-          format.html {
-            redirect_to profile_comments_path(current_user.profile, id: @profile)
-          }
+          format.html
           format.js
         end
     end
