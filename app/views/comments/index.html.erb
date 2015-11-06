@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-2">
+    <div class="col-sm-2 side-bar">
       <h3>聯絡過的對象</h3>
       <% if @profiles %>
         <% @profiles.each do |p| %>
-          <div style="margin: 20px;">
+          <div>
             <%= link_to profile_comments_path(current_user.profile, :id => p), remote: true do %>
-              <%= image_tag (p.photo_url), style: "width: 20px; height: 20px; display: inline; border-radius: 100%;" %>
-              <h4><%= p.username %></h4>
+              <%= image_tag (p.photo_url) %>
+              <p><%= p.username %></p>
             <% end %>
           </div>
         <% end %>
